@@ -25,10 +25,12 @@ namespace LearningMpaAbp.Tasks
 
         void UpdateTask(UpdateTaskInput input);
 
-        void CreateTask(CreateTaskInput input);
+        int CreateTask(CreateTaskInput input);
 
         Task<TaskDto> GetTaskByIdAsync(int taskId);
 
         TaskDto GetTaskById(int taskId);
+
+        void DeleteTask(int taskId);
     }
 }

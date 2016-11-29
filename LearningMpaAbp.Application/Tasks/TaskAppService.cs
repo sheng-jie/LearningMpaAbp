@@ -98,7 +98,7 @@ namespace LearningMpaAbp.Tasks
             //ABP automatically saves all changes when a 'unit of work' scope ends (without any exception).
         }
 
-        public void CreateTask(CreateTaskInput input)
+        public int CreateTask(CreateTaskInput input)
         {
             //We can use Logger, it's defined in ApplicationService class.
             Logger.Info("Creating a task for input: " + input);
@@ -112,7 +112,16 @@ namespace LearningMpaAbp.Tasks
             }
 
             //Saving entity with standard Insert method of repositories.
-            _taskRepository.Insert(task);
+            return _taskRepository.InsertAndGetId(task);
+        }
+
+        public void DeleteTask(int taskId)
+        {
+            var task = _taskRepository.Get(taskId);
+            if (task!=null)
+            {
+                _taskRepository.Delete(task);
+            }
         }
     }
 }

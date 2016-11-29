@@ -60,6 +60,15 @@ namespace LearningMpaAbp.Web
                     )
                 );
 
+            //~/Bundles/unobtrusive/js (Included in the bottom for fast page load)
+            bundles.Add(
+                new ScriptBundle("~/Bundles/unobtrusive/js")
+                    .Include(
+                        "~/Scripts/jquery.validate.unobtrusive.min.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js"
+                        )
+                );
+
             //APPLICATION RESOURCES
 
             //~/Bundles/css

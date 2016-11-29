@@ -12,6 +12,9 @@ namespace LearningMpaAbp.Web.Models.Tasks
     {
         public TaskState? SelectedTaskState { get; set; }
         public IReadOnlyList<TaskDto> Tasks { get; }
+
+        public CreateTaskInput CreateTaskInput { get; set; }
+
         public IndexViewModel(IReadOnlyList<TaskDto> items)
         {
             Tasks = items;

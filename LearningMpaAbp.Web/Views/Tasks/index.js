@@ -16,29 +16,43 @@
 
         $form.validate();
 
-        $form.find('button[type="submit"]').click(function (e) {
+        //$form.find('button[type="submit"]').click(function (e) {            
+        //    e.preventDefault();
+        //    debugger;
+        //    if (!$form.valid()) {
+        //        return;
+        //    }
 
-            e.preventDefault();
-            if (!$form.valid()) {
-                return;
-            }
+        //    var creatTaskDto = $form.serializeFormToObject();
+        //    abp.ui.setBusy($modal);
+        //    _taskService.createTask({ creatTaskDto }).done(function () {
+        //        $modal.modal("hide");
 
-            var creatTaskDto = $form.serializeFormToObject();
-            abp.ui.setBusy($modal);
-            _taskService.createTask({ creatTaskDto }).done(function () {
-                $modal.modal("hide");
-
-                location.reload(true); //reload page to see new person!
-            }).always(function () {
-                abp.ui.clearBusy($modal);
-            });
-        });
-        $modal.on("shown.bs.modal", function () {
-            $modal.find("input:not([type=hidden]):first").focus();
-        });
+        //        location.reload(true); //reload page to see new person!
+        //    }).always(function () {
+        //        abp.ui.clearBusy($modal);
+        //    });
+        //});
+        //$modal.on("shown.bs.modal", function () {
+        //    $modal.find("input:not([type=hidden]):first").focus();
+        //});
     });
 })(jQuery);
 
+function beginPost() {
+    var $modal = $("#add");
+
+    abp.ui.setBusy($modal);
+}
+
+function hideForm() {
+    var $modal = $("#add");
+
+    var $form = $modal.find("form");
+    abp.ui.clearBusy($modal);
+    $modal.modal("hide");
+    $form[0].reset();
+}
 
 //function editTask(id) {
 //    _taskService.getTaskById(id)
@@ -74,44 +88,25 @@ function getCreateTask() {
         .done(function(data) {
             $("#modalContent").html(data);
             $("#add").modal("show");
-        }).fail(function (data) {
+
+        })
+        .fail(function (data) {
             abp.notify.success('Edit task successfully');
+        })
+        .always(function () {
+            
+            var $modal = $("#add");
+            var $form = $modal.find("form");
+            var $sumbit = $form.find('button[type="submit"]');
+            debugger;
+            //$sumbit.live("click", createTask());
         });
 }
 
-function createTask() {
-    var $modal = $("#add");
-
-    var $form = $modal.find("form");
-
-    $form.validate();
-
-    $form.find('button[type="submit"]').click(function (e) {
-
-        e.preventDefault();
-        if (!$form.valid()) {
-            return;
-        }
-
-        var creatTaskDto = $form.serializeFormToObject();
-        abp.ui.setBusy($modal);
-        _taskService.createTask({ creatTaskDto }).done(function () {
-            $modal.modal("hide");
-
-            location.reload(true); //reload page to see new person!
-        }).always(function () {
-            abp.ui.clearBusy($modal);
-        });
-    });
-    $modal.on("shown.bs.modal", function () {
-        $modal.find("input:not([type=hidden]):first").focus();
-    });
-}
-
-function deletePerson(id) {
+function deleteTask(id) {
     abp.message.confirm(
-        "是否删除Id为" + id + "的联系人信息", function () {
-            _taskService.deletePersonAsync({ id: id }).done(function () {
+        "是否删除Id为" + id + "的任务信息", function () {
+            _taskService.deleteTask(id).done(function () {
                 location.reload(true);
             });
         }

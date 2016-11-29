@@ -11,82 +11,57 @@
 }
 <h2>
     @L("TaskList")
-    <button type="button" class="btn btn-info" onclick="getCreateTask()">Create Task</button>
-    
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
+        Create Task
+    </button>
+
     <span class="pull-right">
         @Html.DropDownListFor(
-            model => model.SelectedTaskState,
-            Model.GetTaskStateSelectListItems(),
-            new
-            {
-                @class = "form-control",
-                id = "TaskStateCombobox"
-            })
+      model => model.SelectedTaskState,
+      Model.GetTaskStateSelectListItems(),
+      new
+      {
+          @class = "form-control",
+          id = "TaskStateCombobox"
+      })
     </span>
 </h2>
 
-<div class="row">
-    <div>
-        <ul class="list-group">
-            @foreach (var task in Model.Tasks)
-            {
-                <li class="list-group-item">
-                    <a href="javascript:void(0)" onclick="editTask(@task.Id);">
-                        <span class="pull-right label @Model.GetTaskLable(task)">@L(string.Format("TaskState_{0}", task.State))</span>
-                        <h4 class="list-group-item-heading">@task.Title</h4>
-                        <div class="list-group-item-text">
-                            @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
-                        </div>
-                    </a>
-                </li>
-            }
-        </ul>
-    </div>
+<div class="row" id="taskList">
+    @{ Html.RenderPartial("_List", Model);}
+    @*<div>
+            <ul class="list-group">
+                @foreach (var task in Model.Tasks)
+                {
+                    <li class="list-group-item">
+                        <a href="javascript:void(0)" onclick="editTask(@task.Id);">
+                            <span class="pull-right label @Model.GetTaskLable(task)">@L(string.Format("TaskState_{0}", task.State))</span>
+                            <h4 class="list-group-item-heading">@task.Title</h4>
+                            <div class="list-group-item-text">
+                                @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>*@
 </div>
 
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="PersonCreateModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Task</h4>
+            </div>
             <div class="modal-body" id="modalContent">
+
+                @{
+                    Html.RenderPartial("_CreateTask", Model.CreateTaskInput);
+                }
             </div>
         </div>
     </div>
 </div>
 
-@*<div class="modal fade" id="PersonCreateModal" tabindex="-1" role="dialog" aria-labelledby="PersonCreateModalLabel" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form name="tenantCreateForm" role="form" novalidate class="form-validation">
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            <span>@L("CreatePerson")</span>
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-
-
-                        <div class="form-group">
-                            <label>@L("Name")</label>
-                            <input class="form-control" type="text" value="" name="Name" required  minlength="2">
-                            <input type="hidden" name="Id">
-
-                        </div>
-
-                        <div class="form-group">
-                            <label>@L("EmailAddress")</label>
-                            <input class="form-control" type="email" name="EmailAddress" required  minlength="2">
-
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">@L("Cancel")</button>
-                        <button type="submit" class="btn btn-primary blue">
-                            <i class="fa fa-save"></i> <span>@L("Save")</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>*@

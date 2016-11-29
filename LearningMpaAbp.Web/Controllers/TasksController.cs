@@ -28,7 +28,9 @@ namespace LearningMpaAbp.Web.Controllers
             var output = _taskAppService.GetTasks(input);
             var module = new IndexViewModel(output.Tasks)
             {
-                SelectedTaskState = input.State
+                SelectedTaskState = input.State,
+                CreateTaskInput = new CreateTaskInput()
+
             };
             return View(module);
         }
@@ -61,10 +63,18 @@ namespace LearningMpaAbp.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateTaskInput task)
         {
-            
-            _taskAppService.CreateTask(task);
+            var id = _taskAppService.CreateTask(task);
 
-            return RedirectToAction("Index");
+            var input = new GetTasksInput();
+            var output = _taskAppService.GetTasks(input);
+            var module = new IndexViewModel(output.Tasks)
+            {
+                SelectedTaskState = input.State,
+                CreateTaskInput = new CreateTaskInput()
+
+            };
+
+            return PartialView("_List", module);
             //var input = new GetTasksInput() {State = TaskState.Open};
             //var output = _taskAppService.GetTasks(input);
             //var module = new IndexViewModel(output.Tasks)
