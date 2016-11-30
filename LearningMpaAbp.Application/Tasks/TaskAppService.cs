@@ -47,7 +47,7 @@ namespace LearningMpaAbp.Tasks
 
             if (input.State.HasValue)
             {
-                query= query.Where(t => t.State == input.State.Value);
+                query = query.Where(t => t.State == input.State.Value);
             }
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
@@ -60,7 +60,7 @@ namespace LearningMpaAbp.Tasks
         public async Task<TaskDto> GetTaskByIdAsync(int taskId)
         {
             //Called specific GetAllWithPeople method of task repository.
-            var task =await _taskRepository.GetAsync(taskId);
+            var task = await _taskRepository.GetAsync(taskId);
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
             return task.MapTo<TaskDto>();
@@ -79,7 +79,7 @@ namespace LearningMpaAbp.Tasks
             Logger.Info("Updating a task for input: " + input);
 
             //Retrieving a task entity with given id using standard Get method of repositories.
-            var task = _taskRepository.Get(input.TaskId);
+            var task = _taskRepository.Get(input.Id);
 
             //Updating changed properties of the retrieved task entity.
 
@@ -104,7 +104,13 @@ namespace LearningMpaAbp.Tasks
             Logger.Info("Creating a task for input: " + input);
 
             //Creating a new Task entity with given input's properties
-            var task = new Task {Description = input.Description,Title = input.Title,CreationTime = Clock.Now};
+            var task = new Task
+            {
+                Description = input.Description,
+                Title = input.Title,
+                State = input.State,
+                CreationTime = Clock.Now
+            };
 
             if (input.AssignedPersonId.HasValue)
             {
@@ -118,7 +124,7 @@ namespace LearningMpaAbp.Tasks
         public void DeleteTask(int taskId)
         {
             var task = _taskRepository.Get(taskId);
-            if (task!=null)
+            if (task != null)
             {
                 _taskRepository.Delete(task);
             }

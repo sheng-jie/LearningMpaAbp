@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Abp.Runtime.Validation;
+using Abp.AutoMapper;
 
 namespace LearningMpaAbp.Tasks.Dtos
 {
@@ -9,10 +10,11 @@ namespace LearningMpaAbp.Tasks.Dtos
     /// 
     /// Implements <see cref="ICustomValidate"/> for additional custom validation.
     /// </summary>
+    [AutoMapFrom(typeof(TaskDto))]
     public class UpdateTaskInput : ICustomValidate
     {
         [Range(1, Int32.MaxValue)] //Data annotation attributes work as expected.
-        public int TaskId { get; set; }
+        public int Id { get; set; }
 
         public int? AssignedPersonId { get; set; }
 
@@ -31,7 +33,7 @@ namespace LearningMpaAbp.Tasks.Dtos
 
         public override string ToString()
         {
-            return string.Format("[UpdateTaskInput > TaskId = {0}, AssignedPersonId = {1}, State = {2}]", TaskId, AssignedPersonId, State);
+            return string.Format("[UpdateTaskInput > TaskId = {0}, AssignedPersonId = {1}, State = {2}]", Id, AssignedPersonId, State);
         }
     }
 }

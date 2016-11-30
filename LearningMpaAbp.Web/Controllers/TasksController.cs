@@ -22,6 +22,7 @@ namespace LearningMpaAbp.Web.Controllers
             this._taskAppService = taskAppService;
         }
 
+
         // GET: Tasks
         public ActionResult Index(GetTasksInput input)
         {
@@ -33,6 +34,19 @@ namespace LearningMpaAbp.Web.Controllers
 
             };
             return View(module);
+        }
+
+        
+        public PartialViewResult GetList(GetTasksInput input)
+        {
+            var output = _taskAppService.GetTasks(input);
+            var module = new IndexViewModel(output.Tasks)
+            {
+                SelectedTaskState = input.State,
+                CreateTaskInput = new CreateTaskInput()
+
+            };
+            return PartialView("_List", module);
         }
 
         //// GET: Tasks/Details/5
@@ -93,22 +107,27 @@ namespace LearningMpaAbp.Web.Controllers
             return PartialView("_EditTask", task);
         }
 
-        //// POST: Tasks/Edit/5
-        //// 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        //// 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,AssignedPersonId,Title,Description,State,CreationTime")] Task task)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(task).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.AssignedPersonId = new SelectList(db.People, "Id", "Name", task.AssignedPersonId);
-        //    return View(task);
-        //}
+        // POST: Tasks/Edit/5
+        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(TaskDto task)
+        {
+            var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
+            _taskAppService.UpdateTask(updateTaskDto);
+
+            var input = new GetTasksInput();
+            var output = _taskAppService.GetTasks(input);
+            var module = new IndexViewModel(output.Tasks)
+            {
+                SelectedTaskState = input.State,
+                CreateTaskInput = new CreateTaskInput()
+
+            };
+
+            return PartialView("_List", module);
+        }
 
         //// GET: Tasks/Delete/5
         //public ActionResult Delete(int? id)
