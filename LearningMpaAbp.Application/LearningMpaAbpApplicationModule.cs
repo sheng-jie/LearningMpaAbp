@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Abp.AutoMapper;
 using Abp.Modules;
+using LearningMpaAbp.Tasks.Dtos;
 
 namespace LearningMpaAbp
 {
@@ -13,6 +14,9 @@ namespace LearningMpaAbp
             {
                 //Add your custom AutoMapper mappings here...
                 //mapper.CreateMap<,>()
+                mapper.CreateMap<CreateTaskInput, Tasks.Task>();
+                mapper.CreateMap<TaskDto, UpdateTaskInput>();
+                mapper.CreateMap<UpdateTaskInput, Tasks.Task>();
             });
         }
 

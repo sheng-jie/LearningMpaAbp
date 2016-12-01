@@ -36,7 +36,7 @@ namespace LearningMpaAbp.Web.Controllers
             return View(module);
         }
 
-        
+        [ChildActionOnly]
         public PartialViewResult GetList(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
@@ -65,10 +65,11 @@ namespace LearningMpaAbp.Web.Controllers
         //}
 
         // GET: Tasks/Create
-        public PartialViewResult Create()
-        {
-            return PartialView("_CreateTask");
-        }
+        //[ChildActionOnly]
+        //public PartialViewResult Create()
+        //{
+        //    return PartialView("_CreateTask");
+        //}
 
         // POST: Tasks/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -104,6 +105,8 @@ namespace LearningMpaAbp.Web.Controllers
         {
             var task = _taskAppService.GetTaskById(id.Value);
 
+            var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
+
             return PartialView("_EditTask", task);
         }
 
@@ -112,9 +115,8 @@ namespace LearningMpaAbp.Web.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TaskDto task)
+        public ActionResult Edit(UpdateTaskInput updateTaskDto)
         {
-            var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
             _taskAppService.UpdateTask(updateTaskDto);
 
             var input = new GetTasksInput();
@@ -153,15 +155,6 @@ namespace LearningMpaAbp.Web.Controllers
         //    db.Tasks.Remove(task);
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
         //}
     }
 }

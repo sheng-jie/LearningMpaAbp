@@ -114,7 +114,6 @@
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />
     <Compile Include="Tasks\Dtos\CreateTaskInput.cs" />
-    <Compile Include="Tasks\Dtos\GetTaskInput.cs" />
     <Compile Include="Tasks\Dtos\GetTasksInput.cs" />
     <Compile Include="Tasks\Dtos\GetTasksOutput.cs" />
     <Compile Include="Tasks\Dtos\TaskDto.cs" />

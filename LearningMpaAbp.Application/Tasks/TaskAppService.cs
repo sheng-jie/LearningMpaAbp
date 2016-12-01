@@ -103,14 +103,18 @@ namespace LearningMpaAbp.Tasks
             //We can use Logger, it's defined in ApplicationService class.
             Logger.Info("Creating a task for input: " + input);
 
+            var task = Mapper.Map<Task>(input);
+
+            task.CreationTime = Clock.Now;
+
             //Creating a new Task entity with given input's properties
-            var task = new Task
-            {
-                Description = input.Description,
-                Title = input.Title,
-                State = input.State,
-                CreationTime = Clock.Now
-            };
+            //var task = new Task
+            //{
+            //    Description = input.Description,
+            //    Title = input.Title,
+            //    State = input.State,
+            //    CreationTime = Clock.Now
+            //};
 
             if (input.AssignedPersonId.HasValue)
             {

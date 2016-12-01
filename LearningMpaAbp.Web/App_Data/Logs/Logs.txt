@@ -877,3 +877,458 @@ DEBUG 2016-11-30 17:52:54,673 [17   ] Abp.Web.SignalR.Hubs.AbpCommonHub        -
 DEBUG 2016-11-30 17:52:56,009 [20   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"79fb24a0-df70-4434-8627-70954dfa177f","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-11-30T17:52:56.0084323+08:00","Properties":{}}
 DEBUG 2016-11-30 17:52:56,039 [20   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 79fb24a0-df70-4434-8627-70954dfa177f
 INFO  2016-11-30 17:53:36,193 [20   ] LearningMpaAbp.Tasks.TaskAppService      - Updating a task for input: [UpdateTaskInput > TaskId = 34, AssignedPersonId = , State = Open]
+DEBUG 2016-12-01 08:49:13,006 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 79fb24a0-df70-4434-8627-70954dfa177f
+DEBUG 2016-12-01 10:57:35,279 [84   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 10:57:35,636 [84   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 10:57:35,637 [84   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 10:57:35,637 [84   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 10:58:21,056 [15   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 10:58:21,096 [15   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 10:58:21,121 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,148 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,148 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,149 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,150 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,151 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,151 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,151 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,152 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,152 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,153 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,153 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,153 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,154 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,154 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:21,157 [15   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 10:58:24,600 [15   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 10:58:24,600 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 10:58:24,600 [15   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 10:58:24,600 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 10:58:25,456 [15   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 10:58:33,438 [15   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 10:58:33,533 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 10:58:33,535 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 10:58:33,538 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 10:58:33,539 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 10:58:33,697 [15   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 10:58:34,333 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 10:58:34,333 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 10:58:34,339 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 10:58:34,339 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 10:58:34,339 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 10:58:34,339 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 10:58:34,340 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 10:58:34,340 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 10:58:34,340 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 10:58:34,340 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 10:58:36,855 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 10:58:36,857 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 10:58:36,859 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 10:58:36,865 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 10:58:36,867 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 10:59:35,354 [28   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"e25fa18a-75c9-4f88-ba3a-15f6280447c9","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T10:59:35.3457129+08:00","Properties":{}}
+DEBUG 2016-12-01 10:59:35,418 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: e25fa18a-75c9-4f88-ba3a-15f6280447c9
+DEBUG 2016-12-01 10:59:41,868 [67   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: e25fa18a-75c9-4f88-ba3a-15f6280447c9
+DEBUG 2016-12-01 10:59:46,068 [56   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"2af6f7ea-4302-4ac2-a622-e5043e6ba7e4","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T10:59:46.0673261+08:00","Properties":{}}
+DEBUG 2016-12-01 10:59:46,083 [85   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 2af6f7ea-4302-4ac2-a622-e5043e6ba7e4
+INFO  2016-12-01 10:59:54,249 [80   ] LearningMpaAbp.Tasks.TaskAppService      - Updating a task for input: [UpdateTaskInput > TaskId = 21, AssignedPersonId = , State = Completed]
+DEBUG 2016-12-01 14:00:36,700 [46   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 2af6f7ea-4302-4ac2-a622-e5043e6ba7e4
+DEBUG 2016-12-01 14:50:45,015 [42   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 14:50:45,629 [42   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:50:45,759 [42   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:50:45,759 [42   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 14:51:34,337 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 14:51:34,372 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 14:51:34,378 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,381 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,382 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,382 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,382 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:34,389 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 14:51:35,535 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:51:35,535 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:51:35,535 [1    ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:51:35,535 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:51:36,540 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:51:43,264 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 14:51:43,308 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 14:51:43,311 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 14:51:43,314 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 14:51:43,497 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 14:51:43,754 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:51:44,710 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 14:51:44,710 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 14:51:44,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 14:51:44,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 14:51:44,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 14:51:44,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 14:51:44,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 14:51:44,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 14:51:44,717 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 14:51:44,717 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 14:51:48,073 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 14:51:48,075 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 14:51:48,078 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 14:51:48,081 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 14:51:48,083 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 14:53:32,025 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:53:32.0155645+08:00","Properties":{}}
+DEBUG 2016-12-01 14:53:32,110 [75   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 66c8d4d3-c18c-4a10-bdfb-2b6338cc1616
+DEBUG 2016-12-01 14:55:15,189 [45   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 14:55:15,190 [45   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:55:15,191 [45   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:55:15,191 [45   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 14:55:39,059 [90   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 14:55:39,127 [90   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 14:55:39,134 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,137 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,137 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,137 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,137 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,139 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,139 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,139 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,139 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,139 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,140 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,140 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,140 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,140 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,140 [90   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:39,146 [90   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 14:55:39,679 [90   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:55:39,679 [90   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:55:39,679 [90   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:55:39,679 [90   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:55:40,246 [90   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:55:42,776 [90   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 14:55:42,789 [90   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 14:55:42,792 [90   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 14:55:42,794 [90   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 14:55:42,820 [90   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 14:55:42,925 [90   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:55:43,181 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 14:55:43,181 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 14:55:43,189 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 14:55:43,189 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 14:55:43,189 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 14:55:43,189 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 14:55:43,189 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 14:55:43,189 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 14:55:43,190 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 14:55:43,190 [90   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 14:55:45,123 [90   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 14:55:45,125 [90   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 14:55:45,126 [90   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 14:55:45,128 [90   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 14:55:45,131 [90   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 14:55:45,855 [53   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:55:45.7662146+08:00","Properties":{}}
+DEBUG 2016-12-01 14:55:45,866 [75   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:55:45.7682147+08:00","Properties":{}}
+DEBUG 2016-12-01 14:55:45,867 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:55:45.7662146+08:00","Properties":{}}
+DEBUG 2016-12-01 14:55:45,869 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:55:45.7682147+08:00","Properties":{}}
+DEBUG 2016-12-01 14:55:45,869 [70   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:55:45.7682147+08:00","Properties":{}}
+DEBUG 2016-12-01 14:55:48,357 [75   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:55:45.7682147+08:00","Properties":{}}
+DEBUG 2016-12-01 14:56:06,120 [53   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"1efc3ad3-4d8a-41f0-8180-92a6288f976d","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:56:06.1183786+08:00","Properties":{}}
+DEBUG 2016-12-01 14:56:06,196 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 1efc3ad3-4d8a-41f0-8180-92a6288f976d
+DEBUG 2016-12-01 14:56:32,165 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 1efc3ad3-4d8a-41f0-8180-92a6288f976d
+DEBUG 2016-12-01 14:56:33,957 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"103b90ac-9fe7-404b-b4cb-0bb52ae422f2","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:56:33.9569709+08:00","Properties":{}}
+DEBUG 2016-12-01 14:56:33,989 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 103b90ac-9fe7-404b-b4cb-0bb52ae422f2
+DEBUG 2016-12-01 14:58:57,402 [45   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 14:58:57,403 [45   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:58:57,403 [45   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:58:57,403 [45   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 14:59:11,165 [15   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 14:59:11,184 [15   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 14:59:11,191 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,193 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,193 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,193 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,193 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,194 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,194 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,194 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,194 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,194 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,195 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,195 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,195 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,195 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,195 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:11,198 [15   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 14:59:11,410 [15   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:59:11,410 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:59:11,410 [15   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:59:11,410 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 14:59:12,041 [15   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 14:59:13,447 [15   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 14:59:13,454 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 14:59:13,456 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 14:59:13,459 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 14:59:13,461 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 14:59:13,563 [15   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 14:59:13,808 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 14:59:13,808 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 14:59:13,813 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 14:59:13,813 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 14:59:13,813 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 14:59:13,813 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 14:59:13,814 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 14:59:13,814 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 14:59:13,814 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 14:59:13,814 [15   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 14:59:15,840 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 14:59:15,842 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 14:59:15,843 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 14:59:15,845 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 14:59:15,848 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 14:59:16,481 [70   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4142629+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:16,481 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"103b90ac-9fe7-404b-b4cb-0bb52ae422f2","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4192632+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:16,493 [75   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4142629+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:16,495 [87   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"103b90ac-9fe7-404b-b4cb-0bb52ae422f2","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4192632+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:16,500 [74   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4142629+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:16,501 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"103b90ac-9fe7-404b-b4cb-0bb52ae422f2","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4192632+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:19,615 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"103b90ac-9fe7-404b-b4cb-0bb52ae422f2","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4192632+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:19,635 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"66c8d4d3-c18c-4a10-bdfb-2b6338cc1616","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:16.4142629+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:28,316 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"2c6acd26-798f-4efc-9356-b4e2afe5ca60","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T14:59:28.3159437+08:00","Properties":{}}
+DEBUG 2016-12-01 14:59:28,371 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 2c6acd26-798f-4efc-9356-b4e2afe5ca60
+DEBUG 2016-12-01 15:00:06,573 [87   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 103b90ac-9fe7-404b-b4cb-0bb52ae422f2
+DEBUG 2016-12-01 15:00:07,363 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 66c8d4d3-c18c-4a10-bdfb-2b6338cc1616
+DEBUG 2016-12-01 15:00:20,745 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 2c6acd26-798f-4efc-9356-b4e2afe5ca60
+DEBUG 2016-12-01 15:00:23,224 [74   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"0193d729-b3de-495d-9808-2e6454cbcea8","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:00:23.2230842+08:00","Properties":{}}
+DEBUG 2016-12-01 15:00:23,265 [89   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 0193d729-b3de-495d-9808-2e6454cbcea8
+INFO  2016-12-01 15:00:32,731 [85   ] LearningMpaAbp.Tasks.TaskAppService      - Creating a task for input: [CreateTaskInput > AssignedPersonId = , Description = bbb]
+DEBUG 2016-12-01 15:04:05,167 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 0193d729-b3de-495d-9808-2e6454cbcea8
+DEBUG 2016-12-01 15:04:09,775 [41   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 15:04:09,777 [41   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:04:09,778 [41   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:04:09,778 [41   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 15:04:24,882 [52   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 15:04:24,901 [52   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 15:04:24,907 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,909 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,910 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,910 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,910 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,910 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,911 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,912 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,912 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,913 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,913 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,913 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,913 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,914 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,914 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:24,917 [52   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 15:04:25,216 [52   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:04:25,216 [52   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:04:25,216 [52   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:04:25,216 [52   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:04:25,765 [52   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:04:27,409 [52   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 15:04:27,416 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 15:04:27,418 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 15:04:27,446 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 15:04:27,448 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 15:04:27,574 [52   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:04:27,822 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 15:04:27,822 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 15:04:27,827 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 15:04:27,827 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 15:04:27,827 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 15:04:27,827 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 15:04:27,828 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 15:04:27,828 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 15:04:27,828 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 15:04:27,828 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 15:04:29,731 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 15:04:29,733 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 15:04:29,734 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 15:04:29,738 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 15:04:29,740 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 15:04:44,561 [70   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"528297cb-f2fb-4614-89ff-1070a9100cea","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:04:44.5490312+08:00","Properties":{}}
+DEBUG 2016-12-01 15:04:44,622 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 528297cb-f2fb-4614-89ff-1070a9100cea
+DEBUG 2016-12-01 15:05:03,453 [77   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 528297cb-f2fb-4614-89ff-1070a9100cea
+DEBUG 2016-12-01 15:05:05,078 [72   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"88fb94fc-e2b8-4f7d-92ac-85f45361e828","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:05:05.0772053+08:00","Properties":{}}
+DEBUG 2016-12-01 15:05:05,109 [77   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 88fb94fc-e2b8-4f7d-92ac-85f45361e828
+INFO  2016-12-01 15:05:09,475 [81   ] LearningMpaAbp.Tasks.TaskAppService      - Creating a task for input: [CreateTaskInput > AssignedPersonId = , Description = bbb]
+DEBUG 2016-12-01 15:17:12,430 [70   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 15:17:12,431 [70   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:17:12,432 [70   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:17:12,432 [70   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 15:17:56,525 [53   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 15:17:56,545 [53   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 15:17:56,552 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,556 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,556 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,557 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,557 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,558 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,558 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,558 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,559 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,559 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,559 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,559 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,559 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,559 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,560 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:56,563 [53   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 15:17:56,753 [53   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:17:56,753 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:17:56,753 [53   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:17:56,753 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:17:57,399 [53   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:17:58,895 [53   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 15:17:58,902 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 15:17:58,906 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 15:17:58,908 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 15:17:58,910 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 15:17:58,995 [53   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:17:59,246 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 15:17:59,246 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 15:17:59,253 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 15:17:59,253 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 15:17:59,254 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 15:17:59,254 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 15:17:59,254 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 15:17:59,254 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 15:17:59,254 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 15:17:59,254 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 15:18:01,124 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 15:18:01,127 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 15:18:01,128 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 15:18:01,180 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 15:18:01,182 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 15:18:01,847 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 88fb94fc-e2b8-4f7d-92ac-85f45361e828
+DEBUG 2016-12-01 15:18:01,859 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 88fb94fc-e2b8-4f7d-92ac-85f45361e828
+DEBUG 2016-12-01 15:18:01,873 [70   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"88fb94fc-e2b8-4f7d-92ac-85f45361e828","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:18:01.7856305+08:00","Properties":{}}
+DEBUG 2016-12-01 15:18:01,876 [77   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"88fb94fc-e2b8-4f7d-92ac-85f45361e828","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:18:01.7856305+08:00","Properties":{}}
+DEBUG 2016-12-01 15:18:15,314 [89   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"6e6d9b6d-9324-4b22-8e49-259d9286c44c","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:18:15.3134042+08:00","Properties":{}}
+DEBUG 2016-12-01 15:18:15,372 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 6e6d9b6d-9324-4b22-8e49-259d9286c44c
+DEBUG 2016-12-01 15:19:59,194 [72   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 6e6d9b6d-9324-4b22-8e49-259d9286c44c
+DEBUG 2016-12-01 15:20:01,144 [73   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:20:01.1434574+08:00","Properties":{}}
+DEBUG 2016-12-01 15:20:01,160 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b
+DEBUG 2016-12-01 15:21:09,735 [77   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 15:21:09,736 [77   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:21:09,737 [77   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:21:09,737 [77   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 15:21:24,666 [52   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 15:21:24,683 [52   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 15:21:24,690 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,694 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,694 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,695 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,695 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,695 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,695 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,696 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,696 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,696 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,696 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,696 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,696 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,697 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,697 [52   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:24,700 [52   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 15:21:25,012 [52   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:21:25,012 [52   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:21:25,012 [52   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:21:25,012 [52   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:21:25,587 [52   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:21:27,214 [52   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 15:21:27,223 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 15:21:27,225 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 15:21:27,247 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 15:21:27,278 [52   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 15:21:27,370 [52   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:21:27,619 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 15:21:27,619 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 15:21:27,625 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 15:21:27,627 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 15:21:27,627 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 15:21:27,627 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 15:21:27,627 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 15:21:27,627 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 15:21:27,627 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 15:21:27,628 [52   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 15:21:29,461 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 15:21:29,463 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 15:21:29,467 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 15:21:29,469 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 15:21:29,470 [52   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 15:21:30,085 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:29.987539+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:30,094 [21   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:29.987539+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:30,096 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:29.987539+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:30,097 [28   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:29.987539+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:32,354 [56   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:29.987539+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:44,562 [75   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"5f4bf44f-6ba6-4f33-8859-78a25b59f259","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:44.5613725+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:44,632 [28   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 5f4bf44f-6ba6-4f33-8859-78a25b59f259
+DEBUG 2016-12-01 15:21:50,278 [28   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 47ef91c6-6cd6-4ce0-8750-bcd8d32a3d8b
+DEBUG 2016-12-01 15:21:53,226 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 5f4bf44f-6ba6-4f33-8859-78a25b59f259
+DEBUG 2016-12-01 15:21:54,678 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"278108ab-340a-420f-8a9d-cc5e79804794","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:21:54.6759511+08:00","Properties":{}}
+DEBUG 2016-12-01 15:21:54,722 [86   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 278108ab-340a-420f-8a9d-cc5e79804794
+DEBUG 2016-12-01 15:23:18,480 [28   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-12-01 15:23:18,481 [28   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:23:18,482 [28   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:23:18,482 [28   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-12-01 15:23:33,634 [53   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-12-01 15:23:33,651 [53   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-12-01 15:23:33,659 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Web.LearningMpaAbpWebModule, LearningMpaAbp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,662 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpDataModule, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,662 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,663 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,663 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,664 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,664 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpCoreModule, LearningMpaAbp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,664 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.LearningMpaAbpApplicationModule, LearningMpaAbp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,664 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,664 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: LearningMpaAbp.Api.LearningMpaAbpWebApiModule, LearningMpaAbp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,665 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,665 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,665 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,665 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,665 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:33,669 [53   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-12-01 15:23:33,898 [53   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:23:33,898 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:23:33,898 [53   ] o.Configuration.LanguageManagementConfig - Converted LearningMpaAbp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:23:33,898 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-12-01 15:23:34,555 [53   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext, LearningMpaAbp.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-12-01 15:23:35,984 [53   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-12-01 15:23:35,993 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-12-01 15:23:35,995 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-12-01 15:23:35,999 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: LearningMpaAbp
+DEBUG 2016-12-01 15:23:36,001 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-12-01 15:23:36,086 [53   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-12-01 15:23:36,333 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes define auto mapping attributes
+DEBUG 2016-12-01 15:23:36,333 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-12-01 15:23:36,338 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-12-01 15:23:36,339 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-12-01 15:23:36,339 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.CreateUserInput
+DEBUG 2016-12-01 15:23:36,339 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Users.Dto.UserListDto
+DEBUG 2016-12-01 15:23:36,339 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.TaskDto
+DEBUG 2016-12-01 15:23:36,339 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.Tasks.Dtos.UpdateTaskInput
+DEBUG 2016-12-01 15:23:36,339 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-12-01 15:23:36,340 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - LearningMpaAbp.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-12-01 15:23:38,195 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-12-01 15:23:38,197 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-12-01 15:23:38,199 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Tasks.ITaskAppService' with service name 'app/task'.
+DEBUG 2016-12-01 15:23:38,203 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-12-01 15:23:38,204 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'LearningMpaAbp.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-12-01 15:23:38,790 [85   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"278108ab-340a-420f-8a9d-cc5e79804794","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:23:38.7569041+08:00","Properties":{}}
+DEBUG 2016-12-01 15:23:38,814 [81   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 278108ab-340a-420f-8a9d-cc5e79804794
+DEBUG 2016-12-01 15:23:49,822 [56   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"81fa0561-0ad3-47f2-a833-615ded0d2131","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:23:49.821537+08:00","Properties":{}}
+DEBUG 2016-12-01 15:23:49,931 [56   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 81fa0561-0ad3-47f2-a833-615ded0d2131
+DEBUG 2016-12-01 15:24:41,561 [28   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 81fa0561-0ad3-47f2-a833-615ded0d2131
+DEBUG 2016-12-01 15:24:43,206 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"98f46a84-b88a-4b66-a0bb-b4a38339d712","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-12-01T15:24:43.2055904+08:00","Properties":{}}
+DEBUG 2016-12-01 15:24:43,221 [50   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 98f46a84-b88a-4b66-a0bb-b4a38339d712

@@ -22,6 +22,8 @@ namespace LearningMpaAbp.Tasks.Dtos
 
         public string Title { get; set; }
 
+        public string Description { get; set; }
+
         //Custom validation method. It's called by ABP after data annotation validations.
         public void AddValidationErrors(CustomValidationContext context)
         {
