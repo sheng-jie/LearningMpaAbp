@@ -7,7 +7,7 @@ namespace LearningMpaAbp.Tasks.Dtos
     /// <summary>
     /// A DTO class that can be used in various application service methods when needed to send/receive Task objects.
     /// </summary>
-    [AutoMapFrom(typeof(Task))]
+    //[AutoMapFrom(typeof(Task))]
     public class TaskDto : EntityDto
     {
         public int? AssignedPersonId { get; set; }

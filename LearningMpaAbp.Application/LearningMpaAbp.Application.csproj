@@ -104,6 +104,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDtoMapping.cs" />
     <Compile Include="LearningMpaAbpApplicationModule.cs" />
     <Compile Include="LearningMpaAbpAppServiceBase.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Tasks\Dtos\UpdateTaskInput.cs" />
     <Compile Include="Tasks\ITaskAppService.cs" />
     <Compile Include="Tasks\TaskAppService.cs" />
+    <Compile Include="Tasks\TaskDtoMapping.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />
     <Compile Include="Roles\RoleAppService.cs" />

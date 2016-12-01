@@ -10,7 +10,6 @@ namespace LearningMpaAbp.Tasks.Dtos
     /// 
     /// Implements <see cref="ICustomValidate"/> for additional custom validation.
     /// </summary>
-    [AutoMapFrom(typeof(TaskDto))]
     public class UpdateTaskInput : ICustomValidate
     {
         [Range(1, Int32.MaxValue)] //Data annotation attributes work as expected.

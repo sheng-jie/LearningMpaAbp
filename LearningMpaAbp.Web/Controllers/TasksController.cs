@@ -107,7 +107,7 @@ namespace LearningMpaAbp.Web.Controllers
 
             var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
 
-            return PartialView("_EditTask", task);
+            return PartialView("_EditTask", updateTaskDto);
         }
 
         // POST: Tasks/Edit/5
