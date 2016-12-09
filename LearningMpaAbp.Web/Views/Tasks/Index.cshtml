@@ -5,9 +5,18 @@
     ViewBag.Title = L("TaskList");
     ViewBag.ActiveMenu = "TaskList"; //Matches with the menu name in SimpleTaskAppNavigationProvider to highlight the menu item
 }
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
+
+
 
 @section scripts{
     @Html.IncludeScript("~/Views/Tasks/index.js");
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
 }
 <h2>
     @L("TaskList")
@@ -46,6 +55,8 @@
                 }
             </ul>
         </div>*@
+
+    @{ Html.RenderPartial("_TaskList");}
 </div>
 
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="PersonCreateModalLabel" data-backdrop="static">
