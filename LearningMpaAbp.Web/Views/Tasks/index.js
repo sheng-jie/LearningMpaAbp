@@ -16,6 +16,7 @@
         $modal.on('shown.bs.modal', function () {
             $modal.find('input:not([type=hidden]):first').focus();
         });
+
     });
 })(jQuery);
 
@@ -44,7 +45,7 @@ function editTask(id) {
     })
         .done(function (data) {
             $("#edit").html(data);
-            $("#edit").modal("show");
+            $("#editTask").modal("show");
         }).fail(function (data) {
             abp.notify.success('Edit task successfully');
         });
@@ -67,11 +68,11 @@ function getTaskList() {
     var $taskStateCombobox = $('#TaskStateCombobox');
     var url = '/Tasks/GetList?state=' + $taskStateCombobox.val();
     abp.ajax({
-        url: url,
-        type: "GET",
-        dataType: "html"
-    })
-    .done(function (data) {
-        $("#taskList").html(data);
-    })
+            url: url,
+            type: "GET",
+            dataType: "html"
+        })
+        .done(function(data) {
+            $("#taskList").html(data);
+        });
 }

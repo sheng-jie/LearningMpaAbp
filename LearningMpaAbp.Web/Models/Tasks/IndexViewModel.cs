@@ -15,6 +15,8 @@ namespace LearningMpaAbp.Web.Models.Tasks
 
         public CreateTaskInput CreateTaskInput { get; set; }
 
+        public UpdateTaskInput UpdateTaskInput { get; set; }
+
         public IndexViewModel(IReadOnlyList<TaskDto> items)
         {
             Tasks = items;

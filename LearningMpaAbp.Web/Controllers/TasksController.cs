@@ -22,7 +22,6 @@ namespace LearningMpaAbp.Web.Controllers
             this._taskAppService = taskAppService;
         }
 
-
         // GET: Tasks
         public ActionResult Index(GetTasksInput input)
         {
@@ -30,7 +29,8 @@ namespace LearningMpaAbp.Web.Controllers
             var module = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput()
+                CreateTaskInput = new CreateTaskInput(),
+                UpdateTaskInput = new UpdateTaskInput()
 
             };
             return View(module);
@@ -43,33 +43,12 @@ namespace LearningMpaAbp.Web.Controllers
             var module = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput()
+                CreateTaskInput = new CreateTaskInput(),
+                UpdateTaskInput = new UpdateTaskInput()
 
             };
             return PartialView("_List", module);
         }
-
-        //// GET: Tasks/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var task = _taskAppService.GetTaskByIdAsync(id);
-        //    if (task == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return System.Web.UI.WebControls.View(task);
-        //}
-
-        // GET: Tasks/Create
-        //[ChildActionOnly]
-        //public PartialViewResult Create()
-        //{
-        //    return PartialView("_CreateTask");
-        //}
 
         // POST: Tasks/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -85,25 +64,18 @@ namespace LearningMpaAbp.Web.Controllers
             var module = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput()
-
+                CreateTaskInput = new CreateTaskInput(),
+                UpdateTaskInput = new UpdateTaskInput()
             };
 
             return PartialView("_List", module);
-            //var input = new GetTasksInput() {State = TaskState.Open};
-            //var output = _taskAppService.GetTasks(input);
-            //var module = new IndexViewModel(output.Tasks)
-            //{
-            //    SelectedTaskState = input.State
-            //};
-
-            //return View("Index", module);
         }
 
         // GET: Tasks/Edit/5
-        public PartialViewResult Edit(int? id)
+        
+        public PartialViewResult Edit(int id)
         {
-            var task = _taskAppService.GetTaskById(id.Value);
+            var task = _taskAppService.GetTaskById(id);
 
             var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
 
@@ -117,44 +89,31 @@ namespace LearningMpaAbp.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UpdateTaskInput updateTaskDto)
         {
-            _taskAppService.UpdateTask(updateTaskDto);
-
-            var input = new GetTasksInput();
-            var output = _taskAppService.GetTasks(input);
-            var module = new IndexViewModel(output.Tasks)
+            if (ModelState.IsValid)
             {
-                SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput()
 
-            };
+                _taskAppService.UpdateTask(updateTaskDto);
 
-            return PartialView("_List", module);
+                var input = new GetTasksInput();
+                var output = _taskAppService.GetTasks(input);
+                var module = new IndexViewModel(output.Tasks)
+                {
+                    SelectedTaskState = input.State,
+                    CreateTaskInput = new CreateTaskInput(),
+                    UpdateTaskInput = new UpdateTaskInput()
+                };
+
+                return PartialView("_List", module);
+            }
+            return View("Index");
         }
 
-        //// GET: Tasks/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Task task = db.Tasks.Find(id);
-        //    if (task == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(task);
-        //}
+        public JsonResult GetTaskList()
+        {
+            var input = new GetTasksInput();
+            var output = _taskAppService.GetTasks(input);
 
-        //// POST: Tasks/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Task task = db.Tasks.Find(id);
-        //    db.Tasks.Remove(task);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+            return Json(output.Tasks,JsonRequestBehavior.AllowGet);
+        }
     }
 }

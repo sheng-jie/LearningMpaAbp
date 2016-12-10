@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
@@ -77,21 +78,21 @@ namespace LearningMpaAbp.Tasks
         {
             //We can use Logger, it's defined in ApplicationService base class.
             Logger.Info("Updating a task for input: " + input);
-
+            var updateTask = Mapper.Map<Task>(input);
             //Retrieving a task entity with given id using standard Get method of repositories.
-            var task = _taskRepository.Get(input.Id);
-
+            //var task = _taskRepository.Get(input.Id);
+            _taskRepository.Update(updateTask);
             //Updating changed properties of the retrieved task entity.
 
-            if (input.State.HasValue)
-            {
-                task.State = input.State.Value;
-            }
+            //if (input.State.HasValue)
+            //{
+            //    task.State = input.State.Value;
+            //}
 
-            if (input.AssignedPersonId.HasValue)
-            {
-                task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
-            }
+            //if (input.AssignedPersonId.HasValue)
+            //{
+            //    task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
+            //}
 
             //We even do not call Update method of the repository.
             //Because an application service method is a 'unit of work' scope as default.

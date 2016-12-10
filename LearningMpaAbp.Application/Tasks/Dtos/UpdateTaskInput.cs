@@ -19,8 +19,10 @@ namespace LearningMpaAbp.Tasks.Dtos
 
         public TaskState? State { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         //Custom validation method. It's called by ABP after data annotation validations.
