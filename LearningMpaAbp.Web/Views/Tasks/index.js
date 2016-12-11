@@ -1,21 +1,22 @@
 ﻿var _taskService = abp.services.app.task;
 
-(function ($) {
+(function($) {
 
-    $(function () {
+    $(function() {
 
         var $taskStateCombobox = $('#TaskStateCombobox');
 
-        $taskStateCombobox.change(function () {
+        $taskStateCombobox.change(function() {
             getTaskList();
         });
 
 
         var $modal = $("#add");
         //显示modal时，光标显示在第一个输入框
-        $modal.on('shown.bs.modal', function () {
-            $modal.find('input:not([type=hidden]):first').focus();
-        });
+        $modal.on('shown.bs.modal',
+            function() {
+                $modal.find('input:not([type=hidden]):first').focus();
+            });
 
     });
 })(jQuery);
@@ -38,26 +39,32 @@ function hideForm(modalId) {
 
 function editTask(id) {
     abp.ajax({
-        url: "/tasks/edit",
-        data: { "id": id },
-        type: "GET",
-        dataType: "html"
-    })
-        .done(function (data) {
+            url: "/tasks/edit",
+            data: { "id": id },
+            type: "GET",
+            dataType: "html"
+        })
+        .done(function(data) {
             $("#edit").html(data);
             $("#editTask").modal("show");
-        }).fail(function (data) {
+        })
+        .fail(function(data) {
             abp.notify.success('Edit task successfully');
         });
 }
 
 function deleteTask(id) {
     abp.message.confirm(
-        "是否删除Id为" + id + "的任务信息", function () {
-            _taskService.deleteTask(id).done(function () {
+        "是否删除Id为" + id + "的任务信息",
+        function(isConfirmed) {
+            if (isConfirmed) {
 
-                getTaskList();
-            });
+                _taskService.deleteTask(id)
+                    .done(function() {
+
+                        getTaskList();
+                    });
+            }
         }
     );
 

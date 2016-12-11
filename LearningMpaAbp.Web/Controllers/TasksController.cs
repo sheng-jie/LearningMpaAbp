@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -72,7 +73,7 @@ namespace LearningMpaAbp.Web.Controllers
         }
 
         // GET: Tasks/Edit/5
-        
+
         public PartialViewResult Edit(int id)
         {
             var task = _taskAppService.GetTaskById(id);
@@ -108,12 +109,6 @@ namespace LearningMpaAbp.Web.Controllers
             return View("Index");
         }
 
-        public JsonResult GetTaskList()
-        {
-            var input = new GetTasksInput();
-            var output = _taskAppService.GetTasks(input);
-
-            return Json(output.Tasks,JsonRequestBehavior.AllowGet);
-        }
+        
     }
 }

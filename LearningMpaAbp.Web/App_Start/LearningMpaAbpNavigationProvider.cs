@@ -50,7 +50,7 @@ namespace LearningMpaAbp.Web
                     new MenuItemDefinition(
                         "TaskList",
                         L("TaskList"),
-                        url:"Tasks",
+                        url:"Task/List",
                         icon:"fa fa-tasks"
                         )
                 );
