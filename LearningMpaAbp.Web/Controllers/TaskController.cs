@@ -7,7 +7,7 @@ using LearningMpaAbp.Web.Models.Tasks;
 
 namespace LearningMpaAbp.Web.Controllers
 {
-    public class TaskController : Controller
+    public class TaskController : LearningMpaAbpControllerBase
     {
         private readonly ITaskAppService _taskAppService;
 
@@ -37,7 +37,7 @@ namespace LearningMpaAbp.Web.Controllers
             var total = taskDtos.ToList().Count;
 
             var rows = taskDtos.Skip(offset).Take(limit).ToList();
-            return Json(new { total = total, rows = rows }, JsonRequestBehavior.AllowGet);
+            return AbpJson(new { total = total, rows = rows }, wrapResult: false, camelCase: false, behavior: JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -78,6 +78,7 @@ namespace LearningMpaAbp.Web.Controllers
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             return Json(false, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$(function () {
 
     //1.初始化Table
     var oTable = new TableInit();
@@ -12,10 +12,10 @@
 
 var _taskService = abp.services.app.task;
 var $table = $('#tb_tasks');
-var TableInit = function() {
+var TableInit = function () {
     var oTableInit = new Object();
     //初始化Table
-    oTableInit.Init = function() {
+    oTableInit.Init = function () {
         $table.bootstrapTable({
             url: '/Task/GetAllTasks', //请求后台的URL（*）
             method: 'get', //请求方式（*）
@@ -56,7 +56,8 @@ var TableInit = function() {
                     title: '任务状态'
                 }, {
                     field: 'CreationTime',
-                    title: '创建日期'
+                    title: '创建日期',
+                    formatter: showDate
                 }, {
                     field: 'operate',
                     title: 'Item Operate',
@@ -84,39 +85,45 @@ var TableInit = function() {
         ].join('');
     }
 
+    function showDate(value, row, index) {
+        var date = new Date(value);
+        var formtDate = date.toLocaleDateString();
+        return formtDate;
+    }
+
     window.operateEvents = {
-        'click .like': function(e, value, row, index) {
+        'click .like': function (e, value, row, index) {
             alert('You click like icon, row: ' + JSON.stringify(row));
             console.log(value, row, index);
         },
-        'click .edit': function(e, value, row, index) {
+        'click .edit': function (e, value, row, index) {
             alert('You click edit icon, row: ' + JSON.stringify(row));
             console.log(value, row, index);
             abp.ajax({
-                    url: "/tasks/edit",
-                    data: { "id": row.Id },
-                    type: "GET",
-                    dataType: "html"
-                })
-                .done(function(data) {
+                url: "/tasks/edit",
+                data: { "id": row.Id },
+                type: "GET",
+                dataType: "html"
+            })
+                .done(function (data) {
                     $("#edit").html(data);
                     $("#editTask").modal("show");
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     abp.notify.success('Edit task successfully');
                 });
         },
-        'click .remove': function(e, value, row, index) {
+        'click .remove': function (e, value, row, index) {
             alert('You click remove icon, row: ' + JSON.stringify(row));
             console.log(value, row, index);
 
             abp.message.confirm(
                 "是否删除Id为" + row.Id + "的任务信息",
-                function(isConfirmed) {
+                function (isConfirmed) {
                     if (isConfirmed) {
 
                         _taskService.deleteTask(row.Id)
-                            .done(function() {
+                            .done(function () {
 
                                 abp.message.success("删除成功！");
                                 $table.bootstrapTable('refresh');
@@ -128,7 +135,7 @@ var TableInit = function() {
     };
 
     //得到查询的参数
-    oTableInit.queryParams = function(params) {
+    oTableInit.queryParams = function (params) {
         var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
             limit: params.limit, //页面大小
             offset: params.offset, //页码
@@ -143,19 +150,19 @@ var TableInit = function() {
 };
 
 
-var ButtonInit = function() {
+var ButtonInit = function () {
     var oInit = new Object();
     var postdata = {};
 
-    oInit.Init = function() {
+    oInit.Init = function () {
         //初始化页面上面的按钮事件
         $("#btn_add")
-            .click(function() {
+            .click(function () {
                 $("#add").modal("show");
             });
 
         $("#btn_edit")
-            .click(function() {
+            .click(function () {
                 alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
             });
     };

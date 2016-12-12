@@ -242,4 +242,4 @@ ModelManifest.xml
 .fake/
 
 # Visual Studio App_Data/Logs
-[Ll]ogs/
+/Logs/*
