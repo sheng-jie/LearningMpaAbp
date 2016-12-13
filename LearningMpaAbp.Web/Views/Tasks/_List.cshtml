@@ -4,13 +4,17 @@
         @foreach (var task in Model.Tasks)
             {
             <li class="list-group-item">
-                <a href="javascript:void(0)" onclick="deleteTask(@task.Id);">
-                    <span class="pull-right label @Model.GetTaskLable(task)">@L(string.Format("TaskState_{0}", task.State))</span>
-                    <h4 class="list-group-item-heading">@task.Title</h4>
-                    <div class="list-group-item-text">
-                        @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
-                    </div>
-                </a>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="editTask(@task.Id);">Edit</button>
+                    <button type="button" class="btn btn-success" onclick="deleteTask(@task.Id);">Delete</button>
+                </div>
+
+                <h4 class="list-group-item-heading">@task.Title</h4>
+                <span class="label @Model.GetTaskLable(task)">@L(string.Format("TaskState_{0}", task.State))</span>
+                <div class="list-group-item-text">
+                    @task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
+                </div>
+
             </li>
         }
     </ul>

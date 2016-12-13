@@ -58,10 +58,9 @@ function deleteTask(id) {
         "是否删除Id为" + id + "的任务信息",
         function(isConfirmed) {
             if (isConfirmed) {
-
                 taskService.deleteTask(id)
                     .done(function() {
-
+                        abp.notify.info("删除任务成功！");
                         getTaskList();
                     });
             }

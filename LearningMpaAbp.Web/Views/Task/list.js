@@ -61,7 +61,7 @@ var TableInit = function () {
                     formatter: showDate
                 }, {
                     field: 'operate',
-                    title: 'Item Operate',
+                    title: '操作',
                     align: 'center',
                     valign: 'middle',
                     clickToSelect: false,

@@ -36,8 +36,7 @@ namespace LearningMpaAbp.Web.Controllers
             };
             return View(module);
         }
-
-        [ChildActionOnly]
+        
         public PartialViewResult GetList(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
