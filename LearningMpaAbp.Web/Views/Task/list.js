@@ -10,8 +10,8 @@
 
 });
 
-var _taskService = abp.services.app.task;
-var $table = $('#tb_tasks');
+var taskService = abp.services.app.task;
+var $table = $('#tb-tasks');
 var TableInit = function () {
     var oTableInit = new Object();
     //初始化Table
@@ -130,8 +130,8 @@ var TableInit = function () {
             offset: params.offset, //页码
             order: params.order,
             ordername: params.sort,
-            search: $("#txt_filter").val(),
-            status: $("#txt_search_status").val()
+            search: $("#txt-filter").val(),
+            status: $("#txt-search-status").val()
         };
         return temp;
     };
@@ -164,7 +164,7 @@ function deleteTask(taskId) {
                 "是否删除Id为" + taskId + "的任务信息",
                 function (isConfirmed) {
                     if (isConfirmed) {
-                        _taskService.deleteTask(taskId)
+                        taskService.deleteTask(taskId)
                             .done(function () {
                                 abp.message.success("删除成功！");
                                 $table.bootstrapTable('refresh');
@@ -174,18 +174,20 @@ function deleteTask(taskId) {
             );
 }
 
+/*End Operate Events*/
+
 var ButtonInit = function () {
     var oInit = new Object();
     var postdata = {};
 
     oInit.Init = function () {
         //初始化页面上面的按钮事件
-        $("#btn_add")
+        $("#btn-add")
             .click(function () {
                 $("#add").modal("show");
             });
 
-        $("#btn_edit")
+        $("#btn-edit")
             .click(function () {
                 var selectedRaido = $table.bootstrapTable('getSelections');
                 if (selectedRaido.length == 0) {
@@ -196,14 +198,18 @@ var ButtonInit = function () {
                 }
             });
 
-        $("#btn_delete").click(function () {
+        $("#btn-delete").click(function () {
             var selectedRaido = $table.bootstrapTable('getSelections');
             if (selectedRaido.length == 0) {
-                abp.notify.warn("请先选择要编辑的行！");
+                abp.notify.warn("请先选择要删除的行！");
             }
             else {
                 deleteTask(selectedRaido[0].Id);
             }
+        });
+
+        $("#btn-query").click(function () {
+            $table.bootstrapTable('refresh');
         });
     };
 

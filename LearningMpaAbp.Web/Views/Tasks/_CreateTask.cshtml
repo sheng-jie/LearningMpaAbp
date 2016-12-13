@@ -13,13 +13,13 @@
             <div class="modal-body" id="modalContent">
 
                 @using (Ajax.BeginForm("Create", "Tasks", new AjaxOptions()
-            {
-                UpdateTargetId = "taskList",
-                InsertionMode = InsertionMode.Replace,
-                OnBegin = "beginPost('#add')",
-                OnSuccess = "hideForm('#add')"
-            }))
-            {
+                {
+                    UpdateTargetId = "taskList",
+                    InsertionMode = InsertionMode.Replace,
+                    OnBegin = "beginPost('#add')",
+                    OnSuccess = "hideForm('#add')"
+                }))
+                {
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
                         <h4>Task</h4>

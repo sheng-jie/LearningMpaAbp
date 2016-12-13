@@ -1,4 +1,4 @@
-﻿var _taskService = abp.services.app.task;
+﻿var taskService = abp.services.app.task;
 
 (function($) {
 
@@ -11,7 +11,7 @@
         });
 
 
-        var $modal = $("#add");
+        var $modal = $(".modal");
         //显示modal时，光标显示在第一个输入框
         $modal.on('shown.bs.modal',
             function() {
@@ -59,7 +59,7 @@ function deleteTask(id) {
         function(isConfirmed) {
             if (isConfirmed) {
 
-                _taskService.deleteTask(id)
+                taskService.deleteTask(id)
                     .done(function() {
 
                         getTaskList();

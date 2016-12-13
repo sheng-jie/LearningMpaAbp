@@ -501,6 +501,7 @@
     <Content Include="Views\Task\List.cshtml" />
     <Content Include="Views\Task\_CreateTask.cshtml" />
     <Content Include="Views\Task\_EditTask.cshtml" />
+    <Content Include="Views\Tasks\_CreateTaskPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

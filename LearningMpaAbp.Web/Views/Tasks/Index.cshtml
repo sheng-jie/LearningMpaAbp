@@ -25,6 +25,8 @@
         Create Task
     </button>
 
+    <a class="btn btn-primary" data-toggle="modal" href="@Url.Action("Create")" data-target="#modal" role="button">（Create Task）使用Remote方式调用Modal进行展现</a>
+
     <span class="pull-right">
         @Html.DropDownListFor(
       model => model.SelectedTaskState,
@@ -50,5 +52,11 @@
 
 </div>
 
-
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="createTask" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            
+        </div>
+    </div>
+</div>
 

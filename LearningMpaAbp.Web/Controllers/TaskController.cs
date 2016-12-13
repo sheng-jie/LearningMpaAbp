@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Web.Models.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace LearningMpaAbp.Web.Controllers
 {
@@ -19,6 +21,7 @@ namespace LearningMpaAbp.Web.Controllers
         // GET: Task
         public ActionResult List()
         {
+            ViewBag.TaskStateDropdownList = GetTaskStateDropdownList(null);
             return View();
         }
 
@@ -27,16 +30,26 @@ namespace LearningMpaAbp.Web.Controllers
         {
             var output = _taskAppService.GetTasks(new GetTasksInput());
 
+            TaskState currentState;
+
             var result = output.Tasks.Where(t => t.Title.Contains(search));
             if (!string.IsNullOrEmpty(ordername))
             {
                 result = result.OrderBy(ordername);
+            }
+            if (!string.IsNullOrEmpty(status))
+            {
+                if (Enum.TryParse<TaskState>(status, true, out currentState))
+                    result = result.Where(r => r.State == currentState);
             }
 
             var taskDtos = result as TaskDto[] ?? result.ToArray();
             var total = taskDtos.ToList().Count;
 
             var rows = taskDtos.Skip(offset).Take(limit).ToList();
+
+            
+
             return AbpJson(new { total = total, rows = rows }, wrapResult: false, camelCase: false, behavior: JsonRequestBehavior.AllowGet);
         }
 
@@ -79,6 +92,31 @@ namespace LearningMpaAbp.Web.Controllers
             }
             return Json(false, JsonRequestBehavior.AllowGet);
 
+        }
+
+        private List<SelectListItem> GetTaskStateDropdownList(TaskState? curState)
+        {
+            var list = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Text = "AllTasks",
+                    Value = "",
+                    Selected = curState==null
+                }
+            };
+
+            list.AddRange(Enum.GetValues(typeof(TaskState))
+                .Cast<TaskState>()
+                .Select(state => new SelectListItem()
+                {
+                    Text = $"TaskState_{state}",
+                    Value = state.ToString(),
+                    Selected = state == curState
+                })
+            );
+
+            return list;
         }
     }
 }

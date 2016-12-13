@@ -17,16 +17,17 @@
             <div class="panel-body">
                 <form id="formSearch" class="form-horizontal">
                     <div class="form-group" style="margin-top: 15px">
-                        <label class="control-label col-sm-1" for="txt_filter">任务名称</label>
+                        <label class="control-label col-sm-1" for="txt-filter">任务名称</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="txt_filter">
+                            <input type="text" class="form-control" id="txt-filter">
                         </div>
-                        <label class="control-label col-sm-1" for="txt_search_status">状态</label>
+                                               
+                        <label class="control-label col-sm-1" for="txt-search-status">状态</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="txt_search_status">
+                            @Html.DropDownList("TaskStateDropdownList", null, new { id = "txt-search-status", @class = "form-control " })
                         </div>
                         <div class="col-sm-4" style="text-align: left;">
-                            <button type="button" style="margin-left: 50px" id="btn_query" class="btn btn-primary">查询</button>
+                            <button type="button" style="margin-left: 50px" id="btn-query" class="btn btn-primary">查询</button>
                         </div>
                     </div>
                 </form>
@@ -34,17 +35,17 @@
         </div>
 
         <div id="toolbar" class="btn-group">
-            <button id="btn_add" type="button" class="btn btn-primary">
+            <button id="btn-add" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
             </button>
-            <button id="btn_edit" type="button" class="btn btn-success">
+            <button id="btn-edit" type="button" class="btn btn-success">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
             </button>
-            <button id="btn_delete" type="button" class="btn btn-danger">
+            <button id="btn-delete" type="button" class="btn btn-danger">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
             </button>
         </div>
-        <table id="tb_tasks"></table>
+        <table id="tb-tasks"></table>
     </div>
 </div>
 
