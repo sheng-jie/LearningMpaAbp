@@ -43,7 +43,7 @@ var TableInit = function () {
             detailView: false, //是否显示父子表
             columns: [
                 {
-                    checkbox: true
+                    radio: true
                 }, {
                     field: 'Title',
                     title: '任务名称',
@@ -53,7 +53,8 @@ var TableInit = function () {
                     title: '任务描述'
                 }, {
                     field: 'State',
-                    title: '任务状态'
+                    title: '任务状态',
+                    formatter: showState
                 }, {
                     field: 'CreationTime',
                     title: '创建日期',
@@ -87,8 +88,20 @@ var TableInit = function () {
 
     function showDate(value, row, index) {
         var date = new Date(value);
-        var formtDate = date.toLocaleDateString();
-        return formtDate;
+        var formatDate = date.toLocaleDateString();
+        return formatDate;
+    }
+
+    function showState(value, row, index) {
+        var formatState;
+        if (value == 0) {
+            formatState = '<span class="pull-right label label-success">Open</span>';
+        }
+        if (value == 1) {
+            formatState = '<span class="pull-right label label-info">Completed</span>';
+        }
+
+        return formatState;
     }
 
     window.operateEvents = {
@@ -97,40 +110,16 @@ var TableInit = function () {
             console.log(value, row, index);
         },
         'click .edit': function (e, value, row, index) {
-            alert('You click edit icon, row: ' + JSON.stringify(row));
-            console.log(value, row, index);
-            abp.ajax({
-                url: "/tasks/edit",
-                data: { "id": row.Id },
-                type: "GET",
-                dataType: "html"
-            })
-                .done(function (data) {
-                    $("#edit").html(data);
-                    $("#editTask").modal("show");
-                })
-                .fail(function (data) {
-                    abp.notify.success('Edit task successfully');
-                });
+            //alert('You click edit icon, row: ' + JSON.stringify(row));
+            //console.log(value, row, index);
+
+            editTask(row.Id);
         },
         'click .remove': function (e, value, row, index) {
-            alert('You click remove icon, row: ' + JSON.stringify(row));
-            console.log(value, row, index);
+            //alert('You click remove icon, row: ' + JSON.stringify(row));
+            //console.log(value, row, index);
 
-            abp.message.confirm(
-                "是否删除Id为" + row.Id + "的任务信息",
-                function (isConfirmed) {
-                    if (isConfirmed) {
-
-                        _taskService.deleteTask(row.Id)
-                            .done(function () {
-
-                                abp.message.success("删除成功！");
-                                $table.bootstrapTable('refresh');
-                            });
-                    }
-                }
-            );
+            deleteTask(row.Id);
         }
     };
 
@@ -150,6 +139,41 @@ var TableInit = function () {
 };
 
 
+/*Operate Events*/
+
+function createTask() {
+
+}
+
+function editTask(taskId) {
+    abp.ajax({
+        url: "/tasks/edit",
+        data: { "id": taskId },
+        type: "GET",
+        dataType: "html"
+    }).done(function (data) {
+        $("#edit").html(data);
+        $("#editTask").modal("show");
+    }).fail(function (data) {
+        abp.notify.success('Edit task successfully');
+    });
+}
+
+function deleteTask(taskId) {
+    abp.message.confirm(
+                "是否删除Id为" + taskId + "的任务信息",
+                function (isConfirmed) {
+                    if (isConfirmed) {
+                        _taskService.deleteTask(taskId)
+                            .done(function () {
+                                abp.message.success("删除成功！");
+                                $table.bootstrapTable('refresh');
+                            });
+                    }
+                }
+            );
+}
+
 var ButtonInit = function () {
     var oInit = new Object();
     var postdata = {};
@@ -163,8 +187,24 @@ var ButtonInit = function () {
 
         $("#btn_edit")
             .click(function () {
-                alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')));
+                var selectedRaido = $table.bootstrapTable('getSelections');
+                if (selectedRaido.length == 0) {
+                    abp.notify.warn("请先选择要编辑的行！");
+                }
+                else {
+                    editTask(selectedRaido[0].Id);
+                }
             });
+
+        $("#btn_delete").click(function () {
+            var selectedRaido = $table.bootstrapTable('getSelections');
+            if (selectedRaido.length == 0) {
+                abp.notify.warn("请先选择要编辑的行！");
+            }
+            else {
+                deleteTask(selectedRaido[0].Id);
+            }
+        });
     };
 
     return oInit;
