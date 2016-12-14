@@ -9,11 +9,21 @@
                     <button type="button" class="btn btn-success" onclick="deleteTask(@task.Id);">Delete</button>
                 </div>
 
-                <h2 class="list-group-item-heading">@task.Title</h2>
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <i class="fa @Model.GetTaskLable(task) fa-3x"></i>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">@task.Title</h4>
+                        <span class="text-muted">@task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    </div>
+                </div>
+
+                @*<h2 class="list-group-item-heading">@task.Title</h2>
                 <h4 class="label @Model.GetTaskLable(task)">@L(string.Format("TaskState_{0}", task.State))</h4>
                 <div class="list-group-item-text">
                     <span class="text-muted">@task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
-                </div>
+                </div>*@
 
             </li>
         }

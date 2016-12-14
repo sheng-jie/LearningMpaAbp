@@ -30,10 +30,10 @@ namespace LearningMpaAbp.Web.Models.Tasks
             switch (state)
             {
                 case TaskState.Open:
-                    style = "label-success";
+                    style = "fa-spinner fa-spin ";
                     break;
                 case TaskState.Completed:
-                    style = "label-default";
+                    style = "fa-check-circle ";
                     break;
             }
             return style;
