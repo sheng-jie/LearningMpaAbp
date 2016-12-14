@@ -10,8 +10,8 @@
     {
         UpdateTargetId = "taskList",
         InsertionMode = InsertionMode.Replace,
-        OnBegin = "beginPost('#add')",
-        OnSuccess = "hideForm('#add')"
+        OnBegin = "beginPost('#modal')",
+        OnSuccess = "hideForm('#modal')"
     }))
     {
         @Html.AntiForgeryToken()
@@ -60,3 +60,10 @@
         </div>
     }
 </div>
+<script type="text/javascript">
+
+    $(function () {
+        //allow validation framework to parse DOM
+        $.validator.unobtrusive.parse('form');
+    });
+</script>
