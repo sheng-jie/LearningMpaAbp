@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net.Configuration;
 using System.Threading.Tasks;
 using Abp.Application.Services;
@@ -51,10 +52,22 @@ namespace LearningMpaAbp.Tasks
                 query = query.Where(t => t.State == input.State.Value);
             }
 
+            //排序
+            if (!string.IsNullOrEmpty(input.Sorting))
+            {
+                query = query.OrderBy(input.Sorting);
+            }
+            else
+            {
+                query = query.OrderByDescending(t => t.CreationTime);
+            }
+            //获取分页
+            var taskList = query.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
             return new GetTasksOutput
             {
-                Tasks = Mapper.Map<List<TaskDto>>(query.ToList())
+                Tasks = Mapper.Map<List<TaskDto>>(taskList)
             };
         }
 

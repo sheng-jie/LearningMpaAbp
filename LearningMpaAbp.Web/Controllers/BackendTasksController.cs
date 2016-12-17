@@ -26,16 +26,16 @@ namespace LearningMpaAbp.Web.Controllers
         }
 
 
-        public JsonResult GetAllTasks(int limit, int offset, string order, string ordername, string search, string status)
+        public JsonResult GetAllTasks(int limit, int offset, string sortfiled, string sortway, string search, string status)
         {
             var output = _taskAppService.GetTasks(new GetTasksInput());
 
             TaskState currentState;
 
             var result = output.Tasks.Where(t => t.Title.Contains(search));
-            if (!string.IsNullOrEmpty(ordername))
+            if (!string.IsNullOrEmpty(sortfiled))
             {
-                result = result.OrderBy(ordername);
+                result = result.OrderBy(string.Format("{0} {1}", sortfiled, sortway));
             }
             if (!string.IsNullOrEmpty(status))
             {
@@ -48,7 +48,7 @@ namespace LearningMpaAbp.Web.Controllers
 
             var rows = taskDtos.Skip(offset).Take(limit).ToList();
 
-            
+
 
             return AbpJson(new { total = total, rows = rows }, wrapResult: false, camelCase: false, behavior: JsonRequestBehavior.AllowGet);
         }

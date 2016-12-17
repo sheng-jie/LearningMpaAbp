@@ -112,8 +112,8 @@ var TableInit = function() {
         var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
             limit: params.limit, //页面大小
             offset: params.offset, //页码
-            order: params.order, //排序字段
-            ordername: params.sort, //升序降序
+            sortfiled: params.sort, //排序字段
+            sortway: params.order, //升序降序
             search: $("#txt-filter").val(), //自定义传参-任务名称
             status: $("#txt-search-status").val() //自定义传参-任务状态
         };

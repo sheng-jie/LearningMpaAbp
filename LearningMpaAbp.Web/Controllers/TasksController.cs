@@ -27,23 +27,25 @@ namespace LearningMpaAbp.Web.Controllers
         public ActionResult Index(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
-            var module = new IndexViewModel(output.Tasks)
+
+            var model = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State
 
             };
-            return View(module);
+            return View(model);
         }
         
         public PartialViewResult GetList(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
-            var module = new IndexViewModel(output.Tasks)
+
+            var model = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State
 
             };
-            return PartialView("_List", module);
+            return PartialView("_List", model);
         }
 
         [ChildActionOnly]
@@ -69,12 +71,12 @@ namespace LearningMpaAbp.Web.Controllers
 
             var input = new GetTasksInput();
             var output = _taskAppService.GetTasks(input);
-            var module = new IndexViewModel(output.Tasks)
+            var model = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State
             };
 
-            return PartialView("_List", module);
+            return PartialView("_List", model);
         }
 
         // GET: Tasks/Edit/5
@@ -102,12 +104,12 @@ namespace LearningMpaAbp.Web.Controllers
 
                 var input = new GetTasksInput();
                 var output = _taskAppService.GetTasks(input);
-                var module = new IndexViewModel(output.Tasks)
+                var model = new IndexViewModel(output.Tasks)
                 {
                     SelectedTaskState = input.State
                 };
 
-                return PartialView("_List", module);
+                return PartialView("_List", model);
             }
             return View("Index");
         }
