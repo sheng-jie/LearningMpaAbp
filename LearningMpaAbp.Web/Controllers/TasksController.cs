@@ -50,11 +50,17 @@ namespace LearningMpaAbp.Web.Controllers
             return PartialView("_List", module);
         }
 
+        [ChildActionOnly]
         public PartialViewResult Create()
+        {
+            return PartialView("_CreateTask");
+        }
+        
+        public PartialViewResult RemoteCreate()
         {
             return PartialView("_CreateTaskPartial");
         }
-        
+
 
         // POST: Tasks/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 

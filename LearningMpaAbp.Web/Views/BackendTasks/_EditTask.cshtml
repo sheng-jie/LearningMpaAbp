@@ -15,7 +15,7 @@
             </div>
             <div class="modal-body" id="modalContent">
 
-                @using (Ajax.BeginForm("Edit", "Tasks", new AjaxOptions()
+                @using (Ajax.BeginForm("Edit", "BackendTasks", new AjaxOptions()
                 {
                     OnBegin = "beginPost('#editTask')",
                     OnSuccess = "hideForm('#editTask')"

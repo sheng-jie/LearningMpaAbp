@@ -1,9 +1,15 @@
 ﻿@using Abp.Web.Mvc.Extensions
-<!-- Latest compiled and minified CSS -->
+
+@{
+    ViewBag.Title = L("BackendTaskList");
+    ViewBag.ActiveMenu = "BackendTaskList"; //Matches with the menu name in SimpleTaskAppNavigationProvider to highlight the menu item
+}
+
+<!-- 加载bootstrap-tablel的样式 -->
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
 @section scripts{
-    @Html.IncludeScript("~/Views/Task/list.js");
-    <!-- Latest compiled and minified JavaScript -->
+    @Html.IncludeScript("~/Views/backendtasks/list.js");
+    <!-- 加载bootstrap-tablel的script脚本 -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
 
     <!-- Latest compiled and minified Locales -->
@@ -11,7 +17,9 @@
 }
 
 <div class="row">
-    <div class="panel-body" style="padding-bottom: 0px;">
+    <div class="panel-body">
+
+        <!-- 过滤框 -->
         <div class="panel panel-default">
             <div class="panel-heading">查询条件</div>
             <div class="panel-body">
@@ -21,10 +29,10 @@
                         <div class="col-sm-3">
                             <input type="text" class="form-control" id="txt-filter">
                         </div>
-                                               
+
                         <label class="control-label col-sm-1" for="txt-search-status">状态</label>
                         <div class="col-sm-3">
-                            @Html.DropDownList("TaskStateDropdownList", null, new { id = "txt-search-status", @class = "form-control " })
+                            @Html.DropDownList("TaskStateDropdownList", null, new {id = "txt-search-status", @class = "form-control "})
                         </div>
                         <div class="col-sm-4" style="text-align: left;">
                             <button type="button" style="margin-left: 50px" id="btn-query" class="btn btn-primary">查询</button>
@@ -34,6 +42,7 @@
             </div>
         </div>
 
+        <!-- bootstrap-tablel指定的工具栏 -->
         <div id="toolbar" class="btn-group">
             <button id="btn-add" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -45,11 +54,16 @@
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
             </button>
         </div>
+
+        <!--bootstrap-table表体-->
         <table id="tb-tasks"></table>
     </div>
 </div>
 
+<!--通过初始加载页面的时候提前将创建任务模态框加载进来-->
 @Html.Partial("_CreateTask")
+
+<!--编辑任务模态框通过ajax动态填充到此div中-->
 <div id="edit">
 
 </div>

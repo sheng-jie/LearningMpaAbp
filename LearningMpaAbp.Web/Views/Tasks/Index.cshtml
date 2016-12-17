@@ -5,18 +5,9 @@
     ViewBag.Title = L("TaskList");
     ViewBag.ActiveMenu = "TaskList"; //Matches with the menu name in SimpleTaskAppNavigationProvider to highlight the menu item
 }
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
-
-
 
 @section scripts{
     @Html.IncludeScript("~/Views/Tasks/index.js");
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-
-    <!-- Latest compiled and minified Locales -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js"></script>
 }
 <h2>
     @L("TaskList")
@@ -25,38 +16,40 @@
         Create Task
     </button>
 
-    <a class="btn btn-primary" data-toggle="modal" href="@Url.Action("Create")" data-target="#modal" role="button">（Create Task）使用Remote方式调用Modal进行展现</a>
+    <a class="btn btn-primary" data-toggle="modal" href="@Url.Action("RemoteCreate")" data-target="#modal" role="button">（Create Task）使用Remote方式调用Modal进行展现</a>
 
+    <!--任务清单按照状态过滤的下拉框-->
     <span class="pull-right">
         @Html.DropDownListFor(
-      model => model.SelectedTaskState,
-      Model.GetTaskStateSelectListItems(),
-      new
-      {
-          @class = "form-control",
-          id = "TaskStateCombobox"
-      })
+            model => model.SelectedTaskState,
+            Model.GetTaskStateSelectListItems(),
+            new
+            {
+                @class = "form-control",
+                id = "TaskStateCombobox"
+            })
     </span>
 </h2>
 
+<!--任务清单展示-->
 <div class="row" id="taskList">
-    @{ Html.RenderPartial("_List", Model);}
+    @{ Html.RenderPartial("_List", Model); }
 </div>
 
 
-@{
-    Html.RenderPartial("_CreateTask", Model.CreateTaskInput);
-}
+<!--通过初始加载页面的时候提前将创建任务模态框加载进来-->
+@Html.Action("Create")
 
+<!--编辑任务模态框通过ajax动态填充到此div中-->
 <div id="edit">
 
 </div>
 
+<!--Remote方式弹出创建任务模态框-->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="createTask" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
         </div>
     </div>
 </div>
-

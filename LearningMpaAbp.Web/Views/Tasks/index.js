@@ -49,7 +49,7 @@ function editTask(id) {
             $("#editTask").modal("show");
         })
         .fail(function(data) {
-            abp.notify.success('Edit task successfully');
+            abp.notify.error('Something is wrong!');
         });
 }
 

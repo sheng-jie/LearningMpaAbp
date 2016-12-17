@@ -432,7 +432,7 @@
     </Content>
     <Content Include="Views\Account\Register.js" />
     <Content Include="Views\Tasks\index.js" />
-    <Content Include="Views\Task\list.js" />
+    <Content Include="Views\BackendTasks\list.js" />
     <Content Include="Views\Tenants\Index.js" />
     <Content Include="Views\Users\Index.js" />
     <Content Include="Web.config">
@@ -452,7 +452,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
-    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\BackendTasksController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -499,9 +499,9 @@
     <Content Include="Views\Tasks\_EditTask.cshtml" />
     <Content Include="Views\Tasks\_List.cshtml" />
     <Content Include="Views\Tasks\_TaskList.cshtml" />
-    <Content Include="Views\Task\List.cshtml" />
-    <Content Include="Views\Task\_CreateTask.cshtml" />
-    <Content Include="Views\Task\_EditTask.cshtml" />
+    <Content Include="Views\BackendTasks\List.cshtml" />
+    <Content Include="Views\BackendTasks\_CreateTask.cshtml" />
+    <Content Include="Views\BackendTasks\_EditTask.cshtml" />
     <Content Include="Views\Tasks\_CreateTaskPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

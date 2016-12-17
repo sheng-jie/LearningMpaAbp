@@ -9,11 +9,11 @@ using System.Collections.Generic;
 
 namespace LearningMpaAbp.Web.Controllers
 {
-    public class TaskController : LearningMpaAbpControllerBase
+    public class BackendTasksController : LearningMpaAbpControllerBase
     {
         private readonly ITaskAppService _taskAppService;
 
-        public TaskController(ITaskAppService taskAppService)
+        public BackendTasksController(ITaskAppService taskAppService)
         {
             this._taskAppService = taskAppService;
         }

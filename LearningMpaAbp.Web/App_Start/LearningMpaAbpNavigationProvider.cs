@@ -49,9 +49,16 @@ namespace LearningMpaAbp.Web
                 ).AddItem(
                     new MenuItemDefinition(
                         "TaskList",
-                        L("TaskList"),
-                        url:"Task/List",
+                        L("Task List"),
+                        url:"Tasks/Index",
                         icon:"fa fa-tasks"
+                        )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        "BackendTaskList",
+                        L("Backend Task List"),
+                        url: "BackendTasks/List",
+                        icon: "fa fa-tasks"
                         )
                 );
         }

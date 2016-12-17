@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(function() {
 
     //1.初始化Table
     var oTable = new TableInit();
@@ -12,12 +12,12 @@
 
 var taskService = abp.services.app.task;
 var $table = $('#tb-tasks');
-var TableInit = function () {
+var TableInit = function() {
     var oTableInit = new Object();
     //初始化Table
-    oTableInit.Init = function () {
+    oTableInit.Init = function() {
         $table.bootstrapTable({
-            url: '/Task/GetAllTasks', //请求后台的URL（*）
+            url: '/BackendTasks/GetAllTasks', //请求后台的URL（*）
             method: 'get', //请求方式（*）
             toolbar: '#toolbar', //工具按钮用哪个容器
             striped: true, //是否显示行间隔色
@@ -72,6 +72,7 @@ var TableInit = function () {
         });
     };
 
+    //指定操作组
     function operateFormatter(value, row, index) {
         return [
             '<a class="like" href="javascript:void(0)" title="Like">',
@@ -86,36 +87,19 @@ var TableInit = function () {
         ].join('');
     }
 
-    function showDate(value, row, index) {
-        var date = new Date(value);
-        var formatDate = date.toLocaleDateString();
-        return formatDate;
-    }
-
-    function showState(value, row, index) {
-        var formatState;
-        if (value == 0) {
-            formatState = '<span class="pull-right label label-success">Open</span>';
-        }
-        if (value == 1) {
-            formatState = '<span class="pull-right label label-info">Completed</span>';
-        }
-
-        return formatState;
-    }
-
+    //指定table表体操作事件
     window.operateEvents = {
-        'click .like': function (e, value, row, index) {
+        'click .like': function(e, value, row, index) {
             alert('You click like icon, row: ' + JSON.stringify(row));
             console.log(value, row, index);
         },
-        'click .edit': function (e, value, row, index) {
+        'click .edit': function(e, value, row, index) {
             //alert('You click edit icon, row: ' + JSON.stringify(row));
             //console.log(value, row, index);
 
             editTask(row.Id);
         },
-        'click .remove': function (e, value, row, index) {
+        'click .remove': function(e, value, row, index) {
             //alert('You click remove icon, row: ' + JSON.stringify(row));
             //console.log(value, row, index);
 
@@ -123,21 +107,84 @@ var TableInit = function () {
         }
     };
 
-    //得到查询的参数
-    oTableInit.queryParams = function (params) {
+    //指定bootstrap-table查询参数
+    oTableInit.queryParams = function(params) {
         var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
             limit: params.limit, //页面大小
             offset: params.offset, //页码
-            order: params.order,
-            ordername: params.sort,
-            search: $("#txt-filter").val(),
-            status: $("#txt-search-status").val()
+            order: params.order, //排序字段
+            ordername: params.sort, //升序降序
+            search: $("#txt-filter").val(), //自定义传参-任务名称
+            status: $("#txt-search-status").val() //自定义传参-任务状态
         };
         return temp;
     };
+
+    //格式化显示json日期格式
+    function showDate(value, row, index) {
+        var date = new Date(value);
+        var formatDate = date.toDateString();
+        return formatDate;
+    }
+
+    //格式化显示任务状态
+    //有待改进-获取任务状态列表
+    function showState(value, row, index) {
+        var formatState;
+        if (value === 0) {
+            formatState = '<span class="pull-right label label-success">Open</span>';
+        }
+        if (value === 1) {
+            formatState = '<span class="pull-right label label-info">Completed</span>';
+        }
+
+        return formatState;
+    }
+
     return oTableInit;
 };
 
+
+//bootstrap-table工具栏按钮事件初始化
+var ButtonInit = function() {
+    var oInit = new Object();
+    var postdata = {};
+
+    oInit.Init = function() {
+        //初始化页面上面的按钮事件
+        $("#btn-add")
+            .click(function() {
+                $("#add").modal("show");
+            });
+
+        $("#btn-edit")
+            .click(function() {
+                var selectedRaido = $table.bootstrapTable('getSelections');
+                if (selectedRaido.length === 0) {
+                    abp.notify.warn("请先选择要编辑的行！");
+                } else {
+                    editTask(selectedRaido[0].Id);
+                }
+            });
+
+        $("#btn-delete")
+            .click(function() {
+                var selectedRaido = $table.bootstrapTable('getSelections');
+                if (selectedRaido.length === 0) {
+                    abp.notify.warn("请先选择要删除的行！");
+                } else {
+                    deleteTask(selectedRaido[0].Id);
+                }
+            });
+
+        $("#btn-query")
+            .click(function() {
+                $table.bootstrapTable('refresh');
+            });
+    };
+
+    return oInit;
+};
 
 /*Operate Events*/
 
@@ -147,74 +194,36 @@ function createTask() {
 
 function editTask(taskId) {
     abp.ajax({
-        url: "/tasks/edit",
-        data: { "id": taskId },
-        type: "GET",
-        dataType: "html"
-    }).done(function (data) {
-        $("#edit").html(data);
-        $("#editTask").modal("show");
-    }).fail(function (data) {
-        abp.notify.success('Edit task successfully');
-    });
+        url: "/BackendTasks/edit",
+            data: { "id": taskId },
+            type: "GET",
+            dataType: "html"
+        })
+        .done(function(data) {
+            $("#edit").html(data);
+            $("#editTask").modal("show");
+        })
+        .fail(function(data) {
+            abp.notify.success('Edit task successfully');
+        });
 }
 
 function deleteTask(taskId) {
     abp.message.confirm(
-                "是否删除Id为" + taskId + "的任务信息",
-                function (isConfirmed) {
-                    if (isConfirmed) {
-                        taskService.deleteTask(taskId)
-                            .done(function () {
-                                abp.message.success("删除成功！");
-                                $table.bootstrapTable('refresh');
-                            });
-                    }
-                }
-            );
+        "是否删除Id为" + taskId + "的任务信息",
+        function(isConfirmed) {
+            if (isConfirmed) {
+                taskService.deleteTask(taskId)
+                    .done(function() {
+                        abp.message.success("删除成功！");
+                        $table.bootstrapTable('refresh');
+                    });
+            }
+        }
+    );
 }
 
 /*End Operate Events*/
-
-var ButtonInit = function () {
-    var oInit = new Object();
-    var postdata = {};
-
-    oInit.Init = function () {
-        //初始化页面上面的按钮事件
-        $("#btn-add")
-            .click(function () {
-                $("#add").modal("show");
-            });
-
-        $("#btn-edit")
-            .click(function () {
-                var selectedRaido = $table.bootstrapTable('getSelections');
-                if (selectedRaido.length == 0) {
-                    abp.notify.warn("请先选择要编辑的行！");
-                }
-                else {
-                    editTask(selectedRaido[0].Id);
-                }
-            });
-
-        $("#btn-delete").click(function () {
-            var selectedRaido = $table.bootstrapTable('getSelections');
-            if (selectedRaido.length == 0) {
-                abp.notify.warn("请先选择要删除的行！");
-            }
-            else {
-                deleteTask(selectedRaido[0].Id);
-            }
-        });
-
-        $("#btn-query").click(function () {
-            $table.bootstrapTable('refresh');
-        });
-    };
-
-    return oInit;
-};
 
 
 function beginPost(modalId) {
