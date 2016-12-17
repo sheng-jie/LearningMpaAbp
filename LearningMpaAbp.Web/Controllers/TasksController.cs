@@ -29,9 +29,7 @@ namespace LearningMpaAbp.Web.Controllers
             var output = _taskAppService.GetTasks(input);
             var module = new IndexViewModel(output.Tasks)
             {
-                SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput(),
-                UpdateTaskInput = new UpdateTaskInput()
+                SelectedTaskState = input.State
 
             };
             return View(module);
@@ -42,9 +40,7 @@ namespace LearningMpaAbp.Web.Controllers
             var output = _taskAppService.GetTasks(input);
             var module = new IndexViewModel(output.Tasks)
             {
-                SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput(),
-                UpdateTaskInput = new UpdateTaskInput()
+                SelectedTaskState = input.State
 
             };
             return PartialView("_List", module);
@@ -75,9 +71,7 @@ namespace LearningMpaAbp.Web.Controllers
             var output = _taskAppService.GetTasks(input);
             var module = new IndexViewModel(output.Tasks)
             {
-                SelectedTaskState = input.State,
-                CreateTaskInput = new CreateTaskInput(),
-                UpdateTaskInput = new UpdateTaskInput()
+                SelectedTaskState = input.State
             };
 
             return PartialView("_List", module);
@@ -110,9 +104,7 @@ namespace LearningMpaAbp.Web.Controllers
                 var output = _taskAppService.GetTasks(input);
                 var module = new IndexViewModel(output.Tasks)
                 {
-                    SelectedTaskState = input.State,
-                    CreateTaskInput = new CreateTaskInput(),
-                    UpdateTaskInput = new UpdateTaskInput()
+                    SelectedTaskState = input.State
                 };
 
                 return PartialView("_List", module);
