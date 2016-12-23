@@ -38,6 +38,12 @@ namespace LearningMpaAbp.Tasks
             _personRepository = personRepository;
         }
 
+        public IList<TaskDto> GetAllTasks()
+        {
+            var tasks = _taskRepository.GetAll().OrderByDescending(t => t.CreationTime).ToList();
+            return Mapper.Map<IList<TaskDto>>(tasks);
+        }
+
         public GetTasksOutput GetTasks(GetTasksInput input)
         {
             var query = _taskRepository.GetAll();

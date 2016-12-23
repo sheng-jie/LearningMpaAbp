@@ -1,0 +1,28 @@
+﻿@using X.PagedList.Mvc;
+@using Abp.Web.Mvc.Extensions
+@using X.PagedList; 
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<ul class="list-group">
+    @foreach (var task in ViewBag.OnePageOfTasks)
+    {
+        <li class="list-group-item">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-info">Edit</button>
+                <button type="button" class="btn btn-success">Delete</button>
+            </div>
+
+            <div class="media">
+                <a class="media-left" href="#">
+                    @*<i class="fa @Model.GetTaskLable(task) fa-3x"></i>*@
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">@task.Title</h4>
+                    <span class="text-muted">@task.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                </div>
+            </div>
+
+        </li>
+    }
+</ul>
+
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfTasks, page => Url.Action("PagedList", new { page }))

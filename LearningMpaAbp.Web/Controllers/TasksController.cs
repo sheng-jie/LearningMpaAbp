@@ -11,6 +11,8 @@ using LearningMpaAbp.EntityFramework;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Web.Models.Tasks;
+using X.PagedList;
+using AutoMapper;
 
 namespace LearningMpaAbp.Web.Controllers
 {
@@ -23,7 +25,6 @@ namespace LearningMpaAbp.Web.Controllers
             this._taskAppService = taskAppService;
         }
 
-        // GET: Tasks
         public ActionResult Index(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
@@ -35,6 +36,27 @@ namespace LearningMpaAbp.Web.Controllers
             };
             return View(model);
         }
+
+        // GET: Tasks
+        public ActionResult PagedList(int? page)
+        {
+            var tasks = _taskAppService.GetAllTasks();
+            //if (state.HasValue)
+            //{
+            //    tasks = tasks.Where(t => t.State == state.Value);
+            //}
+            
+
+            var pageNumber = page ?? 1;
+
+            var onePageOfTasks = tasks.ToPagedList(pageNumber, 5); // will only contain 25 products max because of the pageSize
+
+            
+            ViewBag.OnePageOfTasks = onePageOfTasks;
+
+            return View();
+        }
+
         
         public PartialViewResult GetList(GetTasksInput input)
         {

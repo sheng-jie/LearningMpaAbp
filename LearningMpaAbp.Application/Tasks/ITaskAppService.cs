@@ -32,5 +32,7 @@ namespace LearningMpaAbp.Tasks
         TaskDto GetTaskById(int taskId);
 
         void DeleteTask(int taskId);
+
+        IList<TaskDto> GetAllTasks();
     }
 }
