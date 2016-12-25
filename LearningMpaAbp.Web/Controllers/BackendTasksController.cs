@@ -6,22 +6,27 @@ using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Web.Models.Tasks;
 using System;
 using System.Collections.Generic;
+using LearningMpaAbp.Users;
 
 namespace LearningMpaAbp.Web.Controllers
 {
     public class BackendTasksController : LearningMpaAbpControllerBase
     {
         private readonly ITaskAppService _taskAppService;
+        private readonly IUserAppService _userAppService;
 
-        public BackendTasksController(ITaskAppService taskAppService)
+        public BackendTasksController(ITaskAppService taskAppService, IUserAppService userAppService)
         {
-            this._taskAppService = taskAppService;
+            _taskAppService = taskAppService;
+            _userAppService = userAppService;
         }
 
         // GET: Task
         public ActionResult List()
         {
             ViewBag.TaskStateDropdownList = GetTaskStateDropdownList(null);
+            var userList = _userAppService.GetUsers();
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
             return View();
         }
 
@@ -48,8 +53,6 @@ namespace LearningMpaAbp.Web.Controllers
 
             var rows = taskDtos.Skip(offset).Take(limit).ToList();
 
-
-
             return AbpJson(new { total = total, rows = rows }, wrapResult: false, camelCase: false, behavior: JsonRequestBehavior.AllowGet);
         }
 
@@ -66,6 +69,9 @@ namespace LearningMpaAbp.Web.Controllers
             var task = _taskAppService.GetTaskById(id);
 
             var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
+
+            var userList = _userAppService.GetUsers();
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name",updateTaskDto.AssignedPersonId);
 
             return PartialView("_EditTask", updateTaskDto);
         }

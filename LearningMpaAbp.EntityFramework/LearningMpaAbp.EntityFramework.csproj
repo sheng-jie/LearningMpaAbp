@@ -196,6 +196,14 @@
     <Compile Include="Migrations\201611131306475_Add_Person_Entity.Designer.cs">
       <DependentUpon>201611131306475_Add_Person_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612241217167_Delete_People.cs" />
+    <Compile Include="Migrations\201612241217167_Delete_People.Designer.cs">
+      <DependentUpon>201612241217167_Delete_People.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612241218530_AssignTaskToUser.cs" />
+    <Compile Include="Migrations\201612241218530_AssignTaskToUser.Designer.cs">
+      <DependentUpon>201612241218530_AssignTaskToUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="LearningMpaAbpDataModule.cs" />
@@ -203,7 +211,6 @@
     <Compile Include="Migrations\SeedData\DefaultLanguagesCreator.cs" />
     <Compile Include="Migrations\SeedData\DefaultSettingsCreator.cs" />
     <Compile Include="Migrations\SeedData\DefaultTenantCreator.cs" />
-    <Compile Include="Migrations\SeedData\DefaultTestDataForPerson.cs" />
     <Compile Include="Migrations\SeedData\DefaultTestDataForTask.cs" />
     <Compile Include="Migrations\SeedData\HostRoleAndUserCreator.cs" />
     <Compile Include="Migrations\SeedData\InitialHostDbBuilder.cs" />
@@ -277,6 +284,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611131306475_Add_Person_Entity.resx">
       <DependentUpon>201611131306475_Add_Person_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612241217167_Delete_People.resx">
+      <DependentUpon>201612241217167_Delete_People.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612241218530_AssignTaskToUser.resx">
+      <DependentUpon>201612241218530_AssignTaskToUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

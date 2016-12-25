@@ -11,8 +11,10 @@ namespace LearningMpaAbp.Users
 
         Task RemoveFromRole(long userId, string roleName);
 
-        Task<ListResultDto<UserListDto>> GetUsers();
+        Task<ListResultDto<UserListDto>> GetUsersAsync();
 
         Task CreateUser(CreateUserInput input);
+
+        ListResultDto<UserListDto> GetUsers();
     }
 }

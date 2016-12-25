@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
-using LearningMpaAbp.People;
+using LearningMpaAbp.Users;
 
 namespace LearningMpaAbp.Tasks
 {
@@ -13,10 +13,10 @@ namespace LearningMpaAbp.Tasks
         public const int MaxTitleLength = 256;
         public const int MaxDescriptionLength = 64 * 1024;//64kb
         
-        public int? AssignedPersonId { get; set; }
+        public long? AssignedPersonId { get; set; }
 
         [ForeignKey("AssignedPersonId")]
-        public Person AssignedPerson { get; set; }
+        public User AssignedPerson { get; set; }
 
         [Required]
         [MaxLength(MaxTitleLength)]

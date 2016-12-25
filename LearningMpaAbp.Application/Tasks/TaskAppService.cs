@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Net.Configuration;
@@ -10,8 +11,8 @@ using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.Timing;
 using AutoMapper;
-using LearningMpaAbp.People;
 using LearningMpaAbp.Tasks.Dtos;
+using LearningMpaAbp.Users;
 
 namespace LearningMpaAbp.Tasks
 {
@@ -26,16 +27,16 @@ namespace LearningMpaAbp.Tasks
         //These members set in constructor using constructor injection.
 
         private readonly IRepository<Task> _taskRepository;
-        private readonly IRepository<Person> _personRepository;
+        private readonly IRepository<User, long> _userRepository;
 
         /// <summary>
         ///In constructor, we can get needed classes/interfaces.
         ///They are sent here by dependency injection system automatically.
         /// </summary>
-        public TaskAppService(IRepository<Task> taskRepository, IRepository<Person> personRepository)
+        public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository)
         {
             _taskRepository = taskRepository;
-            _personRepository = personRepository;
+            _userRepository = userRepository;
         }
 
         public IList<TaskDto> GetAllTasks()
@@ -50,7 +51,7 @@ namespace LearningMpaAbp.Tasks
 
             if (input.AssignedPersonId.HasValue)
             {
-                query = query.Where(t => t.AssignedPersonId == input.AssignedPersonId.Value);
+                //query = query.Where(t => t.AssignedPersonId == input.AssignedPersonId.Value);
             }
 
             if (input.State.HasValue)
@@ -68,7 +69,7 @@ namespace LearningMpaAbp.Tasks
                 query = query.OrderByDescending(t => t.CreationTime);
             }
             //获取分页
-            var taskList = query.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+            var taskList = query.Skip(input.SkipCount).Take(input.MaxResultCount).Include(t=>t.AssignedPerson).ToList();
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
             return new GetTasksOutput
@@ -97,21 +98,22 @@ namespace LearningMpaAbp.Tasks
         {
             //We can use Logger, it's defined in ApplicationService base class.
             Logger.Info("Updating a task for input: " + input);
-            var updateTask = Mapper.Map<Task>(input);
+            //var updateTask = Mapper.Map<Task>(input);
+            //_taskRepository.Update(updateTask);
             //Retrieving a task entity with given id using standard Get method of repositories.
-            //var task = _taskRepository.Get(input.Id);
-            _taskRepository.Update(updateTask);
+            var task = _taskRepository.Get(input.Id);
+            
             //Updating changed properties of the retrieved task entity.
 
-            //if (input.State.HasValue)
-            //{
-            //    task.State = input.State.Value;
-            //}
+            if (input.State.HasValue)
+            {
+                task.State = input.State.Value;
+            }
 
-            //if (input.AssignedPersonId.HasValue)
-            //{
-            //    task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
-            //}
+            if (input.AssignedPersonId.HasValue)
+            {
+                task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
+            }
 
             //We even do not call Update method of the repository.
             //Because an application service method is a 'unit of work' scope as default.
@@ -138,7 +140,7 @@ namespace LearningMpaAbp.Tasks
 
             if (input.AssignedPersonId.HasValue)
             {
-                task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
+                task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
             }
 
             //Saving entity with standard Insert method of repositories.

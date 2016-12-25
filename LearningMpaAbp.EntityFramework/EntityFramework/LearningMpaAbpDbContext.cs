@@ -3,7 +3,6 @@ using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using LearningMpaAbp.Authorization.Roles;
 using LearningMpaAbp.MultiTenancy;
-using LearningMpaAbp.People;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Users;
 
@@ -14,7 +13,6 @@ namespace LearningMpaAbp.EntityFramework
         //TODO: Define an IDbSet for your Entities...
 
         public IDbSet<Task> Tasks { get; set; }
-        public IDbSet<Person> People { get; set; }
 
 
         /* NOTE: 

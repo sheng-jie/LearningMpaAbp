@@ -15,6 +15,9 @@ namespace LearningMpaAbp.Tasks
             mapperConfig.CreateMap<CreateTaskInput, Tasks.Task>();
             mapperConfig.CreateMap<TaskDto, UpdateTaskInput>();
             mapperConfig.CreateMap<UpdateTaskInput, Tasks.Task>();
+
+            var taskDtoMapper = mapperConfig.CreateMap<Task, TaskDto > ();
+            taskDtoMapper.ForMember(dto => dto.AssignedPersonName, (map) => map.MapFrom(m => m.AssignedPerson.FullName));
             //mapperConfig.CreateMap<TaskDto, Tasks.Task>();
             //mapperConfig.CreateMap<Tasks.Task, TaskDto>();
         }

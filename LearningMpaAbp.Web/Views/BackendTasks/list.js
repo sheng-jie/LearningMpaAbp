@@ -52,6 +52,9 @@ var TableInit = function() {
                     field: 'Description',
                     title: '任务描述'
                 }, {
+                    field: 'AssignedPersonName',
+                    title: '任务分配'
+                }, {
                     field: 'State',
                     title: '任务状态',
                     formatter: showState

@@ -508,12 +508,8 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\_CreateTask.cshtml" />
-    <Content Include="Views\Tasks\Delete.cshtml" />
-    <Content Include="Views\Tasks\Details.cshtml" />
-    <Content Include="Views\Tasks\Edit.cshtml" />
     <Content Include="Views\Tasks\_EditTask.cshtml" />
     <Content Include="Views\Tasks\_List.cshtml" />
-    <Content Include="Views\Tasks\_TaskList.cshtml" />
     <Content Include="Views\BackendTasks\List.cshtml" />
     <Content Include="Views\BackendTasks\_CreateTask.cshtml" />
     <Content Include="Views\BackendTasks\_EditTask.cshtml" />

@@ -30,7 +30,6 @@ namespace LearningMpaAbp.Migrations
                 new TenantRoleAndUserBuilder(context, 1).Create();
 
                 new DefaultTestDataForTask(context).Create();
-                new DefaultTestDataForPerson(context).Create();
             }
             else
             {

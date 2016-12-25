@@ -5,24 +5,31 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Application.Services.Dto;
+using Abp.Threading;
 using LearningMpaAbp.EntityFramework;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Web.Models.Tasks;
 using X.PagedList;
 using AutoMapper;
+using LearningMpaAbp.Users;
+using LearningMpaAbp.Users.Dto;
 
 namespace LearningMpaAbp.Web.Controllers
 {
     public class TasksController : Controller
     {
         private readonly ITaskAppService _taskAppService;
+        private readonly IUserAppService _userAppService;
 
-        public TasksController(ITaskAppService taskAppService)
+        public TasksController(ITaskAppService taskAppService, IUserAppService userAppService)
         {
             this._taskAppService = taskAppService;
+            _userAppService = userAppService;
         }
 
         public ActionResult Index(GetTasksInput input)
@@ -45,19 +52,19 @@ namespace LearningMpaAbp.Web.Controllers
             //{
             //    tasks = tasks.Where(t => t.State == state.Value);
             //}
-            
+
 
             var pageNumber = page ?? 1;
 
             var onePageOfTasks = tasks.ToPagedList(pageNumber, 5); // will only contain 25 products max because of the pageSize
 
-            
+
             ViewBag.OnePageOfTasks = onePageOfTasks;
 
             return View();
         }
 
-        
+
         public PartialViewResult GetList(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
@@ -73,11 +80,15 @@ namespace LearningMpaAbp.Web.Controllers
         [ChildActionOnly]
         public PartialViewResult Create()
         {
+            var userList = _userAppService.GetUsers();
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
             return PartialView("_CreateTask");
         }
-        
+
         public PartialViewResult RemoteCreate()
         {
+            var userList = _userAppService.GetUsers();
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
             return PartialView("_CreateTaskPartial");
         }
 
@@ -109,6 +120,9 @@ namespace LearningMpaAbp.Web.Controllers
 
             var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
 
+            var userList = _userAppService.GetUsers();
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name", updateTaskDto.AssignedPersonId);
+
             return PartialView("_EditTask", updateTaskDto);
         }
 
@@ -136,6 +150,6 @@ namespace LearningMpaAbp.Web.Controllers
             return View("Index");
         }
 
-        
+
     }
 }
