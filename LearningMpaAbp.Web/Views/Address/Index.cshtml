@@ -1,0 +1,65 @@
+﻿@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.Title = "select2 省市县三级联动";
+}
+<link href="//cdn.bootcss.com/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-xs-4">
+        <select id="Province" class="form-control select2"></select>
+    </div>
+    <div class="col-xs-4">
+        <select id="City" class="form-control select2"></select>
+    </div>
+    <div class="col-xs-4">
+        <select id="County" class="form-control select2"></select>
+    </div>
+
+</div>
+
+@section scripts{
+    @Html.IncludeScript("//cdn.bootcss.com/select2/4.0.3/js/select2.min.js");
+    <script>
+        function BindSelect(ctrlName, url) {
+            var control = $('#' + ctrlName);
+            //control.select2({ placeholder: '请选择'});
+            //设置Select2的处理
+            //control.select2({
+            //    allowClear: true,
+            //    formatResult: formatResult,
+            //    formatSelection: formatSelection,
+            //    escapeMarkup: function (m) {
+            //        return m;
+            //    }
+            //});
+
+            //绑定Ajax的内容
+            $.getJSON(url, function (data) {
+                control.empty();//清空下拉框
+                control.append("<option>&nbsp;" + "---请选择---" + "</option>");
+                $.each(data.result, function (i, item) {
+                    control.append("<option value='" + item.id + "'>&nbsp;" + item.name + "</option>");
+                });
+            });
+        }
+        function BindDictItem(ctrlName, dictTypeName) {
+            var url = '/DictData/GetDictJson?dictTypeName=' + encodeURI(dictTypeName);
+            BindSelect(ctrlName, url);
+        }
+
+        $(function () {
+            BindSelect("Province", "/Address/GetProvinces");
+            $("#Province").on("change", function (e) {
+                $("#City").empty();
+                $("#County").empty();
+                var provinceName = $("#Province").val();
+                BindSelect("City", "/Address/GetCities?provinceCode=" + provinceName);
+            });
+            $("#City").on("change", function (e) {
+                $("#County").empty();
+                var provinceName = $("#City").val();
+                BindSelect("County", "/Address/GetCounties?cityCode=" + provinceName);
+            });
+        });
+    </script>
+}

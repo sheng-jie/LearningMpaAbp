@@ -5,7 +5,6 @@
     ViewBag.Title = L("TaskList");
     ViewBag.ActiveMenu = "TaskList"; //Matches with the menu name in SimpleTaskAppNavigationProvider to highlight the menu item
 }
-
 @section scripts{
     @Html.IncludeScript("~/Views/Tasks/index.js");
 }
@@ -25,11 +24,13 @@
             Model.GetTaskStateSelectListItems(),
             new
             {
-                @class = "form-control",
+                @class = "form-control select2",
                 id = "TaskStateCombobox"
             })
     </span>
+
 </h2>
+
 
 <!--任务清单展示-->
 <div class="row" id="taskList">

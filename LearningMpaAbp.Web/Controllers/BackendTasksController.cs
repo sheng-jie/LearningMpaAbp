@@ -7,9 +7,11 @@ using LearningMpaAbp.Web.Models.Tasks;
 using System;
 using System.Collections.Generic;
 using LearningMpaAbp.Users;
+using Abp.Web.Mvc.Authorization;
 
 namespace LearningMpaAbp.Web.Controllers
 {
+    [AbpMvcAuthorize]
     public class BackendTasksController : LearningMpaAbpControllerBase
     {
         private readonly ITaskAppService _taskAppService;

@@ -18,9 +18,11 @@ using X.PagedList;
 using AutoMapper;
 using LearningMpaAbp.Users;
 using LearningMpaAbp.Users.Dto;
+using Abp.Web.Mvc.Authorization;
 
 namespace LearningMpaAbp.Web.Controllers
 {
+    [AbpMvcAuthorize]
     public class TasksController : Controller
     {
         private readonly ITaskAppService _taskAppService;
