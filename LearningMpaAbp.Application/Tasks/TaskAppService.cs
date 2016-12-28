@@ -13,6 +13,8 @@ using Abp.Timing;
 using AutoMapper;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
+using Abp.Net.Mail.Smtp;
+using System.Net.Mail;
 
 namespace LearningMpaAbp.Tasks
 {
@@ -28,15 +30,18 @@ namespace LearningMpaAbp.Tasks
 
         private readonly IRepository<Task> _taskRepository;
         private readonly IRepository<User, long> _userRepository;
+        private readonly ISmtpEmailSenderConfiguration _smtpEmialSenderConfig;
 
         /// <summary>
         ///In constructor, we can get needed classes/interfaces.
         ///They are sent here by dependency injection system automatically.
         /// </summary>
-        public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository)
+        public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository,
+            ISmtpEmailSenderConfiguration _smtpEmialSenderConfigtion)
         {
             _taskRepository = taskRepository;
             _userRepository = userRepository;
+            _smtpEmialSenderConfig = _smtpEmialSenderConfigtion;
         }
 
         public IList<TaskDto> GetAllTasks()
@@ -69,7 +74,8 @@ namespace LearningMpaAbp.Tasks
                 query = query.OrderByDescending(t => t.CreationTime);
             }
             //获取分页
-            var taskList = query.Skip(input.SkipCount).Take(input.MaxResultCount).Include(t=>t.AssignedPerson).ToList();
+            var taskList =
+                query.Skip(input.SkipCount).Take(input.MaxResultCount).Include(t => t.AssignedPerson).ToList();
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
             return new GetTasksOutput
@@ -103,7 +109,7 @@ namespace LearningMpaAbp.Tasks
 
             //Retrieving a task entity with given id using standard Get method of repositories.
             //var task = _taskRepository.Get(input.Id);
-            
+
             //Updating changed properties of the retrieved task entity.
 
             //if (input.State.HasValue)
@@ -141,6 +147,10 @@ namespace LearningMpaAbp.Tasks
             if (input.AssignedPersonId.HasValue)
             {
                 task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
+
+                SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
+                emailSender.Send("ysjshengjie@qq.com", "ysjshengjie@live.cn", "New Todo item",
+                    "You hava been assigned one task into your todo list");
             }
 
             //Saving entity with standard Insert method of repositories.
