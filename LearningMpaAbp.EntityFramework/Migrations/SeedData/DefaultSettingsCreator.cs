@@ -20,12 +20,12 @@ namespace LearningMpaAbp.Migrations.SeedData
             //Emailing
             AddSettingIfNotExists(EmailSettingNames.DefaultFromAddress, "admin@mydomain.com");
             AddSettingIfNotExists(EmailSettingNames.DefaultFromDisplayName, "mydomain.com mailer");
-            AddSettingIfNotExists(EmailSettingNames.Smtp.UserName, "ysjshengjie@qq.com");
-            AddSettingIfNotExists(EmailSettingNames.Smtp.Domain, "smtp.qq.com");
-            AddSettingIfNotExists(EmailSettingNames.Smtp.EnableSsl, "true");
-            AddSettingIfNotExists(EmailSettingNames.Smtp.Host, "smtp.qq.com");
-            AddSettingIfNotExists(EmailSettingNames.Smtp.Password, "123456");
             AddSettingIfNotExists(EmailSettingNames.Smtp.Port, "587");
+            AddSettingIfNotExists(EmailSettingNames.Smtp.Host, "smtp.qq.com");
+            AddSettingIfNotExists(EmailSettingNames.Smtp.UserName, "ysjshengjie@qq.com");
+            AddSettingIfNotExists(EmailSettingNames.Smtp.Password, "123456");
+            AddSettingIfNotExists(EmailSettingNames.Smtp.Domain, "");
+            AddSettingIfNotExists(EmailSettingNames.Smtp.EnableSsl, "true");
             AddSettingIfNotExists(EmailSettingNames.Smtp.UseDefaultCredentials, "false");
 
             //Languages

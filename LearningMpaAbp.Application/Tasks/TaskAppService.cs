@@ -37,11 +37,11 @@ namespace LearningMpaAbp.Tasks
         ///They are sent here by dependency injection system automatically.
         /// </summary>
         public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository,
-            ISmtpEmailSenderConfiguration _smtpEmialSenderConfigtion)
+            ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion)
         {
             _taskRepository = taskRepository;
             _userRepository = userRepository;
-            _smtpEmialSenderConfig = _smtpEmialSenderConfigtion;
+            _smtpEmialSenderConfig = smtpEmialSenderConfigtion;
         }
 
         public IList<TaskDto> GetAllTasks()

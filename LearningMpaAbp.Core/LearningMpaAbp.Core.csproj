@@ -142,7 +142,7 @@
     <EmbeddedResource Include="Localization\Source\LearningMpaAbp-ja.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <Folder Include="IRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
