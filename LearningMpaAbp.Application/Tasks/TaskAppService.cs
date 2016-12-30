@@ -15,6 +15,7 @@ using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
 using Abp.Net.Mail.Smtp;
 using System.Net.Mail;
+using Abp.Notifications;
 
 namespace LearningMpaAbp.Tasks
 {
@@ -31,17 +32,19 @@ namespace LearningMpaAbp.Tasks
         private readonly IRepository<Task> _taskRepository;
         private readonly IRepository<User, long> _userRepository;
         private readonly ISmtpEmailSenderConfiguration _smtpEmialSenderConfig;
+        private readonly INotificationPublisher _notificationPublisher;
 
         /// <summary>
         ///In constructor, we can get needed classes/interfaces.
         ///They are sent here by dependency injection system automatically.
         /// </summary>
         public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository,
-            ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion)
+            ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion, INotificationPublisher notificationPublisher)
         {
             _taskRepository = taskRepository;
             _userRepository = userRepository;
             _smtpEmialSenderConfig = smtpEmialSenderConfigtion;
+            _notificationPublisher = notificationPublisher;
         }
 
         public IList<TaskDto> GetAllTasks()
@@ -149,8 +152,11 @@ namespace LearningMpaAbp.Tasks
                 task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
 
                 SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
-                emailSender.Send("ysjshengjie@qq.com", "ysjshengjie@live.cn", "New Todo item",
-                    "You hava been assigned one task into your todo list");
+                string message = "You hava been assigned one task into your todo list.";
+                emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
+                _notificationPublisher.Publish("ADDTask");
+                _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
+                    NotificationSeverity.Info, new[] {task.AssignedPerson.ToUserIdentifier()});
             }
 
             //Saving entity with standard Insert method of repositories.
