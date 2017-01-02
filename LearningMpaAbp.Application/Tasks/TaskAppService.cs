@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -154,7 +155,7 @@ namespace LearningMpaAbp.Tasks
                 SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
                 string message = "You hava been assigned one task into your todo list.";
                 emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
-                _notificationPublisher.Publish("ADDTask");
+                
                 _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
                     NotificationSeverity.Info, new[] {task.AssignedPerson.ToUserIdentifier()});
             }

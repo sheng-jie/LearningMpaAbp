@@ -17,7 +17,8 @@
                     UpdateTargetId = "taskList",
                     InsertionMode = InsertionMode.Replace,
                     OnBegin = "beginPost('#add')",
-                    OnSuccess = "hideForm('#add')"
+                    OnSuccess = "hideForm('#add')",
+                    OnFailure = "errorPost(xhr, status, error,'#add')"
                 }))
                 {
                     @Html.AntiForgeryToken()
