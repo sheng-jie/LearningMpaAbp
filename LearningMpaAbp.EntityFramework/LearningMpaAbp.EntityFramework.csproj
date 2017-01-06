@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\LearningMpaAbpDbContext.cs" />
+    <Compile Include="EntityFramework\Repositories\BackendTaskRepository.cs" />
     <Compile Include="EntityFramework\Repositories\LearningMpaAbpRepositoryBase.cs" />
     <Compile Include="Migrations\201506210746108_AbpZero_Initial.cs" />
     <Compile Include="Migrations\201506210746108_AbpZero_Initial.Designer.cs">

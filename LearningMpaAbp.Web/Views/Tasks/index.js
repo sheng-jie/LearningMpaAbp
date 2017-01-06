@@ -1,12 +1,12 @@
 ﻿var taskService = abp.services.app.task;
 
-(function($) {
+(function ($) {
 
-    $(function() {
+    $(function () {
 
         var $taskStateCombobox = $('#TaskStateCombobox');
 
-        $taskStateCombobox.change(function() {
+        $taskStateCombobox.change(function () {
             getTaskList();
         });
 
@@ -14,7 +14,7 @@
         var $modal = $(".modal");
         //显示modal时，光标显示在第一个输入框
         $modal.on('shown.bs.modal',
-            function() {
+            function () {
                 $modal.find('input:not([type=hidden]):first').focus();
             });
 
@@ -37,18 +37,27 @@ function hideForm(modalId) {
     $form[0].reset();
 }
 
+function errorPost(xhr, status, error, modalId) {
+    if (error.length>0) {
+        abp.notify.error('Something is going wrong, please retry again later!');
+        var $modal = $(modalId);
+        abp.ui.clearBusy($modal);
+    }
+    
+}
+
 function editTask(id) {
     abp.ajax({
-            url: "/tasks/edit",
-            data: { "id": id },
-            type: "GET",
-            dataType: "html"
-        })
-        .done(function(data) {
+        url: "/tasks/edit",
+        data: { "id": id },
+        type: "GET",
+        dataType: "html"
+    })
+        .done(function (data) {
             $("#edit").html(data);
             $("#editTask").modal("show");
         })
-        .fail(function(data) {
+        .fail(function (data) {
             abp.notify.error('Something is wrong!');
         });
 }
@@ -56,10 +65,10 @@ function editTask(id) {
 function deleteTask(id) {
     abp.message.confirm(
         "是否删除Id为" + id + "的任务信息",
-        function(isConfirmed) {
+        function (isConfirmed) {
             if (isConfirmed) {
                 taskService.deleteTask(id)
-                    .done(function() {
+                    .done(function () {
                         abp.notify.info("删除任务成功！");
                         getTaskList();
                     });
@@ -74,11 +83,11 @@ function getTaskList() {
     var $taskStateCombobox = $('#TaskStateCombobox');
     var url = '/Tasks/GetList?state=' + $taskStateCombobox.val();
     abp.ajax({
-            url: url,
-            type: "GET",
-            dataType: "html"
-        })
-        .done(function(data) {
+        url: url,
+        type: "GET",
+        dataType: "html"
+    })
+        .done(function (data) {
             $("#taskList").html(data);
         });
 }
