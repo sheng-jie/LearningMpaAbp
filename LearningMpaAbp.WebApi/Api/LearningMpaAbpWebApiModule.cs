@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Web.Http;
 using Abp.Application.Services;
@@ -42,6 +40,13 @@ namespace LearningMpaAbp.Api
                     //c.IncludeXmlComments(commentsFile);
                 })
                 .EnableSwaggerUi();
+        }
+
+        public override void PostInitialize()
+        {
+            //Json时间格式化
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.DateFormatString =
+                "yyyy-MM-dd HH:mm:ss";
         }
     }
 }
