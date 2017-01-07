@@ -34,5 +34,27 @@ namespace LearningMpaAbp.Tasks.Dtos
                 (TaskState)State
                 );
         }
+
+        /// <summary>
+        /// 根据任务状态，获取定义的css样式
+        /// </summary>
+        /// <returns></returns>
+        public string GetTaskLable()
+        {
+            string style = "";
+            TaskState state = (TaskState)Enum.Parse(typeof(TaskState), this.State.ToString());
+
+            switch (state)
+            {
+                case TaskState.Open:
+                    style = "fa-spinner fa-spin ";
+                    break;
+                case TaskState.Completed:
+                    style = "fa-check-circle ";
+                    break;
+            }
+            return style;
+
+        }
     }
 }

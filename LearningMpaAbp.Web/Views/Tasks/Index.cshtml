@@ -11,9 +11,7 @@
 <h2>
     @L("TaskList")
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
-        Create Task
-    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">Create Task</button>
 
     <a class="btn btn-primary" data-toggle="modal" href="@Url.Action("RemoteCreate")" data-target="#modal" role="button">（Create Task）使用Remote方式调用Modal进行展现</a>
 
@@ -28,15 +26,12 @@
                 id = "TaskStateCombobox"
             })
     </span>
-
 </h2>
-
 
 <!--任务清单展示-->
 <div class="row" id="taskList">
-    @{ Html.RenderPartial("_List", Model); }
+    @{ Html.RenderPartial("_List", Model.Tasks); }
 </div>
-
 
 <!--通过初始加载页面的时候提前将创建任务模态框加载进来-->
 @Html.Action("Create")

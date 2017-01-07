@@ -1,7 +1,7 @@
-﻿@model LearningMpaAbp.Web.Models.Tasks.IndexViewModel
+﻿@model IEnumerable<LearningMpaAbp.Tasks.Dtos.TaskDto>
 <div>
     <ul class="list-group">
-        @foreach (var task in Model.Tasks)
+        @foreach (var task in Model)
         {
             <li class="list-group-item">
                 <div class="btn-group pull-right">
@@ -11,7 +11,7 @@
 
                 <div class="media">
                     <a class="media-left" href="#">
-                        <i class="fa @Model.GetTaskLable(task) fa-3x"></i>
+                        <i class="fa @task.GetTaskLable() fa-3x"></i>
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">@task.Title</h4>
