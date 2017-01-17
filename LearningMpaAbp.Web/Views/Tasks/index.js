@@ -10,7 +10,6 @@
             getTaskList();
         });
 
-
         var $modal = $(".modal");
         //显示modal时，光标显示在第一个输入框
         $modal.on('shown.bs.modal',
@@ -21,12 +20,14 @@
     });
 })(jQuery);
 
+//异步开始提交时，显示遮罩层
 function beginPost(modalId) {
     var $modal = $(modalId);
 
     abp.ui.setBusy($modal);
 }
 
+//异步开始提交结束后，隐藏遮罩层并清空Form
 function hideForm(modalId) {
     var $modal = $(modalId);
 
@@ -37,13 +38,13 @@ function hideForm(modalId) {
     $form[0].reset();
 }
 
+//处理异步提交异常
 function errorPost(xhr, status, error, modalId) {
     if (error.length>0) {
         abp.notify.error('Something is going wrong, please retry again later!');
         var $modal = $(modalId);
         abp.ui.clearBusy($modal);
     }
-    
 }
 
 function editTask(id) {

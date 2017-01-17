@@ -19,11 +19,12 @@ using AutoMapper;
 using LearningMpaAbp.Users;
 using LearningMpaAbp.Users.Dto;
 using Abp.Web.Mvc.Authorization;
+using Abp.Web.Mvc.Controllers;
 
 namespace LearningMpaAbp.Web.Controllers
 {
     [AbpMvcAuthorize]
-    public class TasksController : Controller
+    public class TasksController : AbpController
     {
         private readonly ITaskAppService _taskAppService;
         private readonly IUserAppService _userAppService;
@@ -70,13 +71,15 @@ namespace LearningMpaAbp.Web.Controllers
         public PartialViewResult GetList(GetTasksInput input)
         {
             var output = _taskAppService.GetTasks(input);
+            return PartialView("_List", output.Tasks);
+        }
 
-            var model = new IndexViewModel(output.Tasks)
-            {
-                SelectedTaskState = input.State
 
-            };
-            return PartialView("_List", model);
+        public PartialViewResult RemoteCreate()
+        {
+            var userList = _userAppService.GetUsers();
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
+            return PartialView("_CreateTaskPartial");
         }
 
         [ChildActionOnly]
@@ -86,14 +89,6 @@ namespace LearningMpaAbp.Web.Controllers
             ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
             return PartialView("_CreateTask");
         }
-
-        public PartialViewResult RemoteCreate()
-        {
-            var userList = _userAppService.GetUsers();
-            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
-            return PartialView("_CreateTaskPartial");
-        }
-
 
         // POST: Tasks/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -106,12 +101,8 @@ namespace LearningMpaAbp.Web.Controllers
 
             var input = new GetTasksInput();
             var output = _taskAppService.GetTasks(input);
-            var model = new IndexViewModel(output.Tasks)
-            {
-                SelectedTaskState = input.State
-            };
 
-            return PartialView("_List", model);
+            return PartialView("_List", output.Tasks);
         }
 
         // GET: Tasks/Edit/5
@@ -135,23 +126,13 @@ namespace LearningMpaAbp.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(UpdateTaskInput updateTaskDto)
         {
-            if (ModelState.IsValid)
-            {
+            _taskAppService.UpdateTask(updateTaskDto);
 
-                _taskAppService.UpdateTask(updateTaskDto);
+            var input = new GetTasksInput();
+            var output = _taskAppService.GetTasks(input);
 
-                var input = new GetTasksInput();
-                var output = _taskAppService.GetTasks(input);
-                var model = new IndexViewModel(output.Tasks)
-                {
-                    SelectedTaskState = input.State
-                };
-
-                return PartialView("_List", model);
-            }
-            return View("Index");
+            return PartialView("_List", output.Tasks);
         }
-
 
     }
 }
