@@ -1,43 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Net.Configuration;
 using System.Threading.Tasks;
 using Abp.Application.Services;
-using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
-using Abp.Linq.Extensions;
+using Abp.Net.Mail.Smtp;
+using Abp.Notifications;
 using Abp.Timing;
 using AutoMapper;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
-using Abp.Net.Mail.Smtp;
-using System.Net.Mail;
-using Abp.Notifications;
 
 namespace LearningMpaAbp.Tasks
 {
     /// <summary>
-    /// Implements <see cref="ITaskAppService"/> to perform task related application functionality.
-    /// 
-    /// Inherits from <see cref="ApplicationService"/>.
-    /// <see cref="ApplicationService"/> contains some basic functionality common for application services (such as logging and localization).
+    ///     Implements <see cref="ITaskAppService" /> to perform task related application functionality.
+    ///     Inherits from <see cref="ApplicationService" />.
+    ///     <see cref="ApplicationService" /> contains some basic functionality common for application services (such as
+    ///     logging and localization).
     /// </summary>
     public class TaskAppService : LearningMpaAbpAppServiceBase, ITaskAppService
     {
+        private readonly INotificationPublisher _notificationPublisher;
+        private readonly ISmtpEmailSenderConfiguration _smtpEmialSenderConfig;
         //These members set in constructor using constructor injection.
 
         private readonly IRepository<Task> _taskRepository;
         private readonly IRepository<User, long> _userRepository;
-        private readonly ISmtpEmailSenderConfiguration _smtpEmialSenderConfig;
-        private readonly INotificationPublisher _notificationPublisher;
 
         /// <summary>
-        ///In constructor, we can get needed classes/interfaces.
-        ///They are sent here by dependency injection system automatically.
+        ///     In constructor, we can get needed classes/interfaces.
+        ///     They are sent here by dependency injection system automatically.
         /// </summary>
         public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository,
             ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion, INotificationPublisher notificationPublisher)
@@ -64,19 +59,13 @@ namespace LearningMpaAbp.Tasks
             }
 
             if (input.State.HasValue)
-            {
                 query = query.Where(t => t.State == input.State.Value);
-            }
 
             //排序
             if (!string.IsNullOrEmpty(input.Sorting))
-            {
                 query = query.OrderBy(input.Sorting);
-            }
             else
-            {
                 query = query.OrderByDescending(t => t.CreationTime);
-            }
             //获取分页
             var taskList =
                 query.Skip(input.SkipCount).Take(input.MaxResultCount).Include(t => t.AssignedPerson).ToList();
@@ -139,23 +128,15 @@ namespace LearningMpaAbp.Tasks
 
             task.CreationTime = Clock.Now;
 
-            //Creating a new Task entity with given input's properties
-            //var task = new Task
-            //{
-            //    Description = input.Description,
-            //    Title = input.Title,
-            //    State = input.State,
-            //    CreationTime = Clock.Now
-            //};
-
             if (input.AssignedPersonId.HasValue)
             {
                 task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
+                var message = "You hava been assigned one task into your todo list.";
 
-                SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
-                string message = "You hava been assigned one task into your todo list.";
-                emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
-                
+                //TODO:需要重新配置QQ邮箱密码
+                //SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
+                //emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
+
                 _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
                     NotificationSeverity.Info, new[] {task.AssignedPerson.ToUserIdentifier()});
             }
@@ -168,9 +149,7 @@ namespace LearningMpaAbp.Tasks
         {
             var task = _taskRepository.Get(taskId);
             if (task != null)
-            {
                 _taskRepository.Delete(task);
-            }
         }
     }
 }

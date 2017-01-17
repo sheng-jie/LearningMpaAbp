@@ -243,3 +243,4 @@ ModelManifest.xml
 
 Logs.txt.*
 Logs.txt
+*.pubxml

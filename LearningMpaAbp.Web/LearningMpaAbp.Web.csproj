@@ -401,6 +401,8 @@
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="js\Area.json" />
+    <None Include="Properties\PublishProfiles\shengjie - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\shengjie - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
