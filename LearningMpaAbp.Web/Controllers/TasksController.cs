@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Dynamic;
-using System.Net;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Abp.Application.Services.Dto;
-using Abp.Threading;
-using LearningMpaAbp.EntityFramework;
-using LearningMpaAbp.Tasks;
-using LearningMpaAbp.Tasks.Dtos;
-using LearningMpaAbp.Web.Models.Tasks;
-using X.PagedList;
-using AutoMapper;
-using LearningMpaAbp.Users;
-using LearningMpaAbp.Users.Dto;
+﻿using System.Web.Mvc;
 using Abp.Web.Mvc.Authorization;
 using Abp.Web.Mvc.Controllers;
+using AutoMapper;
+using LearningMpaAbp.Tasks;
+using LearningMpaAbp.Tasks.Dtos;
+using LearningMpaAbp.Users;
+using LearningMpaAbp.Web.Models.Tasks;
+using X.PagedList;
 
 namespace LearningMpaAbp.Web.Controllers
 {
@@ -31,7 +18,7 @@ namespace LearningMpaAbp.Web.Controllers
 
         public TasksController(ITaskAppService taskAppService, IUserAppService userAppService)
         {
-            this._taskAppService = taskAppService;
+            _taskAppService = taskAppService;
             _userAppService = userAppService;
         }
 
@@ -42,7 +29,6 @@ namespace LearningMpaAbp.Web.Controllers
             var model = new IndexViewModel(output.Tasks)
             {
                 SelectedTaskState = input.State
-
             };
             return View(model);
         }
@@ -50,16 +36,23 @@ namespace LearningMpaAbp.Web.Controllers
         // GET: Tasks
         public ActionResult PagedList(int? page)
         {
-            var tasks = _taskAppService.GetAllTasks();
+            var pageSize = 5;
+            var pageNumber = page ?? 1;
+
+            var filter = new GetTasksInput
+            {
+                SkipCount = (pageNumber - 1) * pageSize,
+                MaxResultCount = pageSize
+            };
+            var result = _taskAppService.GetTasks(filter);
             //if (state.HasValue)
             //{
             //    tasks = tasks.Where(t => t.State == state.Value);
             //}
 
 
-            var pageNumber = page ?? 1;
-
-            var onePageOfTasks = tasks.ToPagedList(pageNumber, 5); // will only contain 25 products max because of the pageSize
+            var onePageOfTasks = result.Tasks.ToPagedList(pageNumber, 5);
+            // will only contain 25 products max because of the pageSize
 
 
             ViewBag.OnePageOfTasks = onePageOfTasks;
@@ -111,7 +104,7 @@ namespace LearningMpaAbp.Web.Controllers
         {
             var task = _taskAppService.GetTaskById(id);
 
-            var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
+            var updateTaskDto = Mapper.Map<UpdateTaskInput>(task);
 
             var userList = _userAppService.GetUsers();
             ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name", updateTaskDto.AssignedPersonId);
@@ -133,6 +126,5 @@ namespace LearningMpaAbp.Web.Controllers
 
             return PartialView("_List", output.Tasks);
         }
-
     }
 }

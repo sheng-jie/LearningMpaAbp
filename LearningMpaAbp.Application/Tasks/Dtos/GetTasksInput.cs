@@ -1,4 +1,3 @@
-using Abp.Application.Services.Dto;
 using LearningMpaAbp.Dto;
 
 namespace LearningMpaAbp.Tasks.Dtos
@@ -8,5 +7,7 @@ namespace LearningMpaAbp.Tasks.Dtos
         public TaskState? State { get; set; }
 
         public int? AssignedPersonId { get; set; }
+
+        public string TaskTitle { get; set; }
     }
 }

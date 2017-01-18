@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using System.Linq.Dynamic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
+using AutoMapper;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
-using LearningMpaAbp.Web.Models.Tasks;
-using System;
-using System.Collections.Generic;
 using LearningMpaAbp.Users;
-using Abp.Web.Mvc.Authorization;
 
 namespace LearningMpaAbp.Web.Controllers
 {
@@ -33,29 +32,34 @@ namespace LearningMpaAbp.Web.Controllers
         }
 
 
-        public JsonResult GetAllTasks(int limit, int offset, string sortfiled, string sortway, string search, string status)
+        public JsonResult GetAllTasks(int limit, int offset, string sortfiled, string sortway, string search,
+            string status)
         {
-            var output = _taskAppService.GetTasks(new GetTasksInput());
-
+            var sort = !string.IsNullOrEmpty(sortfiled) ? string.Format("{0} {1}", sortfiled, sortway) : "";
             TaskState currentState;
-
-            var result = output.Tasks.Where(t => t.Title.Contains(search));
-            if (!string.IsNullOrEmpty(sortfiled))
-            {
-                result = result.OrderBy(string.Format("{0} {1}", sortfiled, sortway));
-            }
             if (!string.IsNullOrEmpty(status))
+                Enum.TryParse(status, true, out currentState);
+
+            var filter = new GetTasksInput
             {
-                if (Enum.TryParse<TaskState>(status, true, out currentState))
-                    result = result.Where(r => r.State == currentState);
-            }
+                SkipCount = offset,
+                MaxResultCount = limit,
+                Sorting = sort,
+                TaskTitle = search
+            };
 
-            var taskDtos = result as TaskDto[] ?? result.ToArray();
-            var total = taskDtos.ToList().Count;
+            if (!string.IsNullOrEmpty(status))
+                if (Enum.TryParse(status, true, out currentState))
+                    filter.State = currentState;
 
-            var rows = taskDtos.Skip(offset).Take(limit).ToList();
+            var output = _taskAppService.GetTasks(filter);
 
-            return AbpJson(new { total = total, rows = rows }, wrapResult: false, camelCase: false, behavior: JsonRequestBehavior.AllowGet);
+            return AbpJson(new
+                {
+                    total = output.Tasks.Count,
+                    rows = output.Tasks
+                }, wrapResult: false, camelCase: false,
+                behavior: JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -66,14 +70,15 @@ namespace LearningMpaAbp.Web.Controllers
 
             return Json(id, JsonRequestBehavior.AllowGet);
         }
+
         public PartialViewResult Edit(int id)
         {
             var task = _taskAppService.GetTaskById(id);
 
-            var updateTaskDto = AutoMapper.Mapper.Map<UpdateTaskInput>(task);
+            var updateTaskDto = Mapper.Map<UpdateTaskInput>(task);
 
             var userList = _userAppService.GetUsers();
-            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name",updateTaskDto.AssignedPersonId);
+            ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name", updateTaskDto.AssignedPersonId);
 
             return PartialView("_EditTask", updateTaskDto);
         }
@@ -84,39 +89,28 @@ namespace LearningMpaAbp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 _taskAppService.UpdateTask(updateTaskDto);
-
-                var input = new GetTasksInput();
-                var output = _taskAppService.GetTasks(input);
-                var module = new IndexViewModel(output.Tasks)
-                {
-                    SelectedTaskState = input.State,
-                    CreateTaskInput = new CreateTaskInput(),
-                    UpdateTaskInput = new UpdateTaskInput()
-                };
 
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             return Json(false, JsonRequestBehavior.AllowGet);
-
         }
 
         private List<SelectListItem> GetTaskStateDropdownList(TaskState? curState)
         {
-            var list = new List<SelectListItem>()
+            var list = new List<SelectListItem>
             {
-                new SelectListItem()
+                new SelectListItem
                 {
                     Text = "AllTasks",
                     Value = "",
-                    Selected = curState==null
+                    Selected = curState == null
                 }
             };
 
             list.AddRange(Enum.GetValues(typeof(TaskState))
                 .Cast<TaskState>()
-                .Select(state => new SelectListItem()
+                .Select(state => new SelectListItem
                 {
                     Text = $"TaskState_{state}",
                     Value = state.ToString(),
