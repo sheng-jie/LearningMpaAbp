@@ -45,20 +45,20 @@ namespace LearningMpaAbp.Web.Controllers
                 SkipCount = offset,
                 MaxResultCount = limit,
                 Sorting = sort,
-                TaskTitle = search
+                Filter = search
             };
 
             if (!string.IsNullOrEmpty(status))
                 if (Enum.TryParse(status, true, out currentState))
                     filter.State = currentState;
 
-            var output = _taskAppService.GetTasks(filter);
+            var pagedTasks = _taskAppService.GetPagedTasks(filter);
 
             return AbpJson(new
                 {
-                    total = output.Tasks.Count,
-                    rows = output.Tasks
-                }, wrapResult: false, camelCase: false,
+                    total = pagedTasks.TotalCount,
+                    rows = pagedTasks.Items
+            }, wrapResult: false, camelCase: false,
                 behavior: JsonRequestBehavior.AllowGet);
         }
 

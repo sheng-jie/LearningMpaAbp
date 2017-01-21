@@ -36,25 +36,20 @@ namespace LearningMpaAbp.Web.Controllers
         // GET: Tasks
         public ActionResult PagedList(int? page)
         {
+            //每页行数
             var pageSize = 5;
-            var pageNumber = page ?? 1;
+            var pageNumber = page ?? 1;//第几页
 
             var filter = new GetTasksInput
             {
-                SkipCount = (pageNumber - 1) * pageSize,
+                SkipCount = (pageNumber - 1) * pageSize,//忽略个数
                 MaxResultCount = pageSize
             };
-            var result = _taskAppService.GetTasks(filter);
-            //if (state.HasValue)
-            //{
-            //    tasks = tasks.Where(t => t.State == state.Value);
-            //}
+            var result = _taskAppService.GetPagedTasks(filter);
 
-
-            var onePageOfTasks = result.Tasks.ToPagedList(pageNumber, 5);
-            // will only contain 25 products max because of the pageSize
-
-
+            //已经在应用服务层手动完成了分页逻辑，所以需手动构造分页结果
+            var onePageOfTasks = new StaticPagedList<TaskDto>(result.Items, pageNumber, pageSize, result.TotalCount);
+            //将分页结果放入ViewBag供View使用
             ViewBag.OnePageOfTasks = onePageOfTasks;
 
             return View();

@@ -2,12 +2,10 @@ using LearningMpaAbp.Dto;
 
 namespace LearningMpaAbp.Tasks.Dtos
 {
-    public class GetTasksInput : PagedAndSortedInputDto
+    public class GetTasksInput : PagedSortedAndFilteredInputDto
     {
         public TaskState? State { get; set; }
 
         public int? AssignedPersonId { get; set; }
-
-        public string TaskTitle { get; set; }
     }
 }

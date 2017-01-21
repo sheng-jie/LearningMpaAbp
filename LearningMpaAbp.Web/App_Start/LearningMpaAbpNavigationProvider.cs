@@ -53,7 +53,7 @@ namespace LearningMpaAbp.Web
                         url: "Tasks/Index",
                         icon: "fa fa-tasks",
                         requiresAuthentication: true
-                    )
+                    ).AddItem(new MenuItemDefinition("PagedTaskList",L("Paged Task Lsit"),"Taskks/PagedList","fa fa-tasks"))
                 ).AddItem(
                     new MenuItemDefinition(
                         "BackendTaskList",

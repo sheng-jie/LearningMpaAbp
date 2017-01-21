@@ -23,6 +23,8 @@ namespace LearningMpaAbp.Tasks
     {
         GetTasksOutput GetTasks(GetTasksInput input);
 
+        PagedResultDto<TaskDto> GetPagedTasks(GetTasksInput input);
+
         void UpdateTask(UpdateTaskInput input);
 
         int CreateTask(CreateTaskInput input);

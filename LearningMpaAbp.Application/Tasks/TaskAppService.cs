@@ -4,8 +4,11 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
+using Abp.Linq.Extensions;
 using Abp.Net.Mail.Smtp;
 using Abp.Notifications;
 using Abp.Timing;
@@ -51,30 +54,47 @@ namespace LearningMpaAbp.Tasks
 
         public GetTasksOutput GetTasks(GetTasksInput input)
         {
-            var query = _taskRepository.GetAll();
-
-            if (input.AssignedPersonId.HasValue)
-            {
-                //query = query.Where(t => t.AssignedPersonId == input.AssignedPersonId.Value);
-            }
-
-            if (input.State.HasValue)
-                query = query.Where(t => t.State == input.State.Value);
+            var query = _taskRepository.GetAll().Include(t => t.AssignedPerson)
+                .WhereIf(input.State.HasValue, t => t.State == input.State.Value)
+                .WhereIf(!input.Filter.IsNullOrEmpty(), t => t.Title.Contains(input.Filter))
+                .WhereIf(input.AssignedPersonId.HasValue, t => t.AssignedPersonId == input.AssignedPersonId.Value);
 
             //排序
             if (!string.IsNullOrEmpty(input.Sorting))
                 query = query.OrderBy(input.Sorting);
             else
                 query = query.OrderByDescending(t => t.CreationTime);
-            //获取分页
-            var taskList =
-                query.Skip(input.SkipCount).Take(input.MaxResultCount).Include(t => t.AssignedPerson).ToList();
+            
+            var taskList = query.ToList();
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
             return new GetTasksOutput
             {
                 Tasks = Mapper.Map<List<TaskDto>>(taskList)
             };
+        }
+
+
+        public PagedResultDto<TaskDto> GetPagedTasks(GetTasksInput input)
+        {
+            //初步过滤
+            var query = _taskRepository.GetAll().Include(t => t.AssignedPerson)
+                .WhereIf(input.State.HasValue, t => t.State == input.State.Value)
+                .WhereIf(!input.Filter.IsNullOrEmpty(), t => t.Title.Contains(input.Filter))
+                .WhereIf(input.AssignedPersonId.HasValue, t => t.AssignedPersonId == input.AssignedPersonId.Value);
+
+            //排序
+            query = !string.IsNullOrEmpty(input.Sorting) ? query.OrderBy(input.Sorting) : query.OrderByDescending(t => t.CreationTime);
+
+            //获取总数
+            var tasksCount = query.Count();
+            //默认的分页方式
+            //var taskList = query.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+
+            //ABP提供了扩展方法PageBy分页方式
+            var taskList = query.PageBy(input).ToList();
+
+            return new PagedResultDto<TaskDto>(tasksCount,taskList.MapTo<List<TaskDto>>());
         }
 
         public async Task<TaskDto> GetTaskByIdAsync(int taskId)
