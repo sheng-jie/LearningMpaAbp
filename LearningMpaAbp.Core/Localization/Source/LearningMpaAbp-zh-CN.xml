@@ -22,6 +22,9 @@
 
     <text name="LoginFailed" value="登录失败!" />
     <text name="Task List" value="任务清单" />
+    <text name="DeleteTask" value="删除任务" />
+    <text name="AssignTaskToPerson" value="分配任务" />
+    
 
   </texts>
 </localizationDictionary>

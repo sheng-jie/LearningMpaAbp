@@ -5,14 +5,18 @@ using System.Linq.Dynamic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.Net.Mail.Smtp;
 using Abp.Notifications;
+using Abp.Runtime.Session;
+using Abp.Threading;
 using Abp.Timing;
 using AutoMapper;
+using LearningMpaAbp.Authorization;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
 
@@ -64,7 +68,7 @@ namespace LearningMpaAbp.Tasks
                 query = query.OrderBy(input.Sorting);
             else
                 query = query.OrderByDescending(t => t.CreationTime);
-            
+
             var taskList = query.ToList();
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
@@ -94,7 +98,7 @@ namespace LearningMpaAbp.Tasks
             //ABP提供了扩展方法PageBy分页方式
             var taskList = query.PageBy(input).ToList();
 
-            return new PagedResultDto<TaskDto>(tasksCount,taskList.MapTo<List<TaskDto>>());
+            return new PagedResultDto<TaskDto>(tasksCount, taskList.MapTo<List<TaskDto>>());
         }
 
         public async Task<TaskDto> GetTaskByIdAsync(int taskId)
@@ -112,59 +116,65 @@ namespace LearningMpaAbp.Tasks
 
             return task.MapTo<TaskDto>();
         }
-
+        
         public void UpdateTask(UpdateTaskInput input)
         {
             //We can use Logger, it's defined in ApplicationService base class.
             Logger.Info("Updating a task for input: " + input);
+
+            //获取当前用户
+            var currentUser = AsyncHelper.RunSync(this.GetCurrentUserAsync);
+            //获取是否有权限
+            bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
+            //如果任务已经分配且未分配给自己，且不具有分配任务权限，则抛出异常
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != currentUser.Id && !canAssignTaskToOther)
+            {
+                throw new AbpAuthorizationException("没有分配任务给他人的权限！");
+            }
+
             var updateTask = Mapper.Map<Task>(input);
             _taskRepository.Update(updateTask);
-
-            //Retrieving a task entity with given id using standard Get method of repositories.
-            //var task = _taskRepository.Get(input.Id);
-
-            //Updating changed properties of the retrieved task entity.
-
-            //if (input.State.HasValue)
-            //{
-            //    updateTask.State = input.State.Value;
-            //}
-
-            //if (input.AssignedPersonId.HasValue)
-            //{
-            //    updateTask.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
-            //}
-            //We even do not call Update method of the repository.
-            //Because an application service method is a 'unit of work' scope as default.
-            //ABP automatically saves all changes when a 'unit of work' scope ends (without any exception).
         }
-
+        
         public int CreateTask(CreateTaskInput input)
         {
             //We can use Logger, it's defined in ApplicationService class.
             Logger.Info("Creating a task for input: " + input);
 
+            //获取当前用户
+            var currentUser = AsyncHelper.RunSync(this.GetCurrentUserAsync);
+
+            //判断用户是否有权限
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != currentUser.Id)
+                PermissionChecker.Authorize(PermissionNames.Pages_Tasks_AssignPerson);
+
             var task = Mapper.Map<Task>(input);
 
-            task.CreationTime = Clock.Now;
+            int result = _taskRepository.InsertAndGetId(task);
 
-            if (input.AssignedPersonId.HasValue)
+            //只有创建成功才发送邮件和通知
+            if (result > 0)
             {
-                task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
-                var message = "You hava been assigned one task into your todo list.";
+                task.CreationTime = Clock.Now;
 
-                //TODO:需要重新配置QQ邮箱密码
-                //SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
-                //emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
+                if (input.AssignedPersonId.HasValue)
+                {
+                    task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
+                    var message = "You hava been assigned one task into your todo list.";
 
-                _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
-                    NotificationSeverity.Info, new[] {task.AssignedPerson.ToUserIdentifier()});
+                    //TODO:需要重新配置QQ邮箱密码
+                    //SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
+                    //emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
+
+                    _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
+                        NotificationSeverity.Info, new[] { task.AssignedPerson.ToUserIdentifier() });
+                }
             }
 
-            //Saving entity with standard Insert method of repositories.
-            return _taskRepository.InsertAndGetId(task);
+            return result;
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Tasks_Delete)]
         public void DeleteTask(int taskId)
         {
             var task = _taskRepository.Get(taskId);
