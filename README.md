@@ -14,24 +14,37 @@
 * [ABP源码分析：整体项目结构及目录](http://www.cnblogs.com/1zhk/p/5268054.html) --HK Zhang
 * [ABP文档 - 目录](http://www.cnblogs.com/kid1412/p/5971838.html)（持续更新翻译的abp中文文档） -- kid1412
 
-本系列文章主要是基于ABP模板开发**Mpa**（多页面）项目。
+----
+
+本系列文章主要是基于ABP模板开发**Mpa**（多页面）『任务清单』项目。
 由于是入门系列，不会用到代码生成器，每一行代码都是手动敲入。
 源码已上传至[Github-LearningMpaAbp](https://github.com/yanshengjie/LearningMpaAbp)，可自行参考。
 本系列基于持续总结，会持续更新，请关注学习。
  
 『任务清单』的主要功能是完成对任务的创建分配，简单的增删改查。
 
-**目录**
+![初步效果](http://upload-images.jianshu.io/upload_images/2799767-eaa7973e2d8434b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-[ABP入门系列（1）——使用Abp框架开发Mpa『任务清单』](http://www.jianshu.com/p/a6e9ace79345)
+[DEMO网址](http://shengjie.azurewebsites.net/)
+用户名/密码：admin/123qwe
 
-[ABP入门系列（2）——通过模板创建MAP版本项目](http://www.jianshu.com/p/a1b5334c5805)
+>**目录**
 
- [ABP入门系列（3）——领域层创建实体](http://www.jianshu.com/p/fde465ae599d)
+[ABP入门系列（1）——通过模板创建MAP版本项目](http://www.jianshu.com/p/a1b5334c5805)
 
-[ABP入门系列（4）——领域层定义仓储并实现](http://www.jianshu.com/p/6e90a94aeba4)
+[ABP入门系列（2）——领域层创建实体](http://www.jianshu.com/p/fde465ae599d)
 
-[ABP入门系列（5）——创建应用服务](http://www.jianshu.com/p/da69ca7b27c6)
+[ABP入门系列（3）——领域层定义仓储并实现](http://www.jianshu.com/p/6e90a94aeba4)
 
-[ABP入门系列（6）——展现层实现增删改查](http://www.jianshu.com/p/620c20fa511b)
+[ABP入门系列（4）——创建应用服务](http://www.jianshu.com/p/da69ca7b27c6)
+
+[ABP入门系列（5）——展现层实现增删改查](http://www.jianshu.com/p/620c20fa511b)
+
+[ABP入门系列（6）——定义导航菜单](http://www.jianshu.com/p/24e6f6e8dbdb)
+
+[ABP入门系列（7）——分页实现](http://www.jianshu.com/p/19b666a4b8b1)
+
+[ABP入门系列（8）——Json格式化](http://www.jianshu.com/p/27691ee13851)
+
+[ABP入门系列（9）——权限管理](http://www.jianshu.com/p/870938be9ec2)
 
