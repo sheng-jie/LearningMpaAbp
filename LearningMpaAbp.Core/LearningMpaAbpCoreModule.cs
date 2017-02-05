@@ -33,13 +33,14 @@ namespace LearningMpaAbp
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
                         Assembly.GetExecutingAssembly(),
                         "LearningMpaAbp.Localization.Source"
-                        )
                     )
-                );
+                )
+            );
 
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             Configuration.Authorization.Providers.Add<LearningMpaAbpAuthorizationProvider>();
+            Configuration.Authorization.Providers.Add<TaskAuthorizationProvider>();
         }
 
         public override void Initialize()

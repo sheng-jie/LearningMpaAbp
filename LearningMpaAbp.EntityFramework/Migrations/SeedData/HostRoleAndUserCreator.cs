@@ -29,10 +29,17 @@ namespace LearningMpaAbp.Migrations.SeedData
         {
             //Admin role for host
 
-            var adminRoleForHost = _context.Roles.FirstOrDefault(r => r.TenantId == null && r.Name == StaticRoleNames.Host.Admin);
+            var adminRoleForHost =
+                _context.Roles.FirstOrDefault(r => r.TenantId == null && r.Name == StaticRoleNames.Host.Admin);
             if (adminRoleForHost == null)
             {
-                adminRoleForHost = _context.Roles.Add(new Role { Name = StaticRoleNames.Host.Admin, DisplayName = StaticRoleNames.Host.Admin, IsStatic = true });
+                adminRoleForHost =
+                    _context.Roles.Add(new Role
+                    {
+                        Name = StaticRoleNames.Host.Admin,
+                        DisplayName = StaticRoleNames.Host.Admin,
+                        IsStatic = true
+                    });
                 _context.SaveChanges();
 
                 //Grant all tenant permissions
@@ -41,8 +48,12 @@ namespace LearningMpaAbp.Migrations.SeedData
                     .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Host))
                     .ToList();
 
+                //将Task相关Permission赋予给Admin
+                var taskPermissions =
+                    PermissionFinder.GetAllPermissions(new TaskAuthorizationProvider()).ToList();
+                permissions.AddRange(taskPermissions);
+
                 foreach (var permission in permissions)
-                {
                     _context.Permissions.Add(
                         new RolePermissionSetting
                         {
@@ -50,14 +61,14 @@ namespace LearningMpaAbp.Migrations.SeedData
                             IsGranted = true,
                             RoleId = adminRoleForHost.Id
                         });
-                }
 
                 _context.SaveChanges();
             }
 
             //Admin user for tenancy host
 
-            var adminUserForHost = _context.Users.FirstOrDefault(u => u.TenantId == null && u.UserName == User.AdminUserName);
+            var adminUserForHost =
+                _context.Users.FirstOrDefault(u => u.TenantId == null && u.UserName == User.AdminUserName);
             if (adminUserForHost == null)
             {
                 adminUserForHost = _context.Users.Add(

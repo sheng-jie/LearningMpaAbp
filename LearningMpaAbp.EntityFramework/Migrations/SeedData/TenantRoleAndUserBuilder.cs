@@ -30,10 +30,15 @@ namespace LearningMpaAbp.Migrations.SeedData
         {
             //Admin role
 
-            var adminRole = _context.Roles.FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
+            var adminRole =
+                _context.Roles.FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Admin);
             if (adminRole == null)
             {
-                adminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin) { IsStatic = true });
+                adminRole =
+                    _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Admin, StaticRoleNames.Tenants.Admin)
+                    {
+                        IsStatic = true
+                    });
                 _context.SaveChanges();
 
                 //Grant all permissions to admin role
@@ -42,8 +47,12 @@ namespace LearningMpaAbp.Migrations.SeedData
                     .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant))
                     .ToList();
 
+                //将Task相关Permission赋予给Admin
+                var taskPermissions =
+                    PermissionFinder.GetAllPermissions(new TaskAuthorizationProvider()).ToList();
+                permissions.AddRange(taskPermissions);
+
                 foreach (var permission in permissions)
-                {
                     _context.Permissions.Add(
                         new RolePermissionSetting
                         {
@@ -52,14 +61,14 @@ namespace LearningMpaAbp.Migrations.SeedData
                             IsGranted = true,
                             RoleId = adminRole.Id
                         });
-                }
 
                 _context.SaveChanges();
             }
 
             //admin user
 
-            var adminUser = _context.Users.FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.AdminUserName);
+            var adminUser =
+                _context.Users.FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.AdminUserName);
             if (adminUser == null)
             {
                 adminUser = User.CreateTenantAdminUser(_tenantId, "admin@defaulttenant.com", "123qwe");

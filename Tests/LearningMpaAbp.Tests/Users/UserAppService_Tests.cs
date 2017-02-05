@@ -9,22 +9,12 @@ namespace LearningMpaAbp.Tests.Users
 {
     public class UserAppService_Tests : LearningMpaAbpTestBase
     {
-        private readonly IUserAppService _userAppService;
-
         public UserAppService_Tests()
         {
             _userAppService = Resolve<IUserAppService>();
         }
 
-        [Fact]
-        public async Task GetUsers_Test()
-        {
-            //Act
-            var output = await _userAppService.GetUsers();
-
-            //Assert
-            output.Items.Count.ShouldBeGreaterThan(0);
-        }
+        private readonly IUserAppService _userAppService;
 
         [Fact]
         public async Task CreateUser_Test()
@@ -46,6 +36,16 @@ namespace LearningMpaAbp.Tests.Users
                 var johnNashUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == "john.nash");
                 johnNashUser.ShouldNotBeNull();
             });
+        }
+
+        [Fact]
+        public async Task GetUsers_Test()
+        {
+            //Act
+            var output = await _userAppService.GetUsersAsync();
+
+            //Assert
+            output.Items.Count.ShouldBeGreaterThan(0);
         }
     }
 }
