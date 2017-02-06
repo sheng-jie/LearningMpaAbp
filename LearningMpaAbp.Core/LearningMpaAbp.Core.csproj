@@ -94,6 +94,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\AbpSessionExtension.cs" />
+    <Compile Include="Extensions\IAbpSessionExtension.cs" />
     <Compile Include="IRepositories\IBackendTaskRepository.cs" />
     <Compile Include="LearningMpaAbpConsts.cs" />
     <Compile Include="LearningMpaAbpCoreModule.cs" />
@@ -111,7 +113,7 @@
     <Compile Include="Authorization\Roles\Role.cs" />
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
-    <Compile Include="TaskAuthorizationProvider.cs" />
+    <Compile Include="Authorization\TaskAuthorizationProvider.cs" />
     <Compile Include="Tasks\Task.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Users\UserManager.cs" />

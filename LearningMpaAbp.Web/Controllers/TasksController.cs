@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Abp.Web.Mvc.Authorization;
-using Abp.Web.Mvc.Controllers;
 using AutoMapper;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
@@ -11,7 +10,7 @@ using X.PagedList;
 namespace LearningMpaAbp.Web.Controllers
 {
     [AbpMvcAuthorize]
-    public class TasksController : AbpController
+    public class TasksController : LearningMpaAbpControllerBase
     {
         private readonly ITaskAppService _taskAppService;
         private readonly IUserAppService _userAppService;
@@ -38,11 +37,11 @@ namespace LearningMpaAbp.Web.Controllers
         {
             //每页行数
             var pageSize = 5;
-            var pageNumber = page ?? 1;//第几页
+            var pageNumber = page ?? 1; //第几页
 
             var filter = new GetTasksInput
             {
-                SkipCount = (pageNumber - 1) * pageSize,//忽略个数
+                SkipCount = (pageNumber - 1) * pageSize, //忽略个数
                 MaxResultCount = pageSize
             };
             var result = _taskAppService.GetPagedTasks(filter);

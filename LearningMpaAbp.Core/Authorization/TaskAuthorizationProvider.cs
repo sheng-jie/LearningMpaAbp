@@ -1,8 +1,7 @@
 ﻿using Abp.Authorization;
 using Abp.Localization;
-using LearningMpaAbp.Authorization;
 
-namespace LearningMpaAbp
+namespace LearningMpaAbp.Authorization
 {
     public class TaskAuthorizationProvider : AuthorizationProvider
     {

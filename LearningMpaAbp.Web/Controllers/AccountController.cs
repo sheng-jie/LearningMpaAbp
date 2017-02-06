@@ -29,20 +29,12 @@ namespace LearningMpaAbp.Web.Controllers
 {
     public class AccountController : LearningMpaAbpControllerBase
     {
-        private readonly TenantManager _tenantManager;
-        private readonly UserManager _userManager;
-        private readonly RoleManager _roleManager;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
-        private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly LogInManager _logInManager;
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+        private readonly IMultiTenancyConfig _multiTenancyConfig;
+        private readonly RoleManager _roleManager;
+        private readonly TenantManager _tenantManager;
+        private readonly IUnitOfWorkManager _unitOfWorkManager;
+        private readonly UserManager _userManager;
 
         public AccountController(
             TenantManager tenantManager,
@@ -60,14 +52,33 @@ namespace LearningMpaAbp.Web.Controllers
             _logInManager = logInManager;
         }
 
+        private IAuthenticationManager AuthenticationManager
+        {
+            get { return HttpContext.GetOwinContext().Authentication; }
+        }
+
+        #region Common private methods
+
+        private async Task<Tenant> GetActiveTenantAsync(string tenancyName)
+        {
+            var tenant = await _tenantManager.FindByTenancyNameAsync(tenancyName);
+            if (tenant == null)
+                throw new UserFriendlyException(L("ThereIsNoTenantDefinedWithName{0}", tenancyName));
+
+            if (!tenant.IsActive)
+                throw new UserFriendlyException(L("TenantIsNotActive", tenancyName));
+
+            return tenant;
+        }
+
+        #endregion
+
         #region Login / Logout
 
         public ActionResult Login(string returnUrl = "")
         {
             if (string.IsNullOrWhiteSpace(returnUrl))
-            {
                 returnUrl = Request.ApplicationPath;
-            }
 
             return View(
                 new LoginFormViewModel
@@ -87,24 +98,21 @@ namespace LearningMpaAbp.Web.Controllers
                 loginModel.UsernameOrEmailAddress,
                 loginModel.Password,
                 loginModel.TenancyName
-                );
+            );
 
             await SignInAsync(loginResult.User, loginResult.Identity, loginModel.RememberMe);
 
             if (string.IsNullOrWhiteSpace(returnUrl))
-            {
                 returnUrl = Request.ApplicationPath;
-            }
 
             if (!string.IsNullOrWhiteSpace(returnUrlHash))
-            {
                 returnUrl = returnUrl + returnUrlHash;
-            }
 
-            return Json(new AjaxResponse { TargetUrl = returnUrl });
+            return Json(new AjaxResponse {TargetUrl = returnUrl});
         }
 
-        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress,
+            string password, string tenancyName)
         {
             var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
@@ -120,15 +128,17 @@ namespace LearningMpaAbp.Web.Controllers
         private async Task SignInAsync(User user, ClaimsIdentity identity = null, bool rememberMe = false)
         {
             if (identity == null)
-            {
                 identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            }
+
+            //添加身份信息，以便在AbpSession中使用
+            identity.AddClaim(new Claim(ClaimTypes.Email, user.EmailAddress));
 
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = rememberMe }, identity);
+            AuthenticationManager.SignIn(new AuthenticationProperties {IsPersistent = rememberMe}, identity);
         }
 
-        private Exception CreateExceptionForFailedLoginAttempt(AbpLoginResultType result, string usernameOrEmailAddress, string tenancyName)
+        private Exception CreateExceptionForFailedLoginAttempt(AbpLoginResultType result, string usernameOrEmailAddress,
+            string tenancyName)
         {
             switch (result)
             {
@@ -138,14 +148,18 @@ namespace LearningMpaAbp.Web.Controllers
                 case AbpLoginResultType.InvalidPassword:
                     return new UserFriendlyException(L("LoginFailed"), L("InvalidUserNameOrPassword"));
                 case AbpLoginResultType.InvalidTenancyName:
-                    return new UserFriendlyException(L("LoginFailed"), L("ThereIsNoTenantDefinedWithName{0}", tenancyName));
+                    return new UserFriendlyException(L("LoginFailed"),
+                        L("ThereIsNoTenantDefinedWithName{0}", tenancyName));
                 case AbpLoginResultType.TenantIsNotActive:
                     return new UserFriendlyException(L("LoginFailed"), L("TenantIsNotActive", tenancyName));
                 case AbpLoginResultType.UserIsNotActive:
-                    return new UserFriendlyException(L("LoginFailed"), L("UserIsNotActiveAndCanNotLogin", usernameOrEmailAddress));
+                    return new UserFriendlyException(L("LoginFailed"),
+                        L("UserIsNotActiveAndCanNotLogin", usernameOrEmailAddress));
                 case AbpLoginResultType.UserEmailIsNotConfirmed:
-                    return new UserFriendlyException(L("LoginFailed"), "Your email address is not confirmed. You can not login"); //TODO: localize message
-                default: //Can not fall to default actually. But other result types can be added in the future and we may forget to handle it
+                    return new UserFriendlyException(L("LoginFailed"),
+                        "Your email address is not confirmed. You can not login"); //TODO: localize message
+                default:
+                    //Can not fall to default actually. But other result types can be added in the future and we may forget to handle it
                     Logger.Warn("Unhandled login fail reason: " + result);
                     return new UserFriendlyException(L("LoginFailed"));
             }
@@ -183,13 +197,9 @@ namespace LearningMpaAbp.Web.Controllers
 
                 //Get tenancy name and tenant
                 if (!_multiTenancyConfig.IsEnabled)
-                {
                     model.TenancyName = Tenant.DefaultTenantName;
-                }
                 else if (model.TenancyName.IsNullOrEmpty())
-                {
                     throw new UserFriendlyException(L("TenantNameCanNotBeEmpty"));
-                }
 
                 var tenant = await GetActiveTenantAsync(model.TenancyName);
 
@@ -209,9 +219,7 @@ namespace LearningMpaAbp.Web.Controllers
                 {
                     externalLoginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
                     if (externalLoginInfo == null)
-                    {
                         throw new ApplicationException("Can not external login!");
-                    }
 
                     user.Logins = new List<UserLogin>
                     {
@@ -224,24 +232,19 @@ namespace LearningMpaAbp.Web.Controllers
                     };
 
                     if (model.UserName.IsNullOrEmpty())
-                    {
                         model.UserName = model.EmailAddress;
-                    }
 
                     model.Password = Users.User.CreateRandomPassword();
 
-                    if (string.Equals(externalLoginInfo.Email, model.EmailAddress, StringComparison.InvariantCultureIgnoreCase))
-                    {
+                    if (string.Equals(externalLoginInfo.Email, model.EmailAddress,
+                        StringComparison.InvariantCultureIgnoreCase))
                         user.IsEmailConfirmed = true;
-                    }
                 }
                 else
                 {
                     //Username and Password are required if not external login
                     if (model.UserName.IsNullOrEmpty() || model.Password.IsNullOrEmpty())
-                    {
                         throw new UserFriendlyException(L("FormIsNotValidMessage"));
-                    }
                 }
 
                 user.UserName = model.UserName;
@@ -254,9 +257,7 @@ namespace LearningMpaAbp.Web.Controllers
                 //Add default roles
                 user.Roles = new List<UserRole>();
                 foreach (var defaultRole in await _roleManager.Roles.Where(r => r.IsDefault).ToListAsync())
-                {
-                    user.Roles.Add(new UserRole { RoleId = defaultRole.Id });
-                }
+                    user.Roles.Add(new UserRole {RoleId = defaultRole.Id});
 
                 //Save user
                 CheckErrors(await _userManager.CreateAsync(user));
@@ -267,13 +268,9 @@ namespace LearningMpaAbp.Web.Controllers
                 {
                     AbpLoginResult<Tenant, User> loginResult;
                     if (externalLoginInfo != null)
-                    {
                         loginResult = await _logInManager.LoginAsync(externalLoginInfo.Login, tenant.TenancyName);
-                    }
                     else
-                    {
                         loginResult = await GetLoginResultAsync(user.UserName, model.Password, tenant.TenancyName);
-                    }
 
                     if (loginResult.Result == AbpLoginResultType.Success)
                     {
@@ -281,7 +278,8 @@ namespace LearningMpaAbp.Web.Controllers
                         return Redirect(Url.Action("Index", "Home"));
                     }
 
-                    Logger.Warn("New registered user could not be login. This should not be normally. login result: " + loginResult.Result);
+                    Logger.Warn("New registered user could not be login. This should not be normally. login result: " +
+                                loginResult.Result);
                 }
 
                 //If can not login, show a register result page
@@ -320,7 +318,7 @@ namespace LearningMpaAbp.Web.Controllers
                     {
                         ReturnUrl = returnUrl
                     })
-                );
+            );
         }
 
         [UnitOfWork]
@@ -328,9 +326,7 @@ namespace LearningMpaAbp.Web.Controllers
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
-            {
                 return RedirectToAction("Login");
-            }
 
             //Try to find tenancy name
             if (tenancyName.IsNullOrEmpty())
@@ -346,7 +342,7 @@ namespace LearningMpaAbp.Web.Controllers
                     default:
                         return View("TenantSelection", new TenantSelectionViewModel
                         {
-                            Action = Url.Action("ExternalLoginCallback", "Account", new { returnUrl }),
+                            Action = Url.Action("ExternalLoginCallback", "Account", new {returnUrl}),
                             Tenants = tenants.MapTo<List<TenantSelectionViewModel.TenantInfo>>()
                         });
                 }
@@ -360,15 +356,14 @@ namespace LearningMpaAbp.Web.Controllers
                     await SignInAsync(loginResult.User, loginResult.Identity, false);
 
                     if (string.IsNullOrWhiteSpace(returnUrl))
-                    {
                         returnUrl = Url.Action("Index", "Home");
-                    }
 
                     return Redirect(returnUrl);
                 case AbpLoginResultType.UnknownExternalLogin:
                     return await RegisterView(loginInfo, tenancyName);
                 default:
-                    throw CreateExceptionForFailedLoginAttempt(loginResult.Result, loginInfo.Email ?? loginInfo.DefaultUserName, tenancyName);
+                    throw CreateExceptionForFailedLoginAttempt(loginResult.Result,
+                        loginInfo.Email ?? loginInfo.DefaultUserName, tenancyName);
             }
         }
 
@@ -377,7 +372,8 @@ namespace LearningMpaAbp.Web.Controllers
             var name = loginInfo.DefaultUserName;
             var surname = loginInfo.DefaultUserName;
 
-            var extractedNameAndSurname = TryExtractNameAndSurnameFromClaims(loginInfo.ExternalIdentity.Claims.ToList(), ref name, ref surname);
+            var extractedNameAndSurname = TryExtractNameAndSurnameFromClaims(
+                loginInfo.ExternalIdentity.Claims.ToList(), ref name, ref surname);
 
             var viewModel = new RegisterViewModel
             {
@@ -389,9 +385,7 @@ namespace LearningMpaAbp.Web.Controllers
             };
 
             if (!tenancyName.IsNullOrEmpty() && extractedNameAndSurname)
-            {
                 return await Register(viewModel);
-            }
 
             return RegisterView(viewModel);
         }
@@ -418,15 +412,11 @@ namespace LearningMpaAbp.Web.Controllers
 
             var givennameClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName);
             if (givennameClaim != null && !givennameClaim.Value.IsNullOrEmpty())
-            {
                 foundName = givennameClaim.Value;
-            }
 
             var surnameClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Surname);
             if (surnameClaim != null && !surnameClaim.Value.IsNullOrEmpty())
-            {
                 foundSurname = surnameClaim.Value;
-            }
 
             if (foundName == null || foundSurname == null)
             {
@@ -437,7 +427,7 @@ namespace LearningMpaAbp.Web.Controllers
                     if (!nameSurName.IsNullOrEmpty())
                     {
                         var lastSpaceIndex = nameSurName.LastIndexOf(' ');
-                        if (lastSpaceIndex < 1 || lastSpaceIndex > (nameSurName.Length - 2))
+                        if (lastSpaceIndex < 1 || lastSpaceIndex > nameSurName.Length - 2)
                         {
                             foundName = foundSurname = nameSurName;
                         }
@@ -451,36 +441,12 @@ namespace LearningMpaAbp.Web.Controllers
             }
 
             if (!foundName.IsNullOrEmpty())
-            {
                 name = foundName;
-            }
 
             if (!foundSurname.IsNullOrEmpty())
-            {
                 surname = foundSurname;
-            }
 
             return foundName != null && foundSurname != null;
-        }
-
-        #endregion
-
-        #region Common private methods
-
-        private async Task<Tenant> GetActiveTenantAsync(string tenancyName)
-        {
-            var tenant = await _tenantManager.FindByTenancyNameAsync(tenancyName);
-            if (tenant == null)
-            {
-                throw new UserFriendlyException(L("ThereIsNoTenantDefinedWithName{0}", tenancyName));
-            }
-
-            if (!tenant.IsActive)
-            {
-                throw new UserFriendlyException(L("TenantIsNotActive", tenancyName));
-            }
-
-            return tenant;
         }
 
         #endregion
