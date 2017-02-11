@@ -19,6 +19,7 @@ using AutoMapper;
 using LearningMpaAbp.Authorization;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
+using LearningMpaAbp.Extensions;
 
 namespace LearningMpaAbp.Tasks
 {
@@ -122,12 +123,10 @@ namespace LearningMpaAbp.Tasks
             //We can use Logger, it's defined in ApplicationService base class.
             Logger.Info("Updating a task for input: " + input);
 
-            //获取当前用户
-            var currentUser = AsyncHelper.RunSync(this.GetCurrentUserAsync);
             //获取是否有权限
             bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
             //如果任务已经分配且未分配给自己，且不具有分配任务权限，则抛出异常
-            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != currentUser.Id && !canAssignTaskToOther)
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId() && !canAssignTaskToOther)
             {
                 throw new AbpAuthorizationException("没有分配任务给他人的权限！");
             }
@@ -140,12 +139,9 @@ namespace LearningMpaAbp.Tasks
         {
             //We can use Logger, it's defined in ApplicationService class.
             Logger.Info("Creating a task for input: " + input);
-
-            //获取当前用户
-            var currentUser = AsyncHelper.RunSync(this.GetCurrentUserAsync);
-
+            
             //判断用户是否有权限
-            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != currentUser.Id)
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value !=AbpSession.GetUserId())
                 PermissionChecker.Authorize(PermissionNames.Pages_Tasks_AssignPerson);
 
             var task = Mapper.Map<Task>(input);

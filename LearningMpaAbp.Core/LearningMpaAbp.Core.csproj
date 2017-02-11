@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\AbpSessionExtension.cs" />
+    <Compile Include="Extensions\AbpSessionExtension2.cs" />
     <Compile Include="Extensions\IAbpSessionExtension.cs" />
     <Compile Include="IRepositories\IBackendTaskRepository.cs" />
     <Compile Include="LearningMpaAbpConsts.cs" />

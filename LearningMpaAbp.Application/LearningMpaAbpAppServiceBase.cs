@@ -25,7 +25,7 @@ namespace LearningMpaAbp
         public UserManager UserManager { get; set; }
 
         //隐藏父类的AbpSession
-        public new IAbpSessionExtension AbpSession { get; set; }
+        //public new IAbpSessionExtension AbpSession { get; set; }
 
         protected virtual Task<User> GetCurrentUserAsync()
         {

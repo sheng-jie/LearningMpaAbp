@@ -17,7 +17,7 @@ namespace LearningMpaAbp.Web.Controllers
         }
 
         //隐藏父类的AbpSession
-        public new IAbpSessionExtension AbpSession { get; set; }
+        //public new IAbpSessionExtension AbpSession { get; set; }
 
         protected virtual void CheckModelState()
         {

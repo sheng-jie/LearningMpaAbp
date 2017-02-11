@@ -4,7 +4,7 @@ namespace LearningMpaAbp.Tasks.Dtos
 {
     public class CreateTaskInput
     {
-        public int? AssignedPersonId { get; set; }
+        public long? AssignedPersonId { get; set; }
 
         [Required]
         public string Description { get; set; }
