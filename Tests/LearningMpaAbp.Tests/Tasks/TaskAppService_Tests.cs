@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using System.Net;
 using Abp.Authorization;
+using Abp.Domain.Repositories;
 using Abp.Runtime.Validation;
 using LearningMpaAbp.MultiTenancy;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
+using LearningMpaAbp.Users;
+using Microsoft.AspNet.Identity;
 using Shouldly;
 using Xunit;
 
@@ -13,39 +16,48 @@ namespace LearningMpaAbp.Tests.Tasks
     public class TaskAppService_Tests : LearningMpaAbpTestBase
     {
         private readonly ITaskAppService _taskAppService;
-
+        
         public TaskAppService_Tests()
         {
             _taskAppService = Resolve<TaskAppService>();
         }
 
         [Fact]
-        public void Should_Create_New_Order()
+        public void Should_Create_New_Task_WithPermission()
         {
-            LoginAsDefaultTenantAdmin();
+            //Arrange
+            //LoginAsDefaultTenantAdmin();//基类的构造函数中已经以默认租户Admin登录。
             var initalCount = UsingDbContext(ctx => ctx.Tasks.Count());
 
-            _taskAppService.CreateTask(new CreateTaskInput()
+            var task1 = new CreateTaskInput()
             {
                 Title = "Test Task",
                 Description = "Test Task",
                 State = TaskState.Open
-            });
+            };
 
-            _taskAppService.CreateTask(new CreateTaskInput()
+            var task2 = new CreateTaskInput()
             {
                 Title = "Test Task2",
                 Description = "Test Task2",
                 State = TaskState.Open
-            });
+            };
 
+            //Act
+            int taskResult1 = _taskAppService.CreateTask(task1);
+            int taskResult2 = _taskAppService.CreateTask(task2);
+
+
+            //Assert
             UsingDbContext(ctx =>
             {
+                taskResult1.ShouldBeGreaterThan(0);
+                taskResult2.ShouldBeGreaterThan(0);
                 ctx.Tasks.Count().ShouldBe(initalCount + 2);
                 ctx.Tasks.FirstOrDefault(t => t.Title == "Test Task").ShouldNotBe(null);
-                var task2 = ctx.Tasks.FirstOrDefault(t => t.Title == "Test Task2");
-                task2.ShouldNotBe(null);
-                task2.State.ShouldBe(TaskState.Open);
+                var task = ctx.Tasks.FirstOrDefault(t => t.Title == "Test Task2");
+                task.ShouldNotBe(null);
+                task.State.ShouldBe(TaskState.Open);
             });
         }
 
@@ -55,26 +67,24 @@ namespace LearningMpaAbp.Tests.Tasks
         [Fact]
         public void Should_Not_Create_New_Order_AssignToOrther_WithoutPermission()
         {
+            //Arrange
             LoginAsTenant(Tenant.DefaultTenantName, "TestUser");
-            
-            _taskAppService.CreateTask(new CreateTaskInput()
+
+            //获取admin用户
+            var adminUser = UsingDbContext(ctx => ctx.Users.FirstOrDefault(u => u.UserName == User.AdminUserName));
+
+            var newTask = new CreateTaskInput()
             {
                 Title = "Test Task",
                 Description = "Test Task",
                 State = TaskState.Open,
-                AssignedPersonId = 4
-            });
+                AssignedPersonId = adminUser.Id //TestUser创建Task并分配给Admin
+            };
 
-            Assert.Throws<AbpAuthorizationException>(() => _taskAppService.CreateTask(new CreateTaskInput()
-            {
-                Title = "Test Task",
-                Description = "Test Task",
-                State = TaskState.Open,
-                AssignedPersonId = 4
-            }));
-
+            //Act,Assert
+            Assert.Throws<AbpAuthorizationException>(() => _taskAppService.CreateTask(newTask));
 
         }
-        
+
     }
 }
