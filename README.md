@@ -16,18 +16,6 @@
 
 ----
 
-本系列文章主要是基于ABP模板开发**Mpa**（多页面）『任务清单』项目。
-由于是入门系列，不会用到代码生成器，每一行代码都是手动敲入。
-源码已上传至[Github-LearningMpaAbp](https://github.com/yanshengjie/LearningMpaAbp)，可自行参考。
-本系列基于持续总结，会持续更新，请关注学习。
- 
-『任务清单』的主要功能是完成对任务的创建分配，简单的增删改查。
-
-![初步效果](http://upload-images.jianshu.io/upload_images/2799767-eaa7973e2d8434b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-[DEMO网址](http://shengjie.azurewebsites.net/)
-用户名/密码：admin/123qwe
-
 >**目录**
 
 [ABP入门系列（1）——通过模板创建MAP版本项目](http://www.jianshu.com/p/a1b5334c5805)
@@ -51,4 +39,20 @@
 [ABP入门系列（10）——扩展AbpSession](http://www.jianshu.com/p/930c10287e2a)
 
 [ABP入门系列（11）——编写单元测试](http://www.jianshu.com/p/4876599247d5)
+
+----
+
+本系列文章主要是基于ABP模板开发**Mpa**（多页面）『任务清单』项目。
+由于是入门系列，不会用到代码生成器，每一行代码都是手动敲入。
+源码已上传至[Github-LearningMpaAbp](https://github.com/yanshengjie/LearningMpaAbp)，可自行参考。
+本系列基于持续总结，会持续更新，请关注学习。
+ 
+『任务清单』的主要功能是完成对任务的创建分配，简单的增删改查。
+
+![初步效果](http://upload-images.jianshu.io/upload_images/2799767-eaa7973e2d8434b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+[DEMO网址](http://shengjie.azurewebsites.net/)
+用户名/密码：admin/123qwe
+
+
 
