@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using LearningMpaAbp.EntityFramework;
 using LearningMpaAbp.Tasks;
 
@@ -28,7 +29,10 @@ namespace LearningMpaAbp.Migrations.SeedData
         {
             foreach (var task in _tasks)
             {
-                _context.Tasks.Add(task);
+                if (_context.Tasks.FirstOrDefault(t => t.Title == task.Title) == null)
+                {
+                    _context.Tasks.Add(task);
+                }
                 _context.SaveChanges();
             }
         }

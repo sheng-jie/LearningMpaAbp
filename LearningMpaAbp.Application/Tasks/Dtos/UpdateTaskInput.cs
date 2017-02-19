@@ -15,7 +15,7 @@ namespace LearningMpaAbp.Tasks.Dtos
         [Range(1, Int32.MaxValue)] //Data annotation attributes work as expected.
         public int Id { get; set; }
 
-        public int? AssignedPersonId { get; set; }
+        public long? AssignedPersonId { get; set; }
 
         public TaskState? State { get; set; }
 

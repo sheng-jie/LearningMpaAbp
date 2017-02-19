@@ -170,6 +170,9 @@
     <Compile Include="Sessions\SessionAppService_Tests.cs" />
     <Compile Include="LearningMpaAbpTestBase.cs" />
     <Compile Include="Tasks\TaskAppService_Tests.cs" />
+    <Compile Include="TestDatas\TestDataBuilder.cs" />
+    <Compile Include="TestDatas\TestTasksBuilder.cs" />
+    <Compile Include="TestDatas\TestUserBuilder.cs" />
     <Compile Include="Users\UserAppService_Tests.cs" />
   </ItemGroup>
   <ItemGroup>

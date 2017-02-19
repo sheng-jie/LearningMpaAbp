@@ -24,7 +24,6 @@ namespace LearningMpaAbp.Migrations.SeedData
         public void Create()
         {
             CreateRolesAndUsers();
-            CreateNormalUserForTest();
         }
 
         private void CreateRolesAndUsers()
@@ -85,30 +84,5 @@ namespace LearningMpaAbp.Migrations.SeedData
             }
         }
         
-        /// <summary>
-        /// ‘§÷√≤‚ ‘”√ªß
-        /// </summary>
-        private void CreateNormalUserForTest()
-        {
-            var testUser =
-               _context.Users.FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == "TestUser");
-            if (testUser == null)
-            {
-                testUser = new User()
-                {
-                    TenantId = _tenantId,
-                    UserName = "TestUser",
-                    Name = "Test User",
-                    Surname = "Test",
-                    EmailAddress = "test@defaulttenant.com",
-                    Password = User.DefaultPassword
-                };
-                testUser.IsEmailConfirmed = true;
-                testUser.IsActive = true;
-
-                _context.Users.Add(testUser);
-                _context.SaveChanges();
-           }
-        }
     }
 }

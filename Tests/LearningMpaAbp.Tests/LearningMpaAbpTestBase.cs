@@ -16,6 +16,7 @@ using LearningMpaAbp.Users;
 using Castle.MicroKernel.Registration;
 using Effort;
 using EntityFramework.DynamicFilters;
+using LearningMpaAbp.Tests.TestDatas;
 
 namespace LearningMpaAbp.Tests
 {
@@ -39,6 +40,7 @@ namespace LearningMpaAbp.Tests
             UsingDbContext(context =>
             {
                 new TenantRoleAndUserBuilder(context, 1).Create();
+                new TestDataBuilder(context, 1).Create();
             });
 
             LoginAsDefaultTenantAdmin();
