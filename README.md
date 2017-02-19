@@ -48,3 +48,7 @@
 
 [ABP入门系列（9）——权限管理](http://www.jianshu.com/p/870938be9ec2)
 
+[ABP入门系列（10）——扩展AbpSession](http://www.jianshu.com/p/930c10287e2a)
+
+[ABP入门系列（11）——编写单元测试](http://www.jianshu.com/p/4876599247d5)
+
