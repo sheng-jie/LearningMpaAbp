@@ -1,13 +1,16 @@
 using System.Linq;
 using System.Security.Claims;
 using Abp.Configuration.Startup;
+using Abp.MultiTenancy;
+using Abp.Runtime;
 using Abp.Runtime.Session;
 
 namespace LearningMpaAbp.Extensions
 {
     public class AbpSessionExtension : ClaimsAbpSession, IAbpSessionExtension
     {
-        public AbpSessionExtension(IMultiTenancyConfig multiTenancy) : base(multiTenancy)
+        public AbpSessionExtension(IPrincipalAccessor principalAccessor, IMultiTenancyConfig multiTenancy, ITenantResolver tenantResolver, IAmbientScopeProvider<SessionOverride> sessionOverrideScopeProvider)
+            : base(principalAccessor, multiTenancy, tenantResolver, sessionOverrideScopeProvider)
         {
         }
 
@@ -23,5 +26,7 @@ namespace LearningMpaAbp.Extensions
 
             return claim.Value;
         }
+
+
     }
 }
