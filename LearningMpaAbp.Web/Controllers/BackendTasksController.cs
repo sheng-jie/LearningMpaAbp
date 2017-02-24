@@ -32,7 +32,7 @@ namespace LearningMpaAbp.Web.Controllers
             return View();
         }
 
-        [DontWrapResult]
+
         public JsonResult GetAllTasks(int limit, int offset, string sortfiled, string sortway, string search,
             string status)
         {
@@ -55,8 +55,9 @@ namespace LearningMpaAbp.Web.Controllers
 
             var pagedTasks = _taskAppService.GetPagedTasks(filter);
 
-
+            
             return Json(new {total = pagedTasks.TotalCount, rows = pagedTasks.Items}, JsonRequestBehavior.AllowGet);
+            
         }
 
         [HttpPost]
