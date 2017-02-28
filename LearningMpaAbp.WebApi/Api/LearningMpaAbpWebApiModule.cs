@@ -39,7 +39,10 @@ namespace LearningMpaAbp.Api
                     //var commentsFile = Path.Combine(baseDictory, commentsFileName);
                     //c.IncludeXmlComments(commentsFile);
                 })
-                .EnableSwaggerUi();
+                .EnableSwaggerUi(c =>
+                {
+                    c.InjectJavaScript(Assembly.GetAssembly(typeof(LearningMpaAbpWebApiModule)), "LearningMpaAbpWebApiModule.Api.Scripts.Swagger-Custom.js");
+                });
         }
 
         public override void PostInitialize()
