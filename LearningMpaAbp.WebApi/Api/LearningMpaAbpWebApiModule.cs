@@ -45,8 +45,15 @@ namespace LearningMpaAbp.Api
         public override void PostInitialize()
         {
             //Json时间格式化
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.DateFormatString =
-                "yyyy-MM-dd HH:mm:ss";
+            var converters = Configuration.Modules.AbpWebApi().HttpConfiguration.Formatters.JsonFormatter.SerializerSettings.Converters;
+            foreach (var converter in converters)
+            {
+                if (converter is AbpDateTimeConverter)
+                {
+                    var tmpConverter = converter as AbpDateTimeConverter;
+                    tmpConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                }
+            }
         }
     }
 }
