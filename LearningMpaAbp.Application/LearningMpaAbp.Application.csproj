@@ -145,10 +145,13 @@
     <Compile Include="Tasks\Dtos\CreateTaskInput.cs" />
     <Compile Include="Tasks\Dtos\GetTasksInput.cs" />
     <Compile Include="Tasks\Dtos\GetTasksOutput.cs" />
+    <Compile Include="Tasks\Dtos\TaskCacheItem.cs" />
     <Compile Include="Tasks\Dtos\TaskDto.cs" />
     <Compile Include="Tasks\Dtos\UpdateTaskInput.cs" />
     <Compile Include="Tasks\ITaskAppService.cs" />
+    <Compile Include="Tasks\ITaskCache.cs" />
     <Compile Include="Tasks\TaskAppService.cs" />
+    <Compile Include="Tasks\TaskCache.cs" />
     <Compile Include="Tasks\TaskDtoMapping.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />

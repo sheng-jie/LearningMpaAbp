@@ -38,17 +38,25 @@ namespace LearningMpaAbp.Tasks
         private readonly IRepository<Task> _taskRepository;
         private readonly IRepository<User, long> _userRepository;
 
+        private readonly ITaskCache _taskCache;
+
         /// <summary>
         ///     In constructor, we can get needed classes/interfaces.
         ///     They are sent here by dependency injection system automatically.
         /// </summary>
         public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository,
-            ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion, INotificationPublisher notificationPublisher)
+            ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion, INotificationPublisher notificationPublisher, ITaskCache taskCache)
         {
             _taskRepository = taskRepository;
             _userRepository = userRepository;
             _smtpEmialSenderConfig = smtpEmialSenderConfigtion;
             _notificationPublisher = notificationPublisher;
+            _taskCache = taskCache;
+        }
+
+        public TaskCacheItem GetTaskFromCacheById(int taskId)
+        {
+            return _taskCache[taskId];
         }
 
         public IList<TaskDto> GetAllTasks()

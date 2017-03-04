@@ -35,6 +35,8 @@ namespace LearningMpaAbp.Tasks
 
         void DeleteTask(int taskId);
 
+        TaskCacheItem GetTaskFromCacheById(int taskId);
+
         IList<TaskDto> GetAllTasks();
     }
 }
