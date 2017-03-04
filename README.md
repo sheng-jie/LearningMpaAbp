@@ -53,6 +53,10 @@
 
 [ABP入门系列（11）——编写单元测试](http://www.jianshu.com/p/4876599247d5)
 
+[ABP入门系列（12）——如何升级Abp并调试源码](http://www.jianshu.com/p/ae4fb0c7493d)
+
+[ABP入门系列（13）——Redis缓存用起来](http://www.jianshu.com/p/241793caa328)
+
 
 
 
