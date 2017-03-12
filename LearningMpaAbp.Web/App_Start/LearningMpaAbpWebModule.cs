@@ -40,7 +40,7 @@ namespace LearningMpaAbp.Web
             //});
 
             //配置使用Redis缓存
-            Configuration.Caching.UseRedis();
+            //Configuration.Caching.UseRedis();
 
             //配置所有Cache的默认过期时间为2小时
             Configuration.Caching.ConfigureAll(cache =>
