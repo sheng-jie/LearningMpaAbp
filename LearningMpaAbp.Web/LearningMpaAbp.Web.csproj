@@ -74,6 +74,10 @@
       <HintPath>..\packages\Abp.Owin.1.4.2.0\lib\net452\Abp.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Abp.RedisCache, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.RedisCache.1.4.2.0\lib\net452\Abp.RedisCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Abp.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.Web.1.4.2.0\lib\net452\Abp.Web.dll</HintPath>
       <Private>True</Private>
@@ -264,6 +268,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>

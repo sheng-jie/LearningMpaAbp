@@ -1,9 +1,13 @@
 ﻿using System.Web.Mvc;
+using Abp.Application.Services.Dto;
+using Abp.Runtime.Caching;
+using Abp.Threading;
 using Abp.Web.Mvc.Authorization;
 using AutoMapper;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
+using LearningMpaAbp.Users.Dto;
 using LearningMpaAbp.Web.Models.Tasks;
 using X.PagedList;
 
@@ -14,11 +18,13 @@ namespace LearningMpaAbp.Web.Controllers
     {
         private readonly ITaskAppService _taskAppService;
         private readonly IUserAppService _userAppService;
+        private readonly ICacheManager _cacheManager;
 
-        public TasksController(ITaskAppService taskAppService, IUserAppService userAppService)
+        public TasksController(ITaskAppService taskAppService, IUserAppService userAppService, ICacheManager cacheManager)
         {
             _taskAppService = taskAppService;
             _userAppService = userAppService;
+            _cacheManager = cacheManager;
         }
 
         public ActionResult Index(GetTasksInput input)
@@ -61,15 +67,39 @@ namespace LearningMpaAbp.Web.Controllers
             return PartialView("_List", output.Tasks);
         }
 
-
+        /// <summary>
+        /// 获取创建任务分部视图
+        /// 该方法使用ICacheManager进行缓存，在WebModule中配置缓存过期时间为10mins
+        /// </summary>
+        /// <returns></returns>
         public PartialViewResult RemoteCreate()
         {
-            var userList = _userAppService.GetUsers();
+            //1.1 注释该段代码，使用下面缓存的方式
+            //var userList = _userAppService.GetUsers();
+
+            //1.2 同步调用异步解决方案（最新Abp创建的模板项目已经去掉该同步方法，所以可以通过下面这种方式获取用户列表）
+            //var userList = AsyncHelper.RunSync(() => _userAppService.GetUsersAsync());
+
+            //1.3 缓存版本
+            var userList = _cacheManager.GetCache("ControllerCache").Get("AllUsers", () => _userAppService.GetUsers());
+
+            //1.4 转换为泛型版本
+            //var userList = _cacheManager.GetCache("ControllerCache").AsTyped<string, ListResultDto<UserListDto>>().Get("AllUsers", () => _userAppService.GetUsers());
+
+            //1.5 泛型缓存版本
+            //var userList = _cacheManager.GetCache<string, ListResultDto<UserListDto>>("ControllerCache").Get("AllUsers", () => _userAppService.GetUsers());
+
             ViewBag.AssignedPersonId = new SelectList(userList.Items, "Id", "Name");
             return PartialView("_CreateTaskPartial");
         }
 
+        /// <summary>
+        /// 获取创建任务分部视图（子视图）
+        /// 该方法使用[OutputCache]进行缓存，缓存过期时间为2mins
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
+        [OutputCache(Duration = 1200, VaryByParam = "none")]
         public PartialViewResult Create()
         {
             var userList = _userAppService.GetUsers();
