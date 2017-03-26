@@ -36,33 +36,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Abp, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.1.4.2.0\lib\net452\Abp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.1.5.1\lib\net452\Abp.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.AutoMapper, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.AutoMapper.1.4.2.0\lib\net452\Abp.AutoMapper.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.AutoMapper, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.AutoMapper.1.5.1\lib\net452\Abp.AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.EntityFramework, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.EntityFramework.1.4.2.0\lib\net452\Abp.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.EntityFramework, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.EntityFramework.1.5.1\lib\net452\Abp.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.EntityFramework.Common, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.EntityFramework.Common.1.4.2.0\lib\net452\Abp.EntityFramework.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.EntityFramework.Common, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.EntityFramework.Common.1.5.1\lib\net452\Abp.EntityFramework.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.TestBase, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.TestBase.1.4.2.0\lib\net452\Abp.TestBase.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.TestBase, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.TestBase.1.5.1\lib\net452\Abp.TestBase.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Zero, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.Zero.1.4.2.0\lib\net452\Abp.Zero.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Zero, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.Zero.1.5.1\lib\net452\Abp.Zero.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Zero.EntityFramework, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Abp.Zero.EntityFramework.1.4.2.0\lib\net452\Abp.Zero.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Zero.EntityFramework, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.Zero.EntityFramework.1.5.1\lib\net452\Abp.Zero.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
@@ -95,6 +88,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>

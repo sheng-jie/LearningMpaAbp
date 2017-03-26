@@ -46,65 +46,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Abp, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.1.4.2.0\lib\net452\Abp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.1.5.1\lib\net452\Abp.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.AutoMapper, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.AutoMapper.1.4.2.0\lib\net452\Abp.AutoMapper.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.AutoMapper, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.AutoMapper.1.5.1\lib\net452\Abp.AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Castle.Log4Net, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Castle.Log4Net.1.4.2.0\lib\net452\Abp.Castle.Log4Net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Castle.Log4Net, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Castle.Log4Net.1.5.1\lib\net452\Abp.Castle.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.EntityFramework, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.EntityFramework.1.4.2.0\lib\net452\Abp.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.EntityFramework, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.EntityFramework.1.5.1\lib\net452\Abp.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.EntityFramework.Common, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.EntityFramework.Common.1.4.2.0\lib\net452\Abp.EntityFramework.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.EntityFramework.Common, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.EntityFramework.Common.1.5.1\lib\net452\Abp.EntityFramework.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.HangFire, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.HangFire.1.4.2.0\lib\net452\Abp.HangFire.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.HangFire, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.HangFire.1.5.1\lib\net452\Abp.HangFire.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Owin, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Owin.1.4.2.0\lib\net452\Abp.Owin.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Owin, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Owin.1.5.1\lib\net452\Abp.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.RedisCache, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.RedisCache.1.4.2.0\lib\net452\Abp.RedisCache.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.RedisCache, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.RedisCache.1.5.1\lib\net452\Abp.RedisCache.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.1.4.2.0\lib\net452\Abp.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.1.5.1\lib\net452\Abp.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.Api, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.Api.1.4.2.0\lib\net452\Abp.Web.Api.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.Api, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Api.1.5.1\lib\net452\Abp.Web.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.Common, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.Common.1.4.2.0\lib\net452\Abp.Web.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.Common, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Common.1.5.1\lib\net452\Abp.Web.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.Mvc, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.Mvc.1.4.2.0\lib\net452\Abp.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.Mvc, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Mvc.1.5.1\lib\net452\Abp.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.SignalR, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.SignalR.1.4.2.0\lib\net452\Abp.Web.SignalR.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.SignalR, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.SignalR.1.5.1\lib\net452\Abp.Web.SignalR.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Zero, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Zero.1.4.2.0\lib\net452\Abp.Zero.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Zero, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.1.5.1\lib\net452\Abp.Zero.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Zero.EntityFramework, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Zero.EntityFramework.1.4.2.0\lib\net452\Abp.Zero.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Zero.EntityFramework, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.EntityFramework.1.5.1\lib\net452\Abp.Zero.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -158,17 +143,17 @@
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Hangfire.Core, Version=1.6.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hangfire.Core.1.6.8\lib\net45\Hangfire.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Hangfire.Core, Version=1.6.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.6.10\lib\net45\Hangfire.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Hangfire.SqlServer, Version=1.6.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hangfire.SqlServer.1.6.8\lib\net45\Hangfire.SqlServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Hangfire.SqlServer, Version=1.6.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.6.10\lib\net45\Hangfire.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -262,6 +247,9 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.1\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
@@ -647,12 +635,12 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
     <TypeScriptCompile Include="Abp\Framework\scripts\abp.d.ts" />
     <TypeScriptCompile Include="Abp\Framework\scripts\libs\abp.jquery.d.ts" />
     <TypeScriptCompile Include="Abp\Framework\scripts\libs\abp.signalr.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
