@@ -57,6 +57,10 @@
 
 [ABP入门系列（13）——Redis缓存用起来](http://www.jianshu.com/p/241793caa328)
 
+[ABP入门系列（14）——应用BootstrapTable表格插件](http://www.jianshu.com/p/8ad141c30235)
+
+[ABP入门系列（15）——创建微信公众号模块](http://www.jianshu.com/p/1e6efd9be629)
+
 
 
 
