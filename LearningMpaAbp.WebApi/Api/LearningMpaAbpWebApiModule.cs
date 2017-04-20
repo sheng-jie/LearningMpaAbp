@@ -19,6 +19,8 @@ namespace LearningMpaAbp.Api
             Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
                 .ForAll<IApplicationService>(typeof(LearningMpaAbpApplicationModule).Assembly, "app")
                 .Build();
+            //var cors = new EnableCorsAttribute("*", "*", "*");
+            //GlobalConfiguration.Configuration.EnableCors(cors);
 
             Configuration.Modules.AbpWebApi().HttpConfiguration.Filters.Add(new HostAuthenticationFilter("Bearer"));
 

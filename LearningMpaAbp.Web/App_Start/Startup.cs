@@ -12,6 +12,7 @@ using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Twitter;
 using Owin;
+using LearningMpaAbp.Api;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -22,9 +23,12 @@ namespace LearningMpaAbp.Web
         public void Configuration(IAppBuilder app)
         {
             app.UseAbp();
-           
+
             app.UseOAuthBearerAuthentication(AccountController.OAuthBearerOptions);
-            
+
+            app.UseOAuthAuthorizationServer(OAuthOptions.CreateServerOptions());
+
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

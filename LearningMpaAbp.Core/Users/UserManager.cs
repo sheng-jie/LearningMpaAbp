@@ -1,4 +1,6 @@
-﻿using Abp.Authorization;
+﻿using System;
+using System.Threading.Tasks;
+using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.Configuration;
 using Abp.Domain.Repositories;
@@ -40,6 +42,11 @@ namespace LearningMpaAbp.Users
                   settingManager,
                   userTokenProviderAccessor)
         {
+        }
+
+        public Task LoginAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        {
+            throw new NotImplementedException();
         }
     }
 }
