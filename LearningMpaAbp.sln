@@ -33,8 +33,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningMpaAbp.Weixin", "LearningMpaAbp.Weixin\LearningMpaAbp.Weixin.csproj", "{93C5BAA6-757E-4EA7-BD0E-16425ED2F650}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,10 +67,6 @@ Global
 		{6F98C2F2-898A-421B-BE3D-68FE69EC0646}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F98C2F2-898A-421B-BE3D-68FE69EC0646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F98C2F2-898A-421B-BE3D-68FE69EC0646}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93C5BAA6-757E-4EA7-BD0E-16425ED2F650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93C5BAA6-757E-4EA7-BD0E-16425ED2F650}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93C5BAA6-757E-4EA7-BD0E-16425ED2F650}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93C5BAA6-757E-4EA7-BD0E-16425ED2F650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
