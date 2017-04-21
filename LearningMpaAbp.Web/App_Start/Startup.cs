@@ -13,6 +13,7 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Twitter;
 using Owin;
 using LearningMpaAbp.Api;
+using Microsoft.Owin.Cors;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -22,11 +23,16 @@ namespace LearningMpaAbp.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseAbp();
+            //第一步：配置跨域访问
+            app.UseCors(CorsOptions.AllowAll);
 
             app.UseOAuthBearerAuthentication(AccountController.OAuthBearerOptions);
 
+            //第二步：使用OAuth密码认证模式
             app.UseOAuthAuthorizationServer(OAuthOptions.CreateServerOptions());
+
+            //第三步：使用Abp
+            app.UseAbp();
 
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
