@@ -40,8 +40,12 @@ namespace LearningMpaAbp.Weixin.Controllers
         /// </summary>
         /// <param name="url">获取用户列表的api</param>
         /// <returns></returns>
-        public async Task<PartialViewResult> SendRequest(string url)
+        public async Task<PartialViewResult> SendRequest(string url, string tokenUrl, string user, string pwd)
         {
+            var tokenResult = await GetAuthToken(tokenUrl, user, pwd);
+            //将token添加到请求头
+            _abpWebApiClient.RequestHeaders.Add(new NameValue("Authorization", "Bearer " + tokenResult));
+
             return await GetUserList(url);
         }
 
@@ -60,9 +64,6 @@ namespace LearningMpaAbp.Weixin.Controllers
                 UsernameOrEmailAddress = user,
                 Password = pwd
             });
-
-            //将token添加到请求头
-            _abpWebApiClient.RequestHeaders.Add(new NameValue("Authorization", "Bearer " + tokenResult));
 
             return tokenResult;
         }

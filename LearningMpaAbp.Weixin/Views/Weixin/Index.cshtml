@@ -53,7 +53,7 @@
 
             <div role="tabpanel" class="tab-pane" id="abpCookie">
                 <p>abp提供的cookie认证方式：就是先进行登录系统，保存cookie信息，然后再携带cookie去访问webapi</p>
-                <button type="button" class="btn btn-primary" onclick="login();">1.使用用户名密码登陆系统</button>
+                <button type="button" class="btn btn-primary" >1.使用用户名密码登陆系统</button>
 
                 <button type="submit" class="btn btn-success" onclick="sendRequestByCookie();">2.携带cookie认证信息访问webapi</button>
 
@@ -95,16 +95,23 @@
     function sendRequest() {
         var domain = $("#domain").val();
         var webapi = $("#webapi").val();
+        var token = $("#tokenUrl").val();
+        var userid = $("#userId").val();
+        var pwd = $("#pwd").val();
+        var tokenUrl = domain + token;
         var requestUrl = domain + webapi;
         $("#userList").empty();
 
         $.ajax({
             url: "/weixin/sendrequest",
-            data: { url: requestUrl },
+            data: { url: requestUrl, tokenUrl: tokenUrl, user: userid, pwd: pwd },
             type: "GET",
             dataType: "html",
             success: function (data) {
                 $("#userList").html(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
             }
         });
     }
