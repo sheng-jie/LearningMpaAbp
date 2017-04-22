@@ -36,7 +36,7 @@ namespace LearningMpaAbp.Api
                     TokenEndpointPath = new PathString("/oauth/token"),
                     Provider = provider,
                     RefreshTokenProvider = refreshTokenProvider,
-                    AccessTokenExpireTimeSpan = TimeSpan.FromDays(3),
+                    AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(30),
                     AllowInsecureHttp = true
                 };
             }
