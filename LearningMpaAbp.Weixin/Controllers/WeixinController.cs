@@ -23,7 +23,7 @@ namespace LearningMpaAbp.Weixin.Controllers
     public class WeixinController : Controller
     {
         private readonly IAbpWebApiClient _abpWebApiClient;
-        private string baseUrl = "http://localhost:61759";
+        private string baseUrl = "http://shengjie.azurewebsites.net/";
         private string loginUrl = "/account/login";
         private string webapiUrl = "/api/services/app/User/GetUsers";
         private string abpTokenUrl = "/api/Account/Authenticate";
@@ -121,57 +121,9 @@ namespace LearningMpaAbp.Weixin.Controllers
             }
         }
 
-        /// <summary>
-        /// 使用cookie认证
-        /// </summary>
-        /// <param name="url"></param>
-        private void CookieBasedAuth(string url)
-        {
-            _abpWebApiClient.RequestHeaders.Clear();
-
-            var requestBytes = Encoding.UTF8.GetBytes("TenancyName=" + "Default" + "&UsernameOrEmailAddress=" + "admin" + "&Password=" + "123qwe");
-
-            var request = WebRequest.CreateHttp(url);
-
-            request.Method = WebRequestMethods.Http.Post;
-            request.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-            request.Accept = "application/json";
-            request.CookieContainer = new CookieContainer();
-            request.ContentLength = requestBytes.Length;
-
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(requestBytes, 0, requestBytes.Length);
-                stream.Flush();
-
-                using (var response = (HttpWebResponse)request.GetResponse())
-                {
-                    var responseString = Encoding.UTF8.GetString(response.GetResponseStream().GetAllBytes());
-                    var ajaxResponse = JsonString2Object<AjaxResponse>(responseString);
-
-                    if (!ajaxResponse.Success)
-                    {
-                        throw new Exception("Could not login. Reason: " + ajaxResponse.Error.Message + " | " + ajaxResponse.Error.Details);
-                    }
-
-                    _abpWebApiClient.Cookies.Clear();
-                    foreach (Cookie cookie in response.Cookies)
-                    {
-                        _abpWebApiClient.Cookies.Add(cookie);
-                    }
-                }
-            }
-        }
-
-        private static TObj JsonString2Object<TObj>(string str)
-        {
-            return JsonConvert.DeserializeObject<TObj>(str,
-                new JsonSerializerSettings
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                });
-        }
         #endregion
+
+        #region OAuth2认证方式
 
         public async Task<string> GetOAuth2Token()
         {
@@ -261,6 +213,8 @@ namespace LearningMpaAbp.Weixin.Controllers
 
             return await GetUserList(baseUrl + webapiUrl);
         }
+
+        #endregion
 
         private async Task<PartialViewResult> GetUserList(string url)
         {
