@@ -99,7 +99,8 @@ namespace LearningMpaAbp.Api.Providers
             }
         }
 
-        private void CreateExceptionForFailedLoginAttempt(OAuthGrantResourceOwnerCredentialsContext context, AbpLoginResultType result, string usernameOrEmailAddress, string tenancyName)
+        private void CreateExceptionForFailedLoginAttempt(OAuthGrantResourceOwnerCredentialsContext context, 
+            AbpLoginResultType result, string usernameOrEmailAddress, string tenancyName)
         {
             switch (result)
             {

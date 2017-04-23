@@ -42,7 +42,7 @@ namespace LearningMpaAbp.Weixin.Controllers
             return View();
         }
 
-        #region Abp中的token认证方式（密码模式）       
+        #region Abp中的token认证方式    
 
         /// <summary>
         /// 请求webapi
@@ -59,13 +59,6 @@ namespace LearningMpaAbp.Weixin.Controllers
             return await GetUserList(baseUrl + webapiUrl);
         }
 
-        /// <summary>
-        /// 向服务器申请token
-        /// </summary>
-        /// <param name="url">申请token的地址</param>
-        /// <param name="user">用户名</param>
-        /// <param name="pwd">密码</param>
-        /// <returns></returns>
         public async Task<string> GetAbpToken()
         {
             var tokenResult = await _abpWebApiClient.PostAsync<string>(baseUrl + abpTokenUrl, new
@@ -84,7 +77,6 @@ namespace LearningMpaAbp.Weixin.Controllers
 
         public async Task<PartialViewResult> SendRequestBasedCookie()
         {
-            //CookieBasedAuth(baseUrl + loginUrl);
             await CookieBasedAuth();
             return await GetUserList(baseUrl + webapiUrl);
         }

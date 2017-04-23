@@ -61,6 +61,8 @@
 
 [ABP入门系列（15）——创建微信公众号模块](http://www.jianshu.com/p/1e6efd9be629)
 
+[ABP入门系列（16）——通过webapi与系统进行交互](http://www.jianshu.com/p/d14733432dc2)
+
 
 
 

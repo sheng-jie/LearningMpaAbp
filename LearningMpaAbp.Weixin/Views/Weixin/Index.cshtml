@@ -4,7 +4,7 @@
 }
 
 <h2>公众号模块如何通过webapi进行交互</h2>
-
+<p>相关代码，可参考github上源码项目<a href="https://github.com/yanshengjie/LearningMpaAbp" target="_blank">Github-LearningMpaAbp</a></p>
 <hr />
 <div class="container">
     <div class="row">
@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="domain">webapi域名</label>
             <input type="text" class="form-control" id="domain" placeholder="webapi域名" value="http://shengjie.azurewebsites.net">
-        </div>        
+        </div>
         <div class="form-group">
             <label for="webapi">请求的webapi</label>
             <input type="text" class="form-control" id="webapi" placeholder="请求的webapi" value="/api/services/app/User/GetUsers">
@@ -118,8 +118,7 @@
         });
     }
 
-    function getOAuth2Token()
-    {
+    function getOAuth2Token() {
         $.ajax({
             url: "/weixin/GetOAuth2Token",
             type: "GET",
