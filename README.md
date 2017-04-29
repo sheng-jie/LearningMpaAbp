@@ -63,6 +63,8 @@
 
 [ABP入门系列（16）——通过webapi与系统进行交互](http://www.jianshu.com/p/d14733432dc2)
 
+[ABP入门系列（17）——使用ABP集成的邮件系统发送邮件](http://www.jianshu.com/p/ea10c8168264)
+
 
 
 
