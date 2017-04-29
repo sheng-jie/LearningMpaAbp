@@ -101,6 +101,7 @@ namespace LearningMpaAbp.Weixin.Controllers
 
                 //获取token保存到cookie，并设置token的过期日期                    
                 var result = await client.PostAsync(uri, content);
+                result.EnsureSuccessStatusCode();
 
                 string loginResult = await result.Content.ReadAsStringAsync();
 
@@ -138,6 +139,7 @@ namespace LearningMpaAbp.Weixin.Controllers
 
                 //获取token保存到cookie，并设置token的过期日期                    
                 var result = await client.PostAsync(uri, content);
+                result.EnsureSuccessStatusCode();
                 string tokenResult = await result.Content.ReadAsStringAsync();
 
                 var tokenObj = (JObject)JsonConvert.DeserializeObject(tokenResult);
@@ -173,7 +175,7 @@ namespace LearningMpaAbp.Weixin.Controllers
 
                 //获取token保存到cookie，并设置token的过期日期                    
                 var result = await client.PostAsync(uri, content);
-
+                result.EnsureSuccessStatusCode();
                 string tokenResult = await result.Content.ReadAsStringAsync();
 
                 var tokenObj = (JObject)JsonConvert.DeserializeObject(tokenResult);
