@@ -145,13 +145,25 @@ namespace LearningMpaAbp.Tasks
             //获取是否有权限
             bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
             //如果任务已经分配且未分配给自己，且不具有分配任务权限，则抛出异常
-            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId() && !canAssignTaskToOther)
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId() )
             {
-                throw new AbpAuthorizationException("没有分配任务给他人的权限！");
+                if (!canAssignTaskToOther)
+                    throw new AbpAuthorizationException("没有分配任务给他人的权限！");
+                else
+                {
+                    var updateTask = Mapper.Map<Task>(input);
+                    _taskRepository.Update(updateTask);
+
+                    //发送通知
+                    var message = "You hava been assigned one task into your todo list.";
+                    _smtpEmailSender.Send("ysjshengjie@qq.com", updateTask.AssignedPerson.EmailAddress, "New Todo item", message);
+
+                    _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
+                        NotificationSeverity.Info, new[] { updateTask.AssignedPerson.ToUserIdentifier() });
+                }
             }
 
-            var updateTask = Mapper.Map<Task>(input);
-            _taskRepository.Update(updateTask);
+            
         }
 
         public void AssignTaskToPerson(AssignTaskToPersonInput input)
@@ -162,7 +174,7 @@ namespace LearningMpaAbp.Tasks
             //这里有一个问题就是，当开发人员不知道有这个TaskManager时，依然可以通过直接修改Task的AssignedPersonId属性就行任务分配。
 
             //分配任务成功后，触发领域事件，发送邮件通知
-            _eventBus.Trigger(new TaskAssignedEventData(task, user));
+            //_eventBus.Trigger(new TaskAssignedEventData(task, user));//由领域服务触发领域事件
 
         }
 

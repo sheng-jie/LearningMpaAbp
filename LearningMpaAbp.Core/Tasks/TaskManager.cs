@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using LearningMpaAbp.Users;
 using Abp.Domain.Repositories;
 using Abp.Authorization;
+using Abp.Events.Bus;
 using LearningMpaAbp.Authorization;
 using Abp.Runtime.Session;
 
@@ -16,11 +17,13 @@ namespace LearningMpaAbp.Tasks
     {
         private readonly IPermissionChecker _permissionChecker;
         private readonly IAbpSession _abpSession;
+        private readonly IEventBus _eventBus;
 
-        public TaskManager(IPermissionChecker permissionChecker, IAbpSession abpSession)
+        public TaskManager(IPermissionChecker permissionChecker, IAbpSession abpSession, IEventBus eventBus)
         {
             _permissionChecker = permissionChecker;
             _abpSession = abpSession;
+            _eventBus = eventBus;
         }
 
         public void AssignTaskToPerson(Task task, User user)
@@ -45,6 +48,9 @@ namespace LearningMpaAbp.Tasks
             
 
             task.AssignedPersonId = user.Id;
+
+            //使用领域事件触发发送通知操作
+            _eventBus.Trigger(new TaskAssignedEventData(task, user));
         }
     }
 }
