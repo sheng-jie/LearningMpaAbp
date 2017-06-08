@@ -12,6 +12,7 @@ using LearningMpaAbp.Users;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
+using Abp.Authorization;
 
 namespace LearningMpaAbp.Api.Controllers
 {
