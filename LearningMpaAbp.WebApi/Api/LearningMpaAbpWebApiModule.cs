@@ -6,6 +6,7 @@ using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.WebApi;
 using Swashbuckle.Application;
+using Abp.Json;
 
 namespace LearningMpaAbp.Api
 {
@@ -49,9 +50,18 @@ namespace LearningMpaAbp.Api
 
         public override void PostInitialize()
         {
-            //Json时间格式化
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.DateFormatString =
-                "yyyy-MM-dd HH:mm:ss";
+            //Json时间格式化 该方法已失效
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.DateFormatString =
+            //    "yyyy-MM-dd HH:mm:ss";
+            var converters = Configuration.Modules.AbpWebApi().HttpConfiguration.Formatters.JsonFormatter.SerializerSettings.Converters;
+            foreach (var converter in converters)
+            {
+                if (converter is AbpDateTimeConverter)
+                {
+                    var tmpConverter = converter as AbpDateTimeConverter;
+                    tmpConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                }
+            }
         }
     }
 }

@@ -20,6 +20,8 @@ using LearningMpaAbp.Authorization;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
 using LearningMpaAbp.Extensions;
+using Abp.Events.Bus;
+using Abp.Net.Mail;
 
 namespace LearningMpaAbp.Tasks
 {
@@ -32,26 +34,35 @@ namespace LearningMpaAbp.Tasks
     public class TaskAppService : LearningMpaAbpAppServiceBase, ITaskAppService
     {
         private readonly INotificationPublisher _notificationPublisher;
-        private readonly ISmtpEmailSenderConfiguration _smtpEmialSenderConfig;
+        private readonly ISmtpEmailSender _smtpEmailSender;
         //These members set in constructor using constructor injection.
 
         private readonly IRepository<Task> _taskRepository;
         private readonly IRepository<User, long> _userRepository;
-
+        private readonly ITaskManager _taskManager;
         private readonly ITaskCache _taskCache;
+        private readonly IEventBus _eventBus;
 
         /// <summary>
         ///     In constructor, we can get needed classes/interfaces.
         ///     They are sent here by dependency injection system automatically.
         /// </summary>
-        public TaskAppService(IRepository<Task> taskRepository, IRepository<User, long> userRepository,
-            ISmtpEmailSenderConfiguration smtpEmialSenderConfigtion, INotificationPublisher notificationPublisher, ITaskCache taskCache)
+        public TaskAppService(
+            IRepository<Task> taskRepository,
+            IRepository<User, long> userRepository,
+            ISmtpEmailSender smtpEmailSender,
+            INotificationPublisher notificationPublisher,
+            ITaskCache taskCache,
+            ITaskManager taskManager,
+            IEventBus eventBus)
         {
             _taskRepository = taskRepository;
             _userRepository = userRepository;
-            _smtpEmialSenderConfig = smtpEmialSenderConfigtion;
+            _smtpEmailSender = smtpEmailSender;
             _notificationPublisher = notificationPublisher;
             _taskCache = taskCache;
+            _taskManager = taskManager;
+            _eventBus = eventBus;
         }
 
         public TaskCacheItem GetTaskFromCacheById(int taskId)
@@ -125,31 +136,55 @@ namespace LearningMpaAbp.Tasks
 
             return task.MapTo<TaskDto>();
         }
-        
+
         public void UpdateTask(UpdateTaskInput input)
         {
             //We can use Logger, it's defined in ApplicationService base class.
             Logger.Info("Updating a task for input: " + input);
 
             //获取是否有权限
-            bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
+            //bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
+
             //如果任务已经分配且未分配给自己，且不具有分配任务权限，则抛出异常
-            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId() && !canAssignTaskToOther)
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId())
             {
-                throw new AbpAuthorizationException("没有分配任务给他人的权限！");
+                var updateTask = Mapper.Map<Task>(input);
+                var user = _userRepository.Get(input.AssignedPersonId.Value);
+                //先执行分配任务
+                _taskManager.AssignTaskToPerson(updateTask, user);
+
+                //再更新其他字段
+                _taskRepository.Update(updateTask);
+
+                ////发送通知
+                //var message = "You hava been assigned one task into your todo list.";
+                //_smtpEmailSender.Send("ysjshengjie@qq.com", updateTask.AssignedPerson.EmailAddress, "New Todo item", message);
+
+                //_notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
+                //    NotificationSeverity.Info, new[] { updateTask.AssignedPerson.ToUserIdentifier() });
             }
 
-            var updateTask = Mapper.Map<Task>(input);
-            _taskRepository.Update(updateTask);
         }
-        
+
+        public void AssignTaskToPerson(AssignTaskToPersonInput input)
+        {
+            var task = _taskRepository.Get(input.TaskId);
+            var user = _userRepository.Get(input.UserId);
+            _taskManager.AssignTaskToPerson(task, user);
+            //这里有一个问题就是，当开发人员不知道有这个TaskManager时，依然可以通过直接修改Task的AssignedPersonId属性就行任务分配。
+
+            //分配任务成功后，触发领域事件，发送邮件通知
+            //_eventBus.Trigger(new TaskAssignedEventData(task, user));//由领域服务触发领域事件
+
+        }
+
         public int CreateTask(CreateTaskInput input)
         {
             //We can use Logger, it's defined in ApplicationService class.
             Logger.Info("Creating a task for input: " + input);
-            
+
             //判断用户是否有权限
-            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value !=AbpSession.GetUserId())
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId())
                 PermissionChecker.Authorize(PermissionNames.Pages_Tasks_AssignPerson);
 
             var task = Mapper.Map<Task>(input);
@@ -159,19 +194,20 @@ namespace LearningMpaAbp.Tasks
             //只有创建成功才发送邮件和通知
             if (result > 0)
             {
-                task.CreationTime = Clock.Now;
-
                 if (input.AssignedPersonId.HasValue)
                 {
-                    task.AssignedPerson = _userRepository.Load(input.AssignedPersonId.Value);
-                    var message = "You hava been assigned one task into your todo list.";
+                    var user = _userRepository.Load(input.AssignedPersonId.Value);
+                    //task.AssignedPerson = user;
+                    //var message = "You hava been assigned one task into your todo list.";
+
+                    //使用领域事件触发发送通知操作
+                    _eventBus.Trigger(new TaskAssignedEventData(task, user));
 
                     //TODO:需要重新配置QQ邮箱密码
-                    //SmtpEmailSender emailSender = new SmtpEmailSender(_smtpEmialSenderConfig);
-                    //emailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
+                    //_smtpEmailSender.Send("ysjshengjie@qq.com", task.AssignedPerson.EmailAddress, "New Todo item", message);
 
-                    _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
-                        NotificationSeverity.Info, new[] { task.AssignedPerson.ToUserIdentifier() });
+                    //_notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
+                    //    NotificationSeverity.Info, new[] { task.AssignedPerson.ToUserIdentifier() });
                 }
             }
 

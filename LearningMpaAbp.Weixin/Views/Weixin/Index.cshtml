@@ -4,8 +4,7 @@
 }
 
 <h2>公众号模块如何通过webapi进行交互</h2>
-
-
+<p>相关代码，可参考github上源码项目<a href="https://github.com/yanshengjie/LearningMpaAbp" target="_blank">Github-LearningMpaAbp</a></p>
 <hr />
 <div class="container">
     <div class="row">
@@ -13,10 +12,6 @@
         <div class="form-group">
             <label for="domain">webapi域名</label>
             <input type="text" class="form-control" id="domain" placeholder="webapi域名" value="http://shengjie.azurewebsites.net">
-        </div>
-        <div class="form-group">
-            <label for="tokenUrl">申请token的Url</label>
-            <input type="text" class="form-control" id="tokenUrl" placeholder="申请token的Url" value="/api/Account/Authenticate">
         </div>
         <div class="form-group">
             <label for="webapi">请求的webapi</label>
@@ -32,41 +27,50 @@
             <li role="presentation" class="active"><a href="#abpOauth" aria-controls="abpOauth" role="tab" data-toggle="tab">abp中的token认证方式</a></li>
             <li role="presentation"><a href="#abpCookie" aria-controls="abpCookie" role="tab" data-toggle="tab">abp中的Cookie认证方式</a></li>
             <li role="presentation"><a href="#oauth" aria-controls="oauth" role="tab" data-toggle="tab">oauth2.0方式</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="abpOauth">
+                <div class="form-group">
+                    <label for="tokenUrl">申请token的Url</label>
+                    <input type="text" class="form-control" id="tokenUrl" placeholder="申请token的Url" value="/api/Account/Authenticate">
+                </div>
                 <p> Abp提供的token认证方式为<b>密码模式</b>：即用户向客户端提供自己的用户名密码，客户端使用这些信息向服务器申请令牌。</p>
                 <p>1. 服务器验证客户端的发送的用户名密码，验证通过，发放token。</p>
                 <p>2. 客户端将token添加到请求头访问webapi。</p>
-                <input type="text" class="form-control" id="userId" placeholder="用户名" required />
-                <input type="password" class="form-control" id="pwd" placeholder="密码" required />
+                <input type="text" class="form-control" id="userId" placeholder="用户名" value="admin" />
+                <input type="password" class="form-control" id="pwd" placeholder="密码" value="123qwe" />
 
                 <button type="button" class="btn btn-primary" onclick="requestToken();">1.使用用户名密码申请token</button>
 
-                <p id="requestToken" class="text-info"></p>
                 <button type="submit" class="btn btn-success" onclick="sendRequest();">2.使用token请求webapi</button>
             </div>
 
 
             <div role="tabpanel" class="tab-pane" id="abpCookie">
                 <p>abp提供的cookie认证方式：就是先进行登录系统，保存cookie信息，然后再携带cookie去访问webapi</p>
-                <button type="button" class="btn btn-primary" >1.使用用户名密码登陆系统</button>
+                <button type="button" class="btn btn-primary">1.使用用户名密码登陆系统</button>
 
                 <button type="submit" class="btn btn-success" onclick="sendRequestByCookie();">2.携带cookie认证信息访问webapi</button>
 
             </div>
-            <div role="tabpanel" class="tab-pane" id="oauth">...</div>
-            <div role="tabpanel" class="tab-pane" id="settings">...</div>
+            <div role="tabpanel" class="tab-pane" id="oauth">
+                <div class="form-group">
+                    <label for="tokenUrl">申请token的Url</label>
+                    <input type="text" class="form-control" id="tokenUrl" placeholder="申请token的Url" value="/api/oauth/token">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="getOAuth2Token()">1. 获取OAuth2.0 Token</button>
+
+                <button type="submit" class="btn btn-success" onclick="sendRequestBasedOAuth2Token();">2.使用token请求webapi</button>
+            </div>
         </div>
     </div>
 
 
     <br />
-    <h3>用户列表</h3>
-    <div class="row" id="userList">
+    <h3>结果</h3>
+    <div class="row" id="result">
 
     </div>
 
@@ -74,41 +78,26 @@
 
 <script>
 
-
     function requestToken() {
-        var domain = $("#domain").val();
-        var token = $("#tokenUrl").val();
-        var tokenUrl = domain + token;
-        var userid = $("#userId").val();
-        var pwd = $("#pwd").val();
         $.ajax({
-            url: "/weixin/GetAuthToken",
-            data: { url: tokenUrl, user: userid, pwd: pwd },
+            url: "/weixin/GetAbpToken",
             type: "get",
             dataType: "html",
             success: function (data) {
-                $("#requestToken").html(data);
+                $("#result").html(data);
             }
         });
     }
 
     function sendRequest() {
-        var domain = $("#domain").val();
-        var webapi = $("#webapi").val();
-        var token = $("#tokenUrl").val();
-        var userid = $("#userId").val();
-        var pwd = $("#pwd").val();
-        var tokenUrl = domain + token;
-        var requestUrl = domain + webapi;
-        $("#userList").empty();
+        $("#result").empty();
 
         $.ajax({
             url: "/weixin/sendrequest",
-            data: { url: requestUrl, tokenUrl: tokenUrl, user: userid, pwd: pwd },
             type: "GET",
             dataType: "html",
             success: function (data) {
-                $("#userList").html(data);
+                $("#result").html(data);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);
@@ -117,20 +106,37 @@
     }
 
     function sendRequestByCookie() {
-        var domain = $("#domain").val();
-        var webapi = $("#webapi").val();
-        var requestUrl = domain + webapi;
-        $("#userList").empty();
+        $("#result").empty();
 
         $.ajax({
             url: "/weixin/SendRequestBasedCookie",
-            data: { loginUrl: domain + "/account/login",url: requestUrl },
             type: "GET",
             dataType: "html",
             success: function (data) {
-                $("#userList").html(data);
+                $("#result").html(data);
             }
         });
+    }
 
+    function getOAuth2Token() {
+        $.ajax({
+            url: "/weixin/GetOAuth2Token",
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $("#result").html(data);
+            }
+        });
+    }
+
+    function sendRequestBasedOAuth2Token() {
+        $.ajax({
+            url: "/weixin/SendRequestWithOAuth2Token",
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $("#result").html(data);
+            }
+        });
     }
 </script>

@@ -135,7 +135,12 @@
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
     <Compile Include="Authorization\TaskAuthorizationProvider.cs" />
+    <Compile Include="Tasks\ITaskManager.cs" />
+    <Compile Include="Tasks\SendNotificationToUserWhenAssignedTask.cs" />
     <Compile Include="Tasks\Task.cs" />
+    <Compile Include="Tasks\TaskAssignedEventData.cs" />
+    <Compile Include="Tasks\TaskEventData.cs" />
+    <Compile Include="Tasks\TaskManager.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Users\UserManager.cs" />
     <Compile Include="Users\UserStore.cs" />
