@@ -3,15 +3,18 @@ using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Abp.BackgroundJobs;
 using Abp.Hangfire;
 using Abp.Hangfire.Configuration;
 using Abp.Zero.Configuration;
 using Abp.Modules;
 using Abp.Runtime.Caching.Redis;
+using Abp.Threading.BackgroundWorkers;
 using Abp.Web.Mvc;
 using Abp.Web.SignalR;
 using LearningMpaAbp.Api;
 using Hangfire;
+using LearningMpaAbp.Workers;
 
 namespace LearningMpaAbp.Web
 {
@@ -63,6 +66,13 @@ namespace LearningMpaAbp.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        public override void PostInitialize()
+        {
+            base.PostInitialize();
+            var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
+            workManager.Add(IocManager.Resolve<MakeInactiveUsersPassiveWorker>());
         }
     }
 }

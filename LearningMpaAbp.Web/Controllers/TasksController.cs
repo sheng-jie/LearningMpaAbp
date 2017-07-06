@@ -4,6 +4,7 @@ using Abp.Runtime.Caching;
 using Abp.Threading;
 using Abp.Web.Mvc.Authorization;
 using AutoMapper;
+using LearningMpaAbp.Notifications;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Tasks.Dtos;
 using LearningMpaAbp.Users;
@@ -18,13 +19,15 @@ namespace LearningMpaAbp.Web.Controllers
     {
         private readonly ITaskAppService _taskAppService;
         private readonly IUserAppService _userAppService;
+        private readonly INotificationAppService _notificationAppService;
         private readonly ICacheManager _cacheManager;
 
-        public TasksController(ITaskAppService taskAppService, IUserAppService userAppService, ICacheManager cacheManager)
+        public TasksController(ITaskAppService taskAppService, IUserAppService userAppService, ICacheManager cacheManager, INotificationAppService notificationAppService)
         {
             _taskAppService = taskAppService;
             _userAppService = userAppService;
             _cacheManager = cacheManager;
+            _notificationAppService = notificationAppService;
         }
 
         public ActionResult Index(GetTasksInput input)
@@ -149,6 +152,12 @@ namespace LearningMpaAbp.Web.Controllers
             var output = _taskAppService.GetTasks(input);
 
             return PartialView("_List", output.Tasks);
+        }
+
+        public ActionResult NotifyUser()
+        {
+            _notificationAppService.NotificationUsersWhoHaveOpenTask();
+            return new EmptyResult();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Abp.AutoMapper;
+using Abp.BackgroundJobs;
+using Abp.Dependency;
 using Abp.Modules;
 using Castle.MicroKernel.Registration;
 
@@ -14,6 +16,9 @@ namespace LearningMpaAbp
             {
                 //Add your custom AutoMapper mappings here...
             });
+
+            //注入后台任务默认存储
+            IocManager.Register<IBackgroundJobStore,BackgroundJobStore>();
         }
 
         public override void Initialize()

@@ -158,7 +158,6 @@ namespace LearningMpaAbp.Tasks
 
             //再更新其他字段
             _taskRepository.Update(updateTask);
-
             ////发送通知
             //var message = "You hava been assigned one task into your todo list.";
             //_smtpEmailSender.Send("ysjshengjie@qq.com", updateTask.AssignedPerson.EmailAddress, "New Todo item", message);

@@ -139,12 +139,16 @@
     <Compile Include="Dto\PagedInputDto.cs" />
     <Compile Include="Dto\PagedSortedAndFilteredInputDto.cs" />
     <Compile Include="IDtoMapping.cs" />
+    <Compile Include="Jobs\SendNotificationJob.cs" />
+    <Compile Include="Jobs\SendNotificationJobArgs.cs" />
     <Compile Include="LearningMpaAbpApplicationModule.cs" />
     <Compile Include="LearningMpaAbpAppServiceBase.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
     <Compile Include="MultiTenancy\TenantAppService.cs" />
+    <Compile Include="Notifications\INotificationAppService.cs" />
+    <Compile Include="Notifications\NotificationAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />
@@ -171,6 +175,7 @@
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Users\UserAppService.cs" />
     <Compile Include="Users\Dto\UserListDto.cs" />
+    <Compile Include="Workers\MakeInactiveUsersPassiveWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,4 +1,5 @@
 ﻿var taskService = abp.services.app.task;
+var notifyService = abp.services.app.notification;
 
 (function ($) {
 
@@ -91,4 +92,9 @@ function getTaskList() {
         .done(function (data) {
             $("#taskList").html(data);
         });
+}
+
+
+function notifyUser() {
+    notifyService.notificationUsersWhoHaveOpenTask();
 }

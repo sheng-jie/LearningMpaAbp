@@ -16,6 +16,8 @@
     <a class="btn btn-primary" data-toggle="modal" href="@Url.Action("RemoteCreate")" data-target="#modal" role="button">（Create Task）使用Remote方式调用Modal进行展现</a>
 
     <a class="btn btn-success" href="@Url.Action("PagedList")" role="button">分页展示</a>
+    
+    <button type="button" class="btn btn-info" onclick="notifyUser();">通知未完成任务的用户</button>
 
     <!--任务清单按照状态过滤的下拉框-->
     <span class="pull-right">
