@@ -143,27 +143,28 @@ namespace LearningMpaAbp.Tasks
             Logger.Info("Updating a task for input: " + input);
 
             //获取是否有权限
-            //bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
-
+            bool canAssignTaskToOther = PermissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
             //如果任务已经分配且未分配给自己，且不具有分配任务权限，则抛出异常
-            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId())
+            if (input.AssignedPersonId.HasValue && input.AssignedPersonId.Value != AbpSession.GetUserId() &&
+                !canAssignTaskToOther)
             {
-                var updateTask = Mapper.Map<Task>(input);
-                var user = _userRepository.Get(input.AssignedPersonId.Value);
-                //先执行分配任务
-                _taskManager.AssignTaskToPerson(updateTask, user);
-
-                //再更新其他字段
-                _taskRepository.Update(updateTask);
-
-                ////发送通知
-                //var message = "You hava been assigned one task into your todo list.";
-                //_smtpEmailSender.Send("ysjshengjie@qq.com", updateTask.AssignedPerson.EmailAddress, "New Todo item", message);
-
-                //_notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
-                //    NotificationSeverity.Info, new[] { updateTask.AssignedPerson.ToUserIdentifier() });
+                throw new AbpAuthorizationException("没有分配任务给他人的权限！");
             }
 
+            var updateTask = Mapper.Map<Task>(input);
+            var user = _userRepository.Get(input.AssignedPersonId.Value);
+            //先执行分配任务
+            _taskManager.AssignTaskToPerson(updateTask, user);
+
+            //再更新其他字段
+            _taskRepository.Update(updateTask);
+
+            ////发送通知
+            //var message = "You hava been assigned one task into your todo list.";
+            //_smtpEmailSender.Send("ysjshengjie@qq.com", updateTask.AssignedPerson.EmailAddress, "New Todo item", message);
+
+            //_notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
+            //    NotificationSeverity.Info, new[] { updateTask.AssignedPerson.ToUserIdentifier() });
         }
 
         public void AssignTaskToPerson(AssignTaskToPersonInput input)

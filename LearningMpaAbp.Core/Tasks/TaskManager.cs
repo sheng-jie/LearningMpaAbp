@@ -39,14 +39,6 @@ namespace LearningMpaAbp.Tasks
                 throw new ApplicationException("处于非活动状态的任务不能分配！");
             }
 
-            //获取是否有【分配任务给他人】的权限
-            bool canAssignTaskToOther = _permissionChecker.IsGranted(PermissionNames.Pages_Tasks_AssignPerson);
-            if (user.Id != _abpSession.GetUserId() && !canAssignTaskToOther)
-            {
-                throw new AbpAuthorizationException("没有分配任务给他人的权限！");
-            }
-            
-
             task.AssignedPersonId = user.Id;
 
             //使用领域事件触发发送通知操作
