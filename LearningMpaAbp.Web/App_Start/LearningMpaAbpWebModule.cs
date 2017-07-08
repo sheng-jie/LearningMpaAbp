@@ -67,12 +67,5 @@ namespace LearningMpaAbp.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-
-        public override void PostInitialize()
-        {
-            base.PostInitialize();
-            var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
-            workManager.Add(IocManager.Resolve<MakeInactiveUsersPassiveWorker>());
-        }
     }
 }

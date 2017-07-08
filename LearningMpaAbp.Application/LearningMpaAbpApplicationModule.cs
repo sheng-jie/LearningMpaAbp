@@ -3,7 +3,9 @@ using Abp.AutoMapper;
 using Abp.BackgroundJobs;
 using Abp.Dependency;
 using Abp.Modules;
+using Abp.Threading.BackgroundWorkers;
 using Castle.MicroKernel.Registration;
+using LearningMpaAbp.Workers;
 
 namespace LearningMpaAbp
 {
@@ -12,12 +14,7 @@ namespace LearningMpaAbp
     {
         public override void PreInitialize()
         {
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
-            {
-                //Add your custom AutoMapper mappings here...
-            });
-
-            //注入后台任务默认存储
+            //使用module-zero实现的后台作业存储持久化后台作业到数据库
             IocManager.Register<IBackgroundJobStore,BackgroundJobStore>();
         }
 
@@ -42,6 +39,13 @@ namespace LearningMpaAbp
                 foreach (var dtomap in mappers)
                     dtomap.CreateMapping(mapper);
             });
+        }
+
+        public override void PostInitialize()
+        {
+            //注册后台工作者标记消极用户
+            var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
+            workManager.Add(IocManager.Resolve<MakeInactiveUsersPassiveWorker>());
         }
     }
 }
