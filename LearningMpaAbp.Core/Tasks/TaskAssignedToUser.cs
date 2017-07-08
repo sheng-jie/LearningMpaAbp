@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace LearningMpaAbp.Tasks
 {
-    public class SendNotificationToUserWhenAssignedTask : IEventHandler<TaskAssignedEventData>, ITransientDependency
+    public class TaskAssignedToUser : IEventHandler<TaskAssignedEventData>, ITransientDependency
     {
         private readonly ISmtpEmailSender _smtpEmailSender;
         private readonly INotificationPublisher _notificationPublisher;
-        public SendNotificationToUserWhenAssignedTask(ISmtpEmailSender smtpEmailSender, INotificationPublisher notificationPublisher)
+        public TaskAssignedToUser(ISmtpEmailSender smtpEmailSender, INotificationPublisher notificationPublisher)
         {
             _smtpEmailSender = smtpEmailSender;
             _notificationPublisher = notificationPublisher;
@@ -23,7 +23,7 @@ namespace LearningMpaAbp.Tasks
         {
             var message = "You hava been assigned one task into your todo list.";
             //TODO:需要重新配置QQ邮箱密码
-            //_smtpEmailSender.Send("ysjshengjie@qq.com", eventData.Task.AssignedPerson.EmailAddress, "New Todo item", message);
+            _smtpEmailSender.Send("ysjshengjie@qq.com", eventData.Task.AssignedPerson.EmailAddress, "New Todo item", message);
 
             _notificationPublisher.Publish("NewTask", new MessageNotificationData(message), null,
                         NotificationSeverity.Info, new[] { eventData.User.ToUserIdentifier() });

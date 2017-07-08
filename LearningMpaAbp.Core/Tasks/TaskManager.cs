@@ -41,6 +41,7 @@ namespace LearningMpaAbp.Tasks
 
             task.AssignedPersonId = user.Id;
 
+
             //使用领域事件触发发送通知操作
             _eventBus.Trigger(new TaskAssignedEventData(task, user));
         }

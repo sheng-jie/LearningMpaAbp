@@ -69,6 +69,9 @@
 
 [ABP入门系列（18）——使用领域服务](http://www.jianshu.com/p/d23fd27fb792)
 
+[ABP入门系列（19）——使用领域事件](http://www.jianshu.com/p/cb468618d7b6)
+
+[ABP入门系列（20）——使用后台作业和工作者](http://www.jianshu.com/p/d20027bd76d5)
 
 
 
