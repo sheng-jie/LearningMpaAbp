@@ -125,8 +125,9 @@ var TableInit = function() {
 
     //格式化显示json日期格式
     function showDate(value, row, index) {
-        var date = new Date(value);
-        var formatDate = date.toDateString();
+        var birthdayMilliseconds = parseInt(value.replace(/\D/igm, ""));
+        var date = new Date(birthdayMilliseconds);
+        var formatDate = date.toLocaleString();
         return formatDate;
     }
 
