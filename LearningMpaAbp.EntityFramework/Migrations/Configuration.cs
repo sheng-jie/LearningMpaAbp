@@ -14,6 +14,7 @@ namespace LearningMpaAbp.Migrations
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "LearningMpaAbp";
+            SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
         protected override void Seed(LearningMpaAbp.EntityFramework.LearningMpaAbpDbContext context)

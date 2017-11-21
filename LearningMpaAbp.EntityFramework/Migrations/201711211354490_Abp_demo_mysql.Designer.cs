@@ -7,13 +7,13 @@ namespace LearningMpaAbp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Upgrade_To_ModuleZero_v1_12 : IMigrationMetadata
+    public sealed partial class Abp_demo_mysql : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Upgrade_To_ModuleZero_v1_12));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Abp_demo_mysql));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609110853544_Upgrade_To_ModuleZero_v1_12"; }
+            get { return "201711211354490_Abp_demo_mysql"; }
         }
         
         string IMigrationMetadata.Source

@@ -95,6 +95,12 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.10\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.10\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -138,97 +144,9 @@
     <Compile Include="EntityFramework\LearningMpaAbpDbContext.cs" />
     <Compile Include="EntityFramework\Repositories\BackendTaskRepository.cs" />
     <Compile Include="EntityFramework\Repositories\LearningMpaAbpRepositoryBase.cs" />
-    <Compile Include="Migrations\201506210746108_AbpZero_Initial.cs" />
-    <Compile Include="Migrations\201506210746108_AbpZero_Initial.Designer.cs">
-      <DependentUpon>201506210746108_AbpZero_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509081207232_UpdateModuleZeroTo_0_6_9.cs" />
-    <Compile Include="Migrations\201509081207232_UpdateModuleZeroTo_0_6_9.Designer.cs">
-      <DependentUpon>201509081207232_UpdateModuleZeroTo_0_6_9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509290947427_Upgrade_To_ModuleZero_0_7_1.cs" />
-    <Compile Include="Migrations\201509290947427_Upgrade_To_ModuleZero_0_7_1.Designer.cs">
-      <DependentUpon>201509290947427_Upgrade_To_ModuleZero_0_7_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510141938232_Upgrade_Abp_And_Module_Zero_To_0_7_3.cs" />
-    <Compile Include="Migrations\201510141938232_Upgrade_Abp_And_Module_Zero_To_0_7_3.Designer.cs">
-      <DependentUpon>201510141938232_Upgrade_Abp_And_Module_Zero_To_0_7_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511091457384_Upgrade_To_ModuleZero_0_7_4.cs" />
-    <Compile Include="Migrations\201511091457384_Upgrade_To_ModuleZero_0_7_4.Designer.cs">
-      <DependentUpon>201511091457384_Upgrade_To_ModuleZero_0_7_4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512241146128_Upgrade_To_Module_Zero_0_7_6.cs" />
-    <Compile Include="Migrations\201512241146128_Upgrade_To_Module_Zero_0_7_6.Designer.cs">
-      <DependentUpon>201512241146128_Upgrade_To_Module_Zero_0_7_6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512241148372_Created_Indexes.cs" />
-    <Compile Include="Migrations\201512241148372_Created_Indexes.Designer.cs">
-      <DependentUpon>201512241148372_Created_Indexes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601032115057_Upgraded_Module_Zero_0_7_7.cs" />
-    <Compile Include="Migrations\201601032115057_Upgraded_Module_Zero_0_7_7.Designer.cs">
-      <DependentUpon>201601032115057_Upgraded_Module_Zero_0_7_7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602161446590_Upgrade_Abp_And_Module_Zero_To_0_8_1.cs" />
-    <Compile Include="Migrations\201602161446590_Upgrade_Abp_And_Module_Zero_To_0_8_1.Designer.cs">
-      <DependentUpon>201602161446590_Upgrade_Abp_And_Module_Zero_To_0_8_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603021000202_Upgrade_Abp_And_Module_Zero_To_0_8_2.cs" />
-    <Compile Include="Migrations\201603021000202_Upgrade_Abp_And_Module_Zero_To_0_8_2.Designer.cs">
-      <DependentUpon>201603021000202_Upgrade_Abp_And_Module_Zero_To_0_8_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603220639423_Upgraded_To_Module_Zero_0_8_3.cs" />
-    <Compile Include="Migrations\201603220639423_Upgraded_To_Module_Zero_0_8_3.Designer.cs">
-      <DependentUpon>201603220639423_Upgraded_To_Module_Zero_0_8_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604271412090_Upgraded_To_V0_9.cs" />
-    <Compile Include="Migrations\201604271412090_Upgraded_To_V0_9.Designer.cs">
-      <DependentUpon>201604271412090_Upgraded_To_V0_9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604281237494_Added_ConnectionString_To_Tenant.cs" />
-    <Compile Include="Migrations\201604281237494_Added_ConnectionString_To_Tenant.Designer.cs">
-      <DependentUpon>201604281237494_Added_ConnectionString_To_Tenant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605021116147_Created_Table_AbpUserAccounts.cs" />
-    <Compile Include="Migrations\201605021116147_Created_Table_AbpUserAccounts.Designer.cs">
-      <DependentUpon>201605021116147_Created_Table_AbpUserAccounts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605041151380_UserAccount_And_Notification_Changes.cs" />
-    <Compile Include="Migrations\201605041151380_UserAccount_And_Notification_Changes.Designer.cs">
-      <DependentUpon>201605041151380_UserAccount_And_Notification_Changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609110853544_Upgrade_To_ModuleZero_v1_12.cs" />
-    <Compile Include="Migrations\201609110853544_Upgrade_To_ModuleZero_v1_12.Designer.cs">
-      <DependentUpon>201609110853544_Upgrade_To_ModuleZero_v1_12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609281412460_Upgrade_To_Abp_1_0.cs" />
-    <Compile Include="Migrations\201609281412460_Upgrade_To_Abp_1_0.Designer.cs">
-      <DependentUpon>201609281412460_Upgrade_To_Abp_1_0.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611130349140_Add_Task_Entity.cs" />
-    <Compile Include="Migrations\201611130349140_Add_Task_Entity.Designer.cs">
-      <DependentUpon>201611130349140_Add_Task_Entity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611131306475_Add_Person_Entity.cs" />
-    <Compile Include="Migrations\201611131306475_Add_Person_Entity.Designer.cs">
-      <DependentUpon>201611131306475_Add_Person_Entity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612241217167_Delete_People.cs" />
-    <Compile Include="Migrations\201612241217167_Delete_People.Designer.cs">
-      <DependentUpon>201612241217167_Delete_People.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612241218530_AssignTaskToUser.cs" />
-    <Compile Include="Migrations\201612241218530_AssignTaskToUser.Designer.cs">
-      <DependentUpon>201612241218530_AssignTaskToUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702221128175_Modify_Email_Confirmation_Code_Length.cs" />
-    <Compile Include="Migrations\201702221128175_Modify_Email_Confirmation_Code_Length.Designer.cs">
-      <DependentUpon>201702221128175_Modify_Email_Confirmation_Code_Length.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706080835497_updatetov2.1.cs" />
-    <Compile Include="Migrations\201706080835497_updatetov2.1.Designer.cs">
-      <DependentUpon>201706080835497_updatetov2.1.cs</DependentUpon>
+    <Compile Include="Migrations\201711211354490_Abp_demo_mysql.cs" />
+    <Compile Include="Migrations\201711211354490_Abp_demo_mysql.Designer.cs">
+      <DependentUpon>201711211354490_Abp_demo_mysql.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -254,74 +172,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506210746108_AbpZero_Initial.resx">
-      <DependentUpon>201506210746108_AbpZero_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509081207232_UpdateModuleZeroTo_0_6_9.resx">
-      <DependentUpon>201509081207232_UpdateModuleZeroTo_0_6_9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509290947427_Upgrade_To_ModuleZero_0_7_1.resx">
-      <DependentUpon>201509290947427_Upgrade_To_ModuleZero_0_7_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510141938232_Upgrade_Abp_And_Module_Zero_To_0_7_3.resx">
-      <DependentUpon>201510141938232_Upgrade_Abp_And_Module_Zero_To_0_7_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511091457384_Upgrade_To_ModuleZero_0_7_4.resx">
-      <DependentUpon>201511091457384_Upgrade_To_ModuleZero_0_7_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512241146128_Upgrade_To_Module_Zero_0_7_6.resx">
-      <DependentUpon>201512241146128_Upgrade_To_Module_Zero_0_7_6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512241148372_Created_Indexes.resx">
-      <DependentUpon>201512241148372_Created_Indexes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601032115057_Upgraded_Module_Zero_0_7_7.resx">
-      <DependentUpon>201601032115057_Upgraded_Module_Zero_0_7_7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602161446590_Upgrade_Abp_And_Module_Zero_To_0_8_1.resx">
-      <DependentUpon>201602161446590_Upgrade_Abp_And_Module_Zero_To_0_8_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603021000202_Upgrade_Abp_And_Module_Zero_To_0_8_2.resx">
-      <DependentUpon>201603021000202_Upgrade_Abp_And_Module_Zero_To_0_8_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603220639423_Upgraded_To_Module_Zero_0_8_3.resx">
-      <DependentUpon>201603220639423_Upgraded_To_Module_Zero_0_8_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604271412090_Upgraded_To_V0_9.resx">
-      <DependentUpon>201604271412090_Upgraded_To_V0_9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604281237494_Added_ConnectionString_To_Tenant.resx">
-      <DependentUpon>201604281237494_Added_ConnectionString_To_Tenant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605021116147_Created_Table_AbpUserAccounts.resx">
-      <DependentUpon>201605021116147_Created_Table_AbpUserAccounts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605041151380_UserAccount_And_Notification_Changes.resx">
-      <DependentUpon>201605041151380_UserAccount_And_Notification_Changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609110853544_Upgrade_To_ModuleZero_v1_12.resx">
-      <DependentUpon>201609110853544_Upgrade_To_ModuleZero_v1_12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609281412460_Upgrade_To_Abp_1_0.resx">
-      <DependentUpon>201609281412460_Upgrade_To_Abp_1_0.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611130349140_Add_Task_Entity.resx">
-      <DependentUpon>201611130349140_Add_Task_Entity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611131306475_Add_Person_Entity.resx">
-      <DependentUpon>201611131306475_Add_Person_Entity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612241217167_Delete_People.resx">
-      <DependentUpon>201612241217167_Delete_People.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612241218530_AssignTaskToUser.resx">
-      <DependentUpon>201612241218530_AssignTaskToUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702221128175_Modify_Email_Confirmation_Code_Length.resx">
-      <DependentUpon>201702221128175_Modify_Email_Confirmation_Code_Length.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706080835497_updatetov2.1.resx">
-      <DependentUpon>201706080835497_updatetov2.1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711211354490_Abp_demo_mysql.resx">
+      <DependentUpon>201711211354490_Abp_demo_mysql.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
