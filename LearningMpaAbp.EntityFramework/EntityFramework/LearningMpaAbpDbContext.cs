@@ -6,9 +6,11 @@ using LearningMpaAbp.Authorization.Roles;
 using LearningMpaAbp.MultiTenancy;
 using LearningMpaAbp.Tasks;
 using LearningMpaAbp.Users;
+using MySql.Data.Entity;
 
 namespace LearningMpaAbp.EntityFramework
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class LearningMpaAbpDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         /* NOTE: 

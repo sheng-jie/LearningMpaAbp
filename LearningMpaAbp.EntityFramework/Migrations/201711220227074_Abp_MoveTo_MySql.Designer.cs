@@ -7,13 +7,13 @@ namespace LearningMpaAbp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Abp_demo_mysql : IMigrationMetadata
+    public sealed partial class Abp_MoveTo_MySql : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Abp_demo_mysql));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Abp_MoveTo_MySql));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711211354490_Abp_demo_mysql"; }
+            get { return "201711220227074_Abp_MoveTo_MySql"; }
         }
         
         string IMigrationMetadata.Source

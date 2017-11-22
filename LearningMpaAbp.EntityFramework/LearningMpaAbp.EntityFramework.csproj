@@ -144,9 +144,9 @@
     <Compile Include="EntityFramework\LearningMpaAbpDbContext.cs" />
     <Compile Include="EntityFramework\Repositories\BackendTaskRepository.cs" />
     <Compile Include="EntityFramework\Repositories\LearningMpaAbpRepositoryBase.cs" />
-    <Compile Include="Migrations\201711211354490_Abp_demo_mysql.cs" />
-    <Compile Include="Migrations\201711211354490_Abp_demo_mysql.Designer.cs">
-      <DependentUpon>201711211354490_Abp_demo_mysql.cs</DependentUpon>
+    <Compile Include="Migrations\201711220227074_Abp_MoveTo_MySql.cs" />
+    <Compile Include="Migrations\201711220227074_Abp_MoveTo_MySql.Designer.cs">
+      <DependentUpon>201711220227074_Abp_MoveTo_MySql.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -172,8 +172,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711211354490_Abp_demo_mysql.resx">
-      <DependentUpon>201711211354490_Abp_demo_mysql.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711220227074_Abp_MoveTo_MySql.resx">
+      <DependentUpon>201711220227074_Abp_MoveTo_MySql.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
