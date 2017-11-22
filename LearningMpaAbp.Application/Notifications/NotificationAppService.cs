@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using System.Linq;
 using Abp.BackgroundJobs;
 using Abp.Domain.Repositories;
@@ -19,9 +20,14 @@ namespace LearningMpaAbp.Notifications
         }
         public void NotificationUsersWhoHaveOpenTask()
         {
-            var openTasks = _taskRepository.GetAll().Where(t => t.State == TaskState.Open);
+            var openTasks = _taskRepository.GetAll().Include(t=>t.AssignedPersonId).Where(t => t.State == TaskState.Open);
             foreach (var openTask in openTasks)
             {
+                if (!openTask.AssignedPersonId.HasValue)
+                {
+                    continue;
+                }
+
                 var sendNotificationArgs = new SendNotificationJobArgs()
                 {
                     NotificationTitle = "You have an open task",
