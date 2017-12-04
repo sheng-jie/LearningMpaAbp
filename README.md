@@ -1,3 +1,5 @@
+![](https://ysjshengjie.visualstudio.com/_apis/public/build/definitions/26a7829d-65be-4f99-95e3-349fd7f11559/5/badge)
+
 学习Abp框架之Mpa实操演练（来了就给个star吧）
 # 引言
 >作为.Net工地搬砖长工一名，一直致力于挖坑（Bug）填坑（Debug），但技术却不见长进。也曾热情于新技术的学习，憧憬过成为技术大拿。从前端到后端，从bootstrap到javascript，从python到Node.js，了解过设计模式，也跟风了微信公众号开发。然而却浅尝辄止，未曾深入。买了一本本的技术书籍，没完整的翻完一本。屯了一部部的pdf，却只是在手机里占着内存。想过改变，却从未曾着手改变。
