@@ -2,6 +2,7 @@
 
 ![](https://ysjshengjie.visualstudio.com/_apis/public/build/definitions/26a7829d-65be-4f99-95e3-349fd7f11559/5/badge)
 学习Abp框架之Mpa实操演练（来了就给个star吧）
+
 **温馨提示：由于此DEMO的ABP版本较最新版本相差甚远，建议学习过程中前往[52Abp官网](https://www.52abp.com/)，查缺补漏！**
 
 # 引言
